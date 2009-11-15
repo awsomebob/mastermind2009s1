@@ -1,6 +1,8 @@
 package com.masprop.cluster1.privateclasses.model;
-import com.masprop.cluster1.shared.controller.*;
 
-public class Mastermind implements GameManager {
+import com.masprop.cluster1.privateclasses.controller.GameManagerMastermind;
+
+
+public class Mastermind extends GameManagerMastermind {
 
 }

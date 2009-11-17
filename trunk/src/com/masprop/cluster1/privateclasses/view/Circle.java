@@ -7,11 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.JComponent;
 
-public class Circle extends JComponent implements MouseListener, MouseMotionListener {
+
+public class Circle extends JComponent implements MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -33,26 +32,14 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
 	 */
 	private int x, y, r;
 	
-	/**
-	 * position of parrent component
-	 **/
-	private int startx, starty;
 	
-	/**
-	 * position that is defined in constructor
-	 * where circle will be drawn
-	 * and radios of circle  
-	 */
-	private int xx,yy;
 	
 	/**
 	 * current color of the circle 
 	 */
 	private int color;
 	
-	private boolean drag;
-	
-	
+
 	/**
 	 * class constructor
 	 * @params x, y position of circle
@@ -60,8 +47,6 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
 	public Circle(int x, int y, int level){
 		this.x = x;
 		this.y = y;
-		this.xx = x;
-		this.yy = y;
 		
 		/**
 		 * level value   easy = 0, medium = 1, hard = 2
@@ -74,22 +59,12 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
 		r = 15;
 		color = 1;
 		
-		drag = false;
-		
-		startx = this.getParent().getX();
-		starty = this.getParent().getY();
-		
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
+		this.addMouseListener(this);	
 	}
 
 	public void paint(Graphics g) {
-		
-		//FIX ME 
-		//bound should be image size or....
-		this.setBounds(startx, starty, startx , 1000);
-		super.paint(g);
-		Graphics2D g2 = (Graphics2D) g;
+		setBounds(x,y,x+2*r+5,y+2*r+5);
+	    Graphics2D g2 = (Graphics2D) g;
 
 		g2.setColor(colors[color]);
 		Stroke stroke = new BasicStroke(6);
@@ -107,14 +82,13 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
 		//if not do nothing
 		//controler.check....
 		
-		
+
 		int xclick = arg0.getX();
 		int yclick = arg0.getY();
 		if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
 			color = (color + 1) % level;
 			repaint();
 		}
-		
 	}
 
 	@Override
@@ -131,59 +105,15 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		
-		int xclick = arg0.getX();
-		int yclick = arg0.getY();
-		if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
-			drag = true;
-		}
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		
-		//FOX ME
-		//here should be some check if 
-		//new position is valid
-		
-		
-		if(drag){
-			x = xx;
-			y = yy;
-			repaint();	
-		}
-		
-		
-		//else COPY this circle on the chosen position
-
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		//FIX ME 
-		//here should be check if cell is editable
-		//if not do nothing
-		//controler.check....
-		
-        if(drag){
-        	int dragx = e.getX() - r;
-    		int dragy = e.getY() - r;
-    		
-    		int dx = dragx - x;
-    		int dy = dragy - y;
-    		
-    		x += dx;
-    		y += dy;
-    		
-    		repaint();
-        }
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
+
+
+
 
 }

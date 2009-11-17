@@ -18,8 +18,8 @@ public class MastermindViewTest {
 		         JImagePanel panel = new JImagePanel(loadImg, 100, 40);
 		         Circle c1 = new Circle(20, 20, 2);
 		         panel.add(c1);
-		         //Circle c2 = new Circle(20, 80, 2);
-		         //panel.add(c2);
+		         Circle c2 = new Circle(20, 80, 2);
+		         panel.add(c2);
 		         frame.add(panel);  
 		         frame.setVisible(true);  
 		     }

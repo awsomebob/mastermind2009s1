@@ -4,7 +4,7 @@ package com.masprop.cluster1.privateclasses.model;
  *  This class represents game and contents top 10 scores for current level of difficulty
  *  and current level type.
  *  
- *  @see MastermindParser
+ *  @see MastermindFileParser
  *  @see Scores
  *  @author Milan Stanic
  */
@@ -36,7 +36,7 @@ public abstract class Game {
 	 */
 	public Game(GameLevelType gameLevelType){
 		this.gameLevelType = gameLevelType;
-		parser = new MastermindFileParser();
+		parser = new MastermindFileParser("fileparser");
 		scores = new Scores(parser, gameLevelType);
 	}
 	

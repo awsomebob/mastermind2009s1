@@ -3,6 +3,12 @@ package com.masprop.cluster1.privateclasses.model.diskmanager;
 import java.util.ArrayList;
 import java.io.*;
 
+import com.masprop.cluster1.shared.model.GameLevelType;
+/**
+ * 
+ * @author Nick
+ *
+ */
 public class MastermindFileParser implements Parser {
     private File file;
     private String name;
@@ -62,5 +68,11 @@ public class MastermindFileParser implements Parser {
         content.add(new String("Test3"));
         return content;
     }
+
+	@Override
+	public int[] getScore(GameLevelType gameLevelType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

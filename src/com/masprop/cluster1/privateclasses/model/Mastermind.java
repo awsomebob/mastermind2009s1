@@ -1,19 +1,51 @@
 package com.masprop.cluster1.privateclasses.model;
 
-import java.util.List;
+/**
+ * Class represents game with a current game and all necessary
+ * information for generating, solving
+ * or for handling the score of this game.
+ * 
+ * @see MasterminStatus
+ * 
+ * @author Milan Stanic
+ */
 
-import com.masprop.cluster1.privateclasses.controller.GameManagerMastermind;
-import com.masprop.cluster1.shared.controller.GameGenerator;
-import com.masprop.cluster1.shared.controller.GameSolver;
-import com.masprop.cluster1.shared.controller.GameValidator;
-import com.masprop.cluster1.shared.model.Constraint;
-import com.masprop.cluster1.shared.model.Game;
+import com.masprop.cluster1.shared.model.GameLevelType;
 
-public class Mastermind extends GameManagerMastermind {
 
-    public Mastermind() {
-        // TODO Auto-generated constructor stub
-    }
+public class Mastermind extends Game {
+	
+	/**
+	 * pile will describe this class
+	 */
+	private MastermindStatus mastermindStatus;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param gameLevelType game difficulty level
+	 */
+	public Mastermind(GameLevelType gameLevelType) {
+			super(gameLevelType);
+			mastermindStatus = new MastermindStatus();
+	}
 
+	/**
+	 * 
+	 * @return mastermindStaus
+	 */
+	public MastermindStatus getMastermindStatus() {
+		return mastermindStatus;
+	}
+
+	/**
+	 * 
+	 * @param mastermindStatus status of current game
+	 */
+	public void setMastermindStatus(MastermindStatus mastermindStatus) {
+		this.mastermindStatus = mastermindStatus;
+	}
+	
+	
 
 }

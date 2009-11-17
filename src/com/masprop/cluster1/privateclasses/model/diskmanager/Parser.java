@@ -1,6 +1,8 @@
 package com.masprop.cluster1.privateclasses.model.diskmanager;
 import java.util.ArrayList;
 
+import com.masprop.cluster1.shared.model.GameLevelType;
+
 public interface Parser {
     /**
      * @param name
@@ -24,5 +26,7 @@ public interface Parser {
     public void update(String rownumber, String value);
 
     public ArrayList<String> retrieve();
+    
+    public int[] getScore(GameLevelType gameLevelType);
 
 }

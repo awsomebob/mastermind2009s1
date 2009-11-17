@@ -20,9 +20,14 @@ import com.masprop.cluster1.shared.model.Game;
  */
 public class MastermindAlgorithm implements Algorithm {
 
-
+	//milan: did it correct write???? arlogrithmics 
     public void performArlogrithmics(Game game) {
         // TODO Auto-generated method stub
+    }
+    
+    //milan: also add here same like in GameSolverMistermind
+    public void performAlgorihmics(Mastermind mastermind){
+    	
     }
 
 }

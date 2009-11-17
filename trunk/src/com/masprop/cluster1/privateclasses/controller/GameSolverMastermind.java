@@ -15,5 +15,15 @@ public class GameSolverMastermind implements GameSolver {
 
         return game;
     }
+    
+    //milan add this, because argument must be Mastermind
+    // probably we can fix that on different way
+    public Mastermind solveMastermind(Mastermind mastermind) {
+        MastermindAlgorithm Algo = new MastermindAlgorithm();
+        Algo.performAlgorihmics(mastermind);
+
+        return mastermind;
+    }
+    
 
 }

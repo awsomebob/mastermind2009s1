@@ -9,11 +9,11 @@ import com.masprop.cluster1.shared.controller.GameValidator;
 import com.masprop.cluster1.shared.model.Constraint;
 import com.masprop.cluster1.shared.model.Game;
 
-
 public class Mastermind extends GameManagerMastermind {
-public Mastermind() {
-    // TODO Auto-generated constructor stub
-}
+
+    public Mastermind() {
+        // TODO Auto-generated constructor stub
+    }
 
 
 }

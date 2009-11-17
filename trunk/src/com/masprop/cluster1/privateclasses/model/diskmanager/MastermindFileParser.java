@@ -57,7 +57,9 @@ public class MastermindFileParser implements Parser {
      */
     public ArrayList<String> retrieve() {
         ArrayList<String> content = new ArrayList<String>();
-        content.add(new String("Test"));
+        content.add(new String("Test1"));
+        content.add(new String("Test2"));
+        content.add(new String("Test3"));
         return content;
     }
 

@@ -2,10 +2,10 @@ package com.masprop.cluster1.privateclasses.model.diskmanager;
 
 import java.util.ArrayList;
 import java.io.*;
-
 import com.masprop.cluster1.shared.model.GameLevelType;
+
 /**
- * 
+ *
  * @author Nick
  *
  */
@@ -69,10 +69,9 @@ public class MastermindFileParser implements Parser {
         return content;
     }
 
-	@Override
-	public int[] getScore(GameLevelType gameLevelType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public int[] getScore(GameLevelType gameLevelType) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

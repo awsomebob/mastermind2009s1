@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 
 
 public class Circle extends JComponent implements MouseListener {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 	/**
 	 * all colors in which circle can be drawn 
@@ -66,14 +66,23 @@ public class Circle extends JComponent implements MouseListener {
 		setBounds(x,y,x+2*r+5,y+2*r+5);
 	    Graphics2D g2 = (Graphics2D) g;
 
-		g2.setColor(colors[color]);
-		Stroke stroke = new BasicStroke(6);
-		g2.setStroke(stroke);
+    /**
+     * position where circle will be drawn
+     * and radios of circle
+     */
+    private int x, y, r;
 
-		g2.drawOval(x, y, 2*r, 2*r);
-		g2.fillOval(x, y, 2*r, 2*r);
+    /**
+     * position of parrent component
+     **/
+    private int startx, starty;
 
-	}
+    /**
+     * position that is defined in constructor
+     * where circle will be drawn
+     * and radios of circle
+     */
+    private int xx,yy;
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -91,17 +100,24 @@ public class Circle extends JComponent implements MouseListener {
 		}
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+    private boolean drag;
 
-	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+    /**
+     * class constructor
+     * @params x, y position of circle
+     */
+    public Circle(int x, int y, int level){
+        this.x = x;
+        this.y = y;
+        this.xx = x;
+        this.yy = y;
 
-	}
+        /**
+         * level value   easy = 0, medium = 1, hard = 2
+         * num of colors easy = 3, medium = 6, hard = 9
+         */
+        this.level = 3 * (level+1);
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
@@ -111,7 +127,8 @@ public class Circle extends JComponent implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	}
+        startx = this.getParent().getX();
+        starty = this.getParent().getY();
 
 
 

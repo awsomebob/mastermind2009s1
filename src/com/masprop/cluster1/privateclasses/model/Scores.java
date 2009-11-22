@@ -24,18 +24,28 @@ public class Scores {
 	public Scores(MastermindFileParser parser, GameLevelType gameLevelType){
 		// in parser we need to have method which reads appropriate
 		// file with score and returns array of 10 the best result
-		scores =	parser.getScore(gameLevelType);
+		scores = parser.getScore(gameLevelType);
+	}
+	
+	/**
+	 * Class constructor
+	 * purpose for testing
+	 */
+	public Scores(){
+		scores = new int[10];
+		for(int i=0; i<10; i++)
+			scores[i] = 0;
 	}
 	
 	/**
 	 * @param score score of current game
 	 * @return current position of score in top 10 or -1 if that score is not in top 10
 	 */
-	int getScore(int score){
+	public int getScore(int score){
 		int temp = 1;
 		for(temp=1; temp<=10; temp++){
+			if(score < scores[9]){ temp = -1; break; }
 			if(score > scores[temp-1]) break;
-			if(temp == 10) temp = -1;
 		}
 		return temp;
 	}
@@ -44,8 +54,8 @@ public class Scores {
 	 * @param score score of current game
 	 * @param position current position for score
 	*/
-	void setScore(int score, int position){
-		for(int i=9; i>=position; i++){
+	public void setScore(int score, int position){
+		for(int i=9; i>=position; i--){
 			scores[i] = scores[i-1];
 		}
 		scores[position-1] = score;

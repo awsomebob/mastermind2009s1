@@ -2,7 +2,9 @@ package com.masprop.cluster1.privateclasses.model.diskmanager;
 
 import java.util.ArrayList;
 import java.io.*;
+
 import com.masprop.cluster1.shared.model.GameLevelType;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -54,24 +56,65 @@ public class MastermindFileParser implements Parser {
     /**
      * Updating of our file
      */
-    public void update(String rownumber, String value) {
-
+    public void update(Integer rownumber, String[] value) {
+        //read all our file into a arraylist
+        ArrayList<String[]> filecontent = this.retrieve();
+        //TODO check our string value
+        filecontent.set(rownumber, value);
     }
 
     /**
      * Get all of our content in an string arraylist
      */
-    public ArrayList<String> retrieve() {
-        ArrayList<String> content = new ArrayList<String>();
-        content.add(new String("Test1"));
-        content.add(new String("Test2"));
-        content.add(new String("Test3"));
+    public ArrayList<String[]> retrieve() {
+
+        FileReader fr = null;
+        try {
+            fr = new FileReader(this.file);
+        } catch (FileNotFoundException file) {
+            System.out.println("File Error " + file.toString());
+        }
+        //create our new arraylist object
+        ArrayList<String[]> content = new ArrayList<String[]>();
+        //buffered reading
+        BufferedReader br = new BufferedReader(fr);
+
+        String s;
+        try {
+            while((s = br.readLine()) != null) {
+                String[] newline = stringToArray(s,",");
+                content.add(newline);
+            }
+        } catch (IOException io) {
+            System.out.println("IO Error " + io.toString());
+        }
         return content;
     }
 
     public int[] getScore(GameLevelType gameLevelType) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    //  Convert an array of strings to one string.
+    //  Put the 'separator' string between each element.
+    public static String arrayToString(String[] a, String separator) {
+        StringBuffer result = new StringBuffer();
+        if (a.length > 0) {
+            result.append(a[0]);
+            for (int i=1; i<a.length; i++) {
+                result.append(separator);
+                result.append(a[i]);
+            }
+        }
+        return result.toString();
+    }
+
+    //  Convert an string to array of strings
+    //  Delete the seperator string
+    public static String[] stringToArray(String a, String separator) {
+        String[] pieces = a.split(separator);
+        return pieces;
     }
 
 }

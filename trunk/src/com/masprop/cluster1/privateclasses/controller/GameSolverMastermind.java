@@ -11,19 +11,19 @@ public class GameSolverMastermind implements GameSolver {
 
     public Game solveGame(Game game) {
         MastermindAlgorithm Algo = new MastermindAlgorithm();
-        Algo.performArlogrithmics(game);
+        Algo.performAlgorithmics(game);
 
         return game;
     }
-    
+
     //milan add this, because argument must be Mastermind
     // probably we can fix that on different way
     public Mastermind solveMastermind(Mastermind mastermind) {
         MastermindAlgorithm Algo = new MastermindAlgorithm();
-        Algo.performAlgorihmics(mastermind);
+        Algo.performAlgorithmics(mastermind);
 
         return mastermind;
     }
-    
+
 
 }

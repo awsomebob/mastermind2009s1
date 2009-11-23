@@ -23,10 +23,10 @@ public interface Parser {
      * @param value to give our value what we need to write in our layer
      * @param rownumber, defines where in our file we want to write the value
      */
-    public void update(String rownumber, String value);
+    public void update(Integer rownumber, String[] value);
 
-    public ArrayList<String> retrieve();
-    
+    public ArrayList<String[]> retrieve();
+
     public int[] getScore(GameLevelType gameLevelType);
 
 }

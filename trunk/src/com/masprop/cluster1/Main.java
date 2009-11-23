@@ -21,18 +21,17 @@ public class Main {
     public void run() {
         // Initialize Database abstraction layers
         // Initialize our scores file
-        if (!new File("scores.csv").exists()) {
-            // create our file and load it in db
-            MastermindFileParser file = new MastermindFileParser("MastermindScores");
-            ArrayList<String> list = file.retrieve();
-            for (String s : list) {
-                System.out.println(s);
-            }
+        MastermindFileParser file = new MastermindFileParser("MastermindScores.csv");
+        //put some content in our file
+        //rownumbers go from 1 to ...
+        String[] scores = {"Test1","Test2","Test3"};
+        file.update(0, scores);
+        String[] scores1 = {"Test4","Test5","Test6"};
+        file.update(1, scores1);
+        String[] scores2 = {"Test1better","Test2better","Test3better"};
+        file.update(0, scores2);
+        //get the content in our file as a list of stringarrays
 
-        } else {
-            // create our scores file
-            // db = new Database();
-        }
 
         // Instantiate the Models
         //Game model = new Game(db);

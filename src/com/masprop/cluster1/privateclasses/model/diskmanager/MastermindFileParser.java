@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.io.*;
 
 import com.masprop.cluster1.shared.model.GameLevelType;
-import java.util.StringTokenizer;
+import java.util.Iterator;
 
 /**
  *
@@ -13,11 +13,13 @@ import java.util.StringTokenizer;
  */
 public class MastermindFileParser implements Parser {
     private File file;
+
     private String name;
+
     /**
      * @param name
-     * Function to create a file where we are going to save our data.
-     * Can be used multiple times
+     *            Function to create a file where we are going to save our data.
+     *            Can be used multiple times
      */
     public MastermindFileParser(String name) {
         this.name = name;
@@ -57,10 +59,36 @@ public class MastermindFileParser implements Parser {
      * Updating of our file
      */
     public void update(Integer rownumber, String[] value) {
-        //read all our file into a arraylist
+        // read all our file into a arraylist
         ArrayList<String[]> filecontent = this.retrieve();
-        //TODO check our string value
-        filecontent.set(rownumber, value);
+        // TODO check our string value
+        // TODO check better row value number
+        System.out.println(filecontent.size());
+        System.out.println(rownumber);
+        if (filecontent.size() > rownumber) {
+            filecontent.set(rownumber, value);
+        } else {
+            filecontent.add(value);
+        }
+        Iterator<String[]> itr = filecontent.iterator();
+        try {
+            Writer output = null;
+            this.delete();
+            this.create();
+            FileWriter fw = new FileWriter(this.file);
+            output = new BufferedWriter(fw);
+
+            while (itr.hasNext()) {
+                String[] element = itr.next();
+                output.write(arrayToString(element, ","));
+                String newline = System.getProperty("line.separator");
+                output.write(newline);
+            }
+            output.close();
+        } catch (IOException io) {
+            System.out.println("IO Error " + io.toString());
+        }
+        System.out.println("Your file has been written");
     }
 
     /**
@@ -74,15 +102,15 @@ public class MastermindFileParser implements Parser {
         } catch (FileNotFoundException file) {
             System.out.println("File Error " + file.toString());
         }
-        //create our new arraylist object
+        // create our new arraylist object
         ArrayList<String[]> content = new ArrayList<String[]>();
-        //buffered reading
+        // buffered reading
         BufferedReader br = new BufferedReader(fr);
 
         String s;
         try {
-            while((s = br.readLine()) != null) {
-                String[] newline = stringToArray(s,",");
+            while ((s = br.readLine()) != null) {
+                String[] newline = stringToArray(s, ",");
                 content.add(newline);
             }
         } catch (IOException io) {
@@ -96,13 +124,13 @@ public class MastermindFileParser implements Parser {
         return null;
     }
 
-    //  Convert an array of strings to one string.
-    //  Put the 'separator' string between each element.
+    // Convert an array of strings to one string.
+    // Put the 'separator' string between each element.
     public static String arrayToString(String[] a, String separator) {
         StringBuffer result = new StringBuffer();
         if (a.length > 0) {
             result.append(a[0]);
-            for (int i=1; i<a.length; i++) {
+            for (int i = 1; i < a.length; i++) {
                 result.append(separator);
                 result.append(a[i]);
             }
@@ -110,8 +138,8 @@ public class MastermindFileParser implements Parser {
         return result.toString();
     }
 
-    //  Convert an string to array of strings
-    //  Delete the seperator string
+    // Convert an string to array of strings
+    // Delete the seperator string
     public static String[] stringToArray(String a, String separator) {
         String[] pieces = a.split(separator);
         return pieces;

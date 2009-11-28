@@ -24,17 +24,28 @@ public class Main {
         MastermindFileParser file = new MastermindFileParser("MastermindScores.csv");
         //put some content in our file
         //rownumbers go from 1 to ...
-        String[] scores = {"Test1","Test2","Test3"};
+        /*String[] scores = {"milan","8","difficult"};
         file.update(0, scores);
-        String[] scores1 = {"Test4","Test5","Test6"};
+        String[] scores1 = {"nick","6","easy"};
         file.update(1, scores1);
-        String[] scores2 = {"Test1better","Test2better","Test3better"};
+
+        String[] scores2 = {"pile","10","difficult"};
         file.update(0, scores2);
         //get the content in our file as a list of stringarrays
-
+*/
 
         // Instantiate the Models
-        //Game model = new Game(db);
+        GameManagerMastermind manager =  new GameManagerMastermind();
+
+
+        Mastermind mastermind = manager.getNewGame(GameLevelType.DIFFICULT);
+        //MastermindStatus status = mastermind.getMastermindStatus();
+        //MatrixMastermind matrix = status.getMatrixMastermind();
+        //System.out.println("matrixwidth");
+        //System.out.println(matrix.getWidth());
+
+        //GameSolverMastermind solver = new GameSolverMastermind();
+        //mastermind  = solver.solveMastermind(mastermind);
 
         // Instantiate the Views
 

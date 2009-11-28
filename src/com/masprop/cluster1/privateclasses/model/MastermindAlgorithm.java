@@ -28,7 +28,7 @@ public class MastermindAlgorithm implements Algorithm {
 
     public void performAlgorithmics(Mastermind mastermind) {
         // TODO Auto-generated method stub
-
+        //do something with mastermind object
     }
 
 }

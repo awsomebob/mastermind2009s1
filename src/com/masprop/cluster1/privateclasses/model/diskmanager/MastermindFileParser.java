@@ -13,7 +13,6 @@ import java.util.Iterator;
  */
 public class MastermindFileParser implements Parser {
     private File file;
-
     private String name;
 
     /**
@@ -80,7 +79,7 @@ public class MastermindFileParser implements Parser {
 
             while (itr.hasNext()) {
                 String[] element = itr.next();
-                output.write(arrayToString(element, ","));
+                output.write(arrayToString(element, "|"));
                 String newline = System.getProperty("line.separator");
                 output.write(newline);
             }
@@ -110,7 +109,7 @@ public class MastermindFileParser implements Parser {
         String s;
         try {
             while ((s = br.readLine()) != null) {
-                String[] newline = stringToArray(s, ",");
+                String[] newline = stringToArray(s, "|");
                 content.add(newline);
             }
         } catch (IOException io) {

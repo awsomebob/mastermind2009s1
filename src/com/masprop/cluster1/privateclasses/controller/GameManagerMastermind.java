@@ -61,5 +61,23 @@ public class GameManagerMastermind {
 		return gameSolverMastermind.solveMastermind(mastermind);
 	}
 	
+	/**
+	 * Sets the mastermind generator game
+	 * 
+	 * @param mastermindGenerator
+	 */
+
+	public void setMastermindGenerator(MastermindGenerator mastermindGenerator) {
+		this.mastermindGenerator = mastermindGenerator;
+	}
+	
+	/**
+	 *  Sets the mastermind game solver
+	 * 
+	 * @param gameSolverMastermind
+	 */
+	public void setGameSolverMastermind(GameSolverMastermind gameSolverMastermind) {
+		this.gameSolverMastermind = gameSolverMastermind;
+	}
 	
 }

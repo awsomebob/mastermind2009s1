@@ -31,4 +31,15 @@ public class MastermindAlgorithm implements Algorithm {
         //do something with mastermind object
     }
 
+
+	@Override
+	public void performArlogrithmics(Game game) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void performAlgorihmics(Mastermind matermind){
+		
+	}
+
 }

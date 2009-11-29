@@ -36,8 +36,9 @@ public abstract class Game {
      */
     public Game(GameLevelType gameLevelType){
         this.gameLevelType = gameLevelType;
-        //parser = new MastermindFileParser("fileparser");
-        //scores = new Scores(parser, gameLevelType);
+        
+        parser = new MastermindFileParser("fileparser");
+        scores = new Scores(parser, gameLevelType);
     }
 
     /**
@@ -71,6 +72,23 @@ public abstract class Game {
     public void setGameLevelType(GameLevelType gameLevelType) {
         this.gameLevelType = gameLevelType;
     }
+    
+    /**
+     * 
+     * @return mastermind file parser
+     */
+	public MastermindFileParser getParser() {
+		return parser;
+	}
 
+	/**
+	 * 
+	 * @param parser mastermind file parser
+	 */
+	public void setParser(MastermindFileParser parser) {
+		this.parser = parser;
+	}
+
+    
 
 }

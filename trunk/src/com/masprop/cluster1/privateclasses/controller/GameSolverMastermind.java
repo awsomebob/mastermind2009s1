@@ -3,7 +3,12 @@ package com.masprop.cluster1.privateclasses.controller;
 import com.masprop.cluster1.privateclasses.model.*;
 import com.masprop.cluster1.shared.controller.*;
 import com.masprop.cluster1.shared.model.Game;
-
+/**
+ * This class manages how the algorithm is used
+ *
+ * @author nick
+ *
+ */
 public class GameSolverMastermind implements GameSolver {
     public GameSolverMastermind() {
         // TODO Auto-generated constructor stub

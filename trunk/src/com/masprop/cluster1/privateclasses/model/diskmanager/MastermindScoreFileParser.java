@@ -1,4 +1,5 @@
 package com.masprop.cluster1.privateclasses.model.diskmanager;
+
 import java.util.ArrayList;
 import java.io.*;
 import com.masprop.cluster1.privateclasses.model.*;
@@ -16,20 +17,38 @@ public class MastermindScoreFileParser implements Parser {
 
     /**
      * @param name
-     * Function to create a file where we are going to save our data.
-     * Can be used multiple times
+     *            Function to create a file where we are going to save our data.
+     *            Can be used multiple times
      */
     public MastermindScoreFileParser() {
         for (GameLevelType g : GameLevelType.values()) {
-              this.create(g.toString());
+            this.create(g.toString(), false);
+        }
+    }
+
+    public MastermindScoreFileParser(boolean createnew) {
+        for (GameLevelType g : GameLevelType.values()) {
+            this.create(g.toString(), createnew);
         }
     }
 
     /**
-     * Creating of our file
+     * Creating of our file without boolean as described in our interface
      */
     public boolean create(String filename) {
+        return this.create(filename, false);
+    }
+
+    /**
+     * Creating of our file with the option of having it overwritten with a clean new file
+     */
+    public boolean create(String filename, boolean createnew) {
         file = new File(filename);
+
+        if (createnew == true) {
+            file.delete();
+        }
+
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -61,15 +80,15 @@ public class MastermindScoreFileParser implements Parser {
     public void update(String filename) {
 
     }
+
     /**
-     * Updating of our file.
-     * Only used for scores so we don't make this general
+     * Updating of our file. Only used for scores so we don't make this general
      */
     public void update(String filename, Score score) {
         file = new File(filename);
 
         Scores scores = new Scores(this.retrieve(file));
-//      add our score to the filecontent anyway
+        // add our score to the filecontent anyway
         scores.addScore(score);
         scores.sortScores();
 
@@ -84,7 +103,7 @@ public class MastermindScoreFileParser implements Parser {
 
                 Score scoreInList = itr.next();
                 System.out.print("written to the file\n");
-                System.out.print(scoreInList.toString("|")+"\n");
+                System.out.print(scoreInList.toString("|") + "\n");
                 output.write(scoreInList.toString("|"));
                 String newline = System.getProperty("line.separator");
                 output.write(newline);
@@ -128,19 +147,19 @@ public class MastermindScoreFileParser implements Parser {
 
     public ArrayList<Score> getScoreFromFile(GameLevelType gameLevelType) {
         file = new File(gameLevelType.toString());
-        ArrayList<Score> data =  this.retrieve(file);
+        ArrayList<Score> data = this.retrieve(file);
         return data;
     }
 
     // Convert an string to array of strings
     // Delete the seperator string
     public static Score stringToScore(String a, String separator) {
-        String[] pieces = a.split("\\"+separator, -1);
-        if(pieces.length == 2) {
-            Score score = new Score(pieces[0],Integer.getInteger(pieces[1]));
+        String[] pieces = a.split("\\" + separator, -1);
+        if (pieces.length == 2) {
+            Score score = new Score(pieces[0], Integer.getInteger(pieces[1]));
             return score;
         }
-        //return an empty score
+        // return an empty score
         return new Score();
     }
 }

@@ -9,7 +9,7 @@ package com.masprop.cluster1.privateclasses.model;
  *  @author Milan Stanic
  */
 
-import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindFileParser;
+import com.masprop.cluster1.privateclasses.model.diskmanager.*;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 public abstract class Game {
@@ -27,7 +27,7 @@ public abstract class Game {
      * Game parser
      * Nick will describe functions for him
      */
-    private MastermindFileParser parser;
+    private MastermindScoreFileParser parser;
 
     /**
      * Constructor to make a new game
@@ -36,8 +36,7 @@ public abstract class Game {
      */
     public Game(GameLevelType gameLevelType){
         this.gameLevelType = gameLevelType;
-        
-        parser = new MastermindFileParser("fileparser");
+        parser = new MastermindScoreFileParser();
         scores = new Scores(parser, gameLevelType);
     }
 
@@ -72,23 +71,23 @@ public abstract class Game {
     public void setGameLevelType(GameLevelType gameLevelType) {
         this.gameLevelType = gameLevelType;
     }
-    
+
     /**
-     * 
+     *
      * @return mastermind file parser
      */
-	public MastermindFileParser getParser() {
-		return parser;
-	}
+    public MastermindScoreFileParser getParser() {
+        return parser;
+    }
 
-	/**
-	 * 
-	 * @param parser mastermind file parser
-	 */
-	public void setParser(MastermindFileParser parser) {
-		this.parser = parser;
-	}
+    /**
+     *
+     * @param parser mastermind file parser
+     */
+    public void setParser(MastermindScoreFileParser parser) {
+        this.parser = parser;
+    }
 
-    
+
 
 }

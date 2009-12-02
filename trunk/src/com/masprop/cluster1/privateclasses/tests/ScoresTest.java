@@ -31,7 +31,7 @@ public class ScoresTest {
         test.scores = new Scores();
 
         /**
-         * initiate array temp with some values
+         * initiate random score table with 20 values to show that he only saves 10
          */
         for(int i=0; i<20; i++) {
             Random r = new Random();

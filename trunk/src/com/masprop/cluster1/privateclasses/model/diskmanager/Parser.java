@@ -1,7 +1,4 @@
 package com.masprop.cluster1.privateclasses.model.diskmanager;
-import com.masprop.cluster1.privateclasses.model.*;
-import java.io.File;
-import java.util.ArrayList;
 /**
  * Interface that defines what we need for a generic fileparser
  *
@@ -29,6 +26,4 @@ public interface Parser {
      * @param rownumber, defines where in our file we want to write the value
      */
     public void update(String filename);
-
-    public ArrayList<Score> retrieve(File file);
 }

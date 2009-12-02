@@ -12,8 +12,6 @@ import java.io.FileWriter;
 
 import javax.swing.JComponent;
 
-public class Circle extends JComponent implements MouseListener, MouseMotionListener {
-    private static final long serialVersionUID = 1L;
 
 public class Circle extends JComponent implements MouseListener{
 	private static final long serialVersionUID = 1L;
@@ -92,7 +90,7 @@ public class Circle extends JComponent implements MouseListener{
 		g2.setColor(colors[color]);
 		g2.fillOval(x, y, 2*r-2, 2*r-2);
 
-    private boolean drag;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -124,40 +122,30 @@ public class Circle extends JComponent implements MouseListener{
 		*/    
 	}
 
-        /**
-         * level value   easy = 0, medium = 1, hard = 2
-         * num of colors easy = 3, medium = 6, hard = 9
-         */
-        this.level = 3 * (level+1);
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 
-        // FIX ME
-        // this should be default value of circle size
-        r = 15;
-        color = 1;
+	}
 
-        drag = false;
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 
-        startx = this.getParent().getX();
-        starty = this.getParent().getY();
+	}
 
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
-    }
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
 
-    public void paint(Graphics g) {
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	}
 
-        //FIX ME
-        //bound should be image size or....
-        this.setBounds(startx, starty, startx , 1000);
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(colors[color]);
-        Stroke stroke = new BasicStroke(6);
-        g2.setStroke(stroke);
 
-        g2.drawOval(x, y, 2*r, 2*r);
-        g2.fillOval(x, y, 2*r, 2*r);
 
 
 

@@ -46,6 +46,26 @@ public class Mastermind extends Game {
         this.mastermindStatus = mastermindStatus;
     }
 
+    /**
+     * General toString method. Can be used for debugging
+     */
+    @Override
+    public String toString() {
+        return "Test";
+    }
 
-
+    /**
+     *
+     * @param separator
+     * @return
+     */
+    public String toString(String separator) {
+        String output ="LEVEL|4,3,4,3|\n";
+        output += "0|1|2|3|\n";
+        output += "1|2|4|5|\n";
+        output += "4|4|2|1|\n";
+        output += "7|2|1|0|\n";
+        output += "6|1|0|4|\n";
+        return output;
+    }
 }

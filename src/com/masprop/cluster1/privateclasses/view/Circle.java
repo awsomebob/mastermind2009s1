@@ -7,61 +7,122 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 import javax.swing.JComponent;
 
 public class Circle extends JComponent implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * all colors in which circle can be drawn
-     * num of used colors from this array
-     * depends from difficulty level
-     */
-    private Color colors[] = {Color.black, Color.white, Color.red, Color.green, Color.blue,
-            Color.yellow, Color.cyan, Color.pink, Color.MAGENTA};
+public class Circle extends JComponent implements MouseListener{
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * difficulty level
-     */
-    private int level;
+	/**
+	 * all colors in which circle can be drawn 
+	 * num of used colors from this array 
+	 * depends from difficulty level   
+	 */
+	private Color colors[] = {Color.GRAY, Color.white, Color.red, Color.green,
+    		Color.yellow, Color.cyan, Color.pink, Color.MAGENTA};
+	
+	/**
+	 * difficulty level
+	 */
+	private int level;
+	
+	/**
+	 * position where circle will be drawn
+	 * and radios of circle  
+	 */
+	private int x, y, r;
+	
+	
+	
+	/**
+	 * current color of the circle 
+	 */
+	private int color;
+	
+	
+	/**
+	 * is only for input 
+	 */
+	boolean input;
+	
+	// FIXME This should be removed later
+	FileWriter fstream = null;
+	BufferedWriter out;
+	
 
-    /**
-     * position where circle will be drawn
-     * and radios of circle
-     */
-    private int x, y, r;
+	/**
+	 * class constructor
+	 * @params x, y position of circle
+	 */
+	public Circle(int x, int y, int r, int level, boolean input, int color){
+		this.x = x;
+		this.y = y;
+		
+		/**
+		 * level value   easy = 0, medium = 1, hard = 2
+		 * num of colors easy = 3, medium = 6, hard = 9  
+		 */
+		this.level = 3 * (level+1);
+		
+	    this.input = input;
+		
+	    this.r = r;
+		this.color = color;
+		
+		this.addMouseListener(this);	
+		
+	}
 
-    /**
-     * position of parrent component
-     **/
-    private int startx, starty;
+	public void paint(Graphics g) {
+		//setBounds(0,0,1000,1000);
+		setBounds(0,0,x+2*r+5,y+2*r+5); 
+	    Graphics2D g2 = (Graphics2D) g;
 
-    /**
-     * position that is defined in constructor
-     * where circle will be drawn
-     * and radios of circle
-     */
-    private int xx,yy;
+	    g2.setColor(Color.BLACK);
+		Stroke stroke = new BasicStroke(1);
+		g2.setStroke(stroke);
 
-    /**
-     * current color of the circle
-     */
-    private int color;
+		g2.drawOval(x-1, y-1, 2*r, 2*r);
+		
+		g2.setColor(colors[color]);
+		g2.fillOval(x, y, 2*r-2, 2*r-2);
 
     private boolean drag;
 
-
-    /**
-     * class constructor
-     * @params x, y position of circle
-     */
-    public Circle(int x, int y, int level){
-        this.x = x;
-        this.y = y;
-        this.xx = x;
-        this.yy = y;
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		//FIX ME 
+		//here should be check if cell is editable
+		//if not do nothing
+		//controler.check....
+		if(input){
+			int xclick = arg0.getX();
+			int yclick = arg0.getY();
+			if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
+				color = (color + 1) % level;
+				repaint();
+		}
+			
+	}
+		
+		
+		
+		
+		
+        /*
+        try {
+			out.write("input[" + ++i +"] = new Circle(" + x + "," + y + ", 1)\n");
+			if(i==7) out.close();
+            }catch (Exception e){//Catch exception if any
+		      System.err.println("Error: " + e.getMessage());
+		    }
+		*/    
+	}
 
         /**
          * level value   easy = 0, medium = 1, hard = 2
@@ -98,88 +159,6 @@ public class Circle extends JComponent implements MouseListener, MouseMotionList
         g2.drawOval(x, y, 2*r, 2*r);
         g2.fillOval(x, y, 2*r, 2*r);
 
-    }
 
-
-    public void mouseClicked(MouseEvent arg0) {
-        //FIX ME
-        //here should be check if cell is editable
-        //if not do nothing
-        //controler.check....
-
-
-        int xclick = arg0.getX();
-        int yclick = arg0.getY();
-        if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
-            color = (color + 1) % level;
-            repaint();
-        }
-
-    }
-
-
-    public void mouseEntered(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void mouseExited(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void mousePressed(MouseEvent arg0) {
-
-        int xclick = arg0.getX();
-        int yclick = arg0.getY();
-        if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
-            drag = true;
-        }
-    }
-
-    public void mouseReleased(MouseEvent arg0) {
-
-        //FOX ME
-        //here should be some check if
-        //new position is valid
-
-
-        if(drag){
-            x = xx;
-            y = yy;
-            repaint();
-        }
-
-
-        //else COPY this circle on the chosen position
-
-    }
-
-
-    public void mouseDragged(MouseEvent e) {
-        //FIX ME
-        //here should be check if cell is editable
-        //if not do nothing
-        //controler.check....
-
-        if(drag){
-            int dragx = e.getX() - r;
-            int dragy = e.getY() - r;
-
-            int dx = dragx - x;
-            int dy = dragy - y;
-
-            x += dx;
-            y += dy;
-
-            repaint();
-        }
-
-    }
-
-    public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
 
 }

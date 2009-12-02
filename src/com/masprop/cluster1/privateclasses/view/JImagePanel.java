@@ -1,5 +1,6 @@
 package com.masprop.cluster1.privateclasses.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,11 +27,12 @@ public class JImagePanel extends JPanel {
 	         this.image = image;  
 	         this.x = x;  
 	         this.y = y;  
+	         this.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
 	     }  
 	     
 	     @Override  
 	     protected void paintComponent(Graphics g) {  
-	         super.paintComponent(g);  
+	         super.paintComponent(g); 
 	         g.drawImage(image, x, y, null);  
 	     } 
 	     

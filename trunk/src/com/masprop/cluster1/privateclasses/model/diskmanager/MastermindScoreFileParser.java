@@ -149,12 +149,14 @@ public class MastermindScoreFileParser implements Parser {
 
     // Convert an string to array of strings
     // Delete the seperator string
-    public static Score stringToScore(String a, String separator) {
+    public Score stringToScore(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         if (pieces.length == 2) {
             System.out.println("testing another readout");
             System.out.println(pieces[0]+" "+pieces[1]);
-            Score score = new Score(pieces[0], Integer.getInteger(pieces[1]));
+            String name = pieces[0];
+            int score_nr = Integer.parseInt(pieces[1]);
+            Score score = new Score(name, score_nr);
             return score;
         }
         return new Score("NULL",0);

@@ -13,9 +13,9 @@ public class MasterMindSaveScoreTest {
         // Initialize our scores file with empty files (referring to the boolean)
         //change this to false if you want to use the current scores in the file.
         //usefull for modifying scores and testing
-        MastermindScoreFileParser file = new MastermindScoreFileParser(true);
+        MastermindScoreFileParser parser = new MastermindScoreFileParser(true);
         //read the file
-        Scores scores = file.getScoreFromFile(GameLevelType.EASY);
+        Scores scores = parser.getScoreFromFile(GameLevelType.EASY);
 
         /**
          * initiate random score table with 20 values to show that he only saves 10
@@ -34,35 +34,16 @@ public class MasterMindSaveScoreTest {
         scores.addScore(new Score("pile", 70));
 
         //write our scores to the file
-        file.update(GameLevelType.EASY.toString(), scores);
+        parser.update(GameLevelType.EASY.toString(), scores);
 
-        //read the file
-        scores = file.getScoreFromFile(GameLevelType.EASY);
 
+        //read the file with the new values
+        scores = parser.getScoreFromFile(GameLevelType.EASY);
+
+        System.out.println("Some scores");
         for(Score s : scores.getScores()){
-            System.out.println("Some scores");
             System.out.println(s.toString());
         }
-
-        //get the content in our file as a list of stringarrays
-        // Instantiate the Models
-        //GameManagerMastermind manager =  new GameManagerMastermind();
-
-
-        //Mastermind mastermind = manager.getNewGame(GameLevelType.DIFFICULT);
-        //MastermindStatus status = mastermind.getMastermindStatus();
-        //MatrixMastermind matrix = status.getMatrixMastermind();
-        //System.out.println("matrixwidth");
-        //System.out.println(matrix.getWidth());
-
-        //GameSolverMastermind solver = new GameSolverMastermind();
-        //mastermind  = solver.solveMastermind(mastermind);
-
-        // Instantiate the Views
-
-        // Instantiate the Controllers
-
-        // Start some gui stuff maybe?
     }
 
     public static void main(String[] args) {

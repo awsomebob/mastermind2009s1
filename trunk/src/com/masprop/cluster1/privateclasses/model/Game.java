@@ -11,6 +11,7 @@ package com.masprop.cluster1.privateclasses.model;
 
 import com.masprop.cluster1.privateclasses.model.diskmanager.*;
 import com.masprop.cluster1.shared.model.GameLevelType;
+import java.util.prefs.*;
 
 public abstract class Game {
     /**
@@ -87,7 +88,6 @@ public abstract class Game {
     public void setParser(MastermindScoreFileParser parser) {
         this.parser = parser;
     }
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.masprop.cluster1.privateclasses.model.diskmanager;
 
-import java.util.ArrayList;
 import java.io.*;
 import com.masprop.cluster1.privateclasses.model.*;
 import com.masprop.cluster1.shared.model.GameLevelType;
@@ -13,8 +12,6 @@ import java.util.Iterator;
  *
  */
 public class MastermindScoreFileParser implements Parser {
-    private File file;
-
     /**
      * @param name
      *            Function to create a file where we are going to save our data.
@@ -43,7 +40,7 @@ public class MastermindScoreFileParser implements Parser {
      * Creating of our file with the option of having it overwritten with a clean new file
      */
     public boolean create(String filename, boolean createnew) {
-        file = new File(filename);
+        File file = new File(System.getProperty("user.dir")+"/"+filename);
 
         if (createnew == true) {
             file.delete();
@@ -64,7 +61,7 @@ public class MastermindScoreFileParser implements Parser {
      * Deleting of our file
      */
     public boolean delete(String filename) {
-        file = new File(filename);
+        File file = new File(System.getProperty("user.dir")+"/"+filename);
         try {
             file.delete();
             return true;
@@ -84,19 +81,13 @@ public class MastermindScoreFileParser implements Parser {
     /**
      * Updating of our file. Only used for scores so we don't make this general
      */
-    public void update(String filename, Score score) {
-        file = new File(filename);
-
-        Scores scores = new Scores(this.retrieve(file));
-        // add our score to the filecontent anyway
-        scores.addScore(score);
-        scores.sortScores();
-
+    public void update(String filename, Scores scores) {
+        File file = new File(System.getProperty("user.dir")+"/"+filename);
         try {
             Writer output = null;
             this.delete(filename);
             this.create(filename);
-            FileWriter fw = new FileWriter(this.file);
+            FileWriter fw = new FileWriter(file);
             output = new BufferedWriter(fw);
             Iterator<Score> itr = scores.getScores().iterator();
             while (itr.hasNext()) {
@@ -118,7 +109,7 @@ public class MastermindScoreFileParser implements Parser {
     /**
      * Get all of our content in an string arraylist
      */
-    public ArrayList<Score> retrieve(File file) {
+    public Scores retrieve(File file) {
 
         FileReader fr = null;
         try {
@@ -126,29 +117,34 @@ public class MastermindScoreFileParser implements Parser {
         } catch (FileNotFoundException file_error) {
             System.out.println("File Error " + file_error.toString());
         }
-        // create our new arraylist object
-        ArrayList<Score> content = new ArrayList<Score>();
+        //new Scores object
+        Scores scores = new Scores();
         // buffered reading
         BufferedReader br = new BufferedReader(fr);
 
         String s;
         try {
             while ((s = br.readLine()) != null) {
-                System.out.print("Testing our content");
-                System.out.print(s);
+                System.out.println(s);
                 Score score = stringToScore(s, "|");
-                content.add(score);
+                scores.addScore(score);
             }
         } catch (IOException io) {
             System.out.println("IO Error " + io.toString());
         }
-        return content;
+        return scores;
     }
 
-    public ArrayList<Score> getScoreFromFile(GameLevelType gameLevelType) {
-        file = new File(gameLevelType.toString());
-        ArrayList<Score> data = this.retrieve(file);
-        return data;
+
+    public Scores getScoreFromFile(GameLevelType gameLevelType) {
+        File file = new File(System.getProperty("user.dir")+"/"+gameLevelType.toString());
+        if(file.canRead()) {
+            Scores data = retrieve(file);
+            return data;
+        } else {
+            Scores scores = new Scores();
+            return scores;
+        }
     }
 
     // Convert an string to array of strings
@@ -156,10 +152,11 @@ public class MastermindScoreFileParser implements Parser {
     public static Score stringToScore(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         if (pieces.length == 2) {
+            System.out.println("testing another readout");
+            System.out.println(pieces[0]+" "+pieces[1]);
             Score score = new Score(pieces[0], Integer.getInteger(pieces[1]));
             return score;
         }
-        // return an empty score
-        return new Score();
+        return new Score("NULL",0);
     }
 }

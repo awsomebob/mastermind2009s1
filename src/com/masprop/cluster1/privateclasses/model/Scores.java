@@ -41,7 +41,7 @@ public class Scores {
     public Scores(MastermindScoreFileParser parser, GameLevelType gameLevelType) {
         // in parser we need to have method which reads appropriate
         // file with score and returns array of 10 the best result
-        scores = parser.getScoreFromFile(gameLevelType);
+        scores = parser.getScoreFromFile(gameLevelType).scores;
     }
 
     /**

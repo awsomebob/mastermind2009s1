@@ -48,7 +48,7 @@ public class Score implements Comparable<Score> {
     }
 
     public int compareTo(Score score) {
-        if ((this.getScore() > score.getScore())) {
+        if ((this.getScore() < score.getScore())) {
             return 1;
         } else {
             return 0;

@@ -41,7 +41,6 @@ public class MastermindTest {
          * Get the mastermind status from mastermind
          */
         MastermindStatus status = test.mastermind.getMastermindStatus();
-
         String result;
 
         /**

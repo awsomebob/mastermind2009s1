@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * This class contents the best 10 scores for appropriate level of difficulty
  *
- * @author Milan Stanic
+ * @author Nick Veenhof
  */
 public class Scores {
 

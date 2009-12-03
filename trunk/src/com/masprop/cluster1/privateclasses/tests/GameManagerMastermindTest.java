@@ -109,6 +109,8 @@ public class GameManagerMastermindTest {
 			result = "FAIL";
 		}
 		System.out.println("Result of solving mastermind game: " + result);
+		
+		
 	}
 
 }

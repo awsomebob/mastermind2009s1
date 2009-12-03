@@ -324,6 +324,7 @@ public class MyGUI extends javax.swing.JFrame {
     	if(result){
     		if(guiManager.isResolved()){
     			//open dialog that show score, etc...
+    			System.out.println("POGODAK!");
     		}else{
     			int numRight = guiManager.numCorrectPosition();
     			int numWrong = guiManager.numWrongPosition();

@@ -9,7 +9,7 @@ import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindGameFileP
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
- *
+ * Test for saving and loading a game, and changing a value in the matrix
  * @author nick
  *
  */

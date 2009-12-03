@@ -1,5 +1,6 @@
 package com.masprop.cluster1.privateclasses.controller;
 
+import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
@@ -22,7 +23,7 @@ public class GameManagerMastermind {
 	 * contains algorithm for solving mastermind game 
 	 */
 	protected GameSolverMastermind gameSolverMastermind;
-
+	
 	/**
 	 * Gets mastermind generator
 	 * 
@@ -47,8 +48,8 @@ public class GameManagerMastermind {
 	 * @param gameLevelType game level difficulty 
 	 * @return mastermind game
 	 */
-	public Mastermind getNewGame(GameLevelType gameLevelType){
-		return mastermindGenerator.generateGame(gameLevelType);
+	public Mastermind getNewGame(GameLevelType gameLevelType, GameModeType gameModeType){
+		return mastermindGenerator.generateGame(gameLevelType, gameModeType);
 	}
 	
 	/**

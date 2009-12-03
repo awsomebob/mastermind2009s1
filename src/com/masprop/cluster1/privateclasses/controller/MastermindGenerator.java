@@ -7,7 +7,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 /**
  * This class generates mastermind game
  *
- * @author Milan
+ * @author Milan Stanic
  *
  */
 

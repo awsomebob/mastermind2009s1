@@ -6,7 +6,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
  * 
- * This class provides the management operations on a <tt>Mastermind</tt>
+ * This class provides the management operations on the mastermind game
  * 
  * @author Milan Stanic
  *
@@ -15,7 +15,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 public class GameManagerMastermind {
 
 	/**
-	 * generates mastermind game
+	 * Generates mastermind game
 	 */
 	protected MastermindGenerator mastermindGenerator;
 	

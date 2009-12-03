@@ -7,8 +7,10 @@ import java.util.Arrays;
 
 /**
  * This class contents the best 10 scores for appropriate level of difficulty
+ * And sorts them when a score is added
  *
  * @author Nick Veenhof
+ * @see Score
  */
 public class Scores {
 
@@ -26,12 +28,18 @@ public class Scores {
         this.scores = new ArrayList<Score>();
     }
 
+    /**
+     * Class constructor to instantiate and set our ArrayList of scores
+     *
+     * @param scores
+     */
     public Scores(ArrayList<Score> scores) {
         this.setScores(scores);
     }
 
     /**
-     * Class constructor.
+     * Class constructor to instantiate and set our fileParser and the level
+     * type Retrieves the scores from the file and sets them in our object
      *
      * @param gameLevelType
      *            difficulty level
@@ -45,6 +53,7 @@ public class Scores {
     }
 
     /**
+     * Gets the position of a given score in the top10
      * @param score
      *            score of current game
      * @return current position of score in top 10 or -1 if that score is not in
@@ -68,6 +77,7 @@ public class Scores {
     }
 
     /**
+     * Sets a given score in a certain position
      * @param score
      *            score of current game
      * @param position
@@ -82,8 +92,11 @@ public class Scores {
     }
 
     /**
+     * Adds a score and sorts the scorelist accordingly
+     * Cuts the list to the limit
      * @param score
      *            score of current game
+     * @see LIMIT
      */
     public void addScore(Score score) {
         // check if the object is a score
@@ -99,7 +112,7 @@ public class Scores {
     }
 
     /**
-     *
+     * Gets our scores
      * @return top 10 scores for current level
      */
     public ArrayList<Score> getScores() {
@@ -107,7 +120,7 @@ public class Scores {
     }
 
     /**
-     *
+     * Sets our scores
      * @param scores
      *            top 10 scores for current level
      */
@@ -116,8 +129,7 @@ public class Scores {
     }
 
     /**
-     * Function should be able to sort an Arraylist of scores
-     *
+     * Sorts scores in the list
      */
     public void sortScores() {
         Object[] arrScores = scores.toArray();
@@ -132,9 +144,13 @@ public class Scores {
         // sort the arraylist of scores
     }
 
+    /**
+     * Cuts a scores Arraylist to the maximum defined number
+     * @param max Maximum of scores allowed in our file
+     */
     public void cutToLimit(int max) {
         if (this.scores.size() >= max) {
-            for (int i = max-1; i < this.scores.size(); i++) {
+            for (int i = max - 1; i < this.scores.size(); i++) {
                 this.scores.remove(i);
             }
         }

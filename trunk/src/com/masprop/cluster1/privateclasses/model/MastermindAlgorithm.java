@@ -20,15 +20,23 @@ import com.masprop.cluster1.shared.model.Game;
  */
 public class MastermindAlgorithm implements Algorithm {
 
+    /**
+     * Generic game solver.
+     * Will check if the game object is a mastermind object and redirect to the mastermind
+     * performAlgorithmics function
+     */
     public void performAlgorithmics(Game game) {
         // TODO Auto-generated method stub
 
     }
 
-
+    /**
+     * Mastermind solver
+     * @param mastermind
+     */
     public void performAlgorithmics(Mastermind mastermind) {
         // TODO Auto-generated method stub
-        //do something with mastermind object
+        //Solve the game here!
     }
 
 }

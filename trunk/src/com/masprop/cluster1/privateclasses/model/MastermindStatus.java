@@ -92,8 +92,13 @@ public class MastermindStatus {
     	int cnt = 0;
     	for(int i=0; i<4; i++)
     		for(int j=0; j<4; j++){
+    			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j == i))
+    				break;
     			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j != i))
-    				cnt++;
+    				if(matrixMastermind.getCellValue(currentRow, i) == value[i])
+    					break;
+    				else
+    					cnt++;
     		}
     	return cnt;
     }

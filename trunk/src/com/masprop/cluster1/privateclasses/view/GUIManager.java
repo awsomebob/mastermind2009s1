@@ -75,8 +75,36 @@ public class GUIManager {
 	 * @param gameLevelType
 	 * @return computed values
 	 */
-	public int[] randomCoputeValue(GameLevelType gameLevelType){
+	int[] randomCoputeValue(GameLevelType gameLevelType){
 		
+		int numColors = numColors(gameLevelType);
+		
+		int[] i = new int[4];
+		
+		Random random = new Random();
+		for(int k=0; k<4; k++){
+			i[k] = random.nextInt(numColors);
+		}
+		return i;
+	}
+	
+	/**
+	 * Is sell contenting correct value
+	 * 
+	 * @param currentRow current row
+	 * @param currenPositionInRow current position in row
+	 * @param gameLevelType game difficulty level
+	 * @return true or false
+	 */
+	boolean isCorrectValue(int currentRow, int currenPositionInRow, GameLevelType gameLevelType){
+		int numColors = numColors(gameLevelType);
+		int currentColors = mastermind.getMastermindStatus().getMatrixMastermind().getCellValue(currentRow, currenPositionInRow);
+		if((currentColors >= 0) && (currentColors < numColors))
+			return true;
+		return false;
+	}
+	
+	int numColors(GameLevelType gameLevelType){
 		int numColors;
 		if(gameLevelType == GameLevelType.EASY)
 			numColors = 4;
@@ -84,14 +112,6 @@ public class GUIManager {
 			numColors = 5;
 		else 
 			numColors = 6;
-		
-		int[] i = new int[4];
-		
-		Random random = new Random();
-		for(int k=0; k<4; k++){
-			i[k] = random.nextInt(numColors) + 2;
-		}
-		return i;
+		return numColors;
 	}
-	
 }

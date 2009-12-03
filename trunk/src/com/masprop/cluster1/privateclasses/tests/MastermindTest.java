@@ -4,6 +4,7 @@ import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
 import com.masprop.cluster1.privateclasses.model.Scores;
+import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindGameFileParser;
 import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFileParser;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
@@ -96,9 +97,9 @@ public class MastermindTest {
         System.out.println("Result of changing mode type: " + result);
         
         /**
-         * Get the mastermind file parser from mastermind
+         * Get the mastermind score file parser from mastermind
          */
-        MastermindScoreFileParser parser = test.mastermind.getParser();
+        MastermindScoreFileParser parser = test.mastermind.getScoreParser();
 
         /**
          * Checking is mastermind file parser generated successful
@@ -108,12 +109,27 @@ public class MastermindTest {
         }else{
             result = "FAIL";
         }
-        System.out.println("Result of getting mastermind file parser: " + result);
+        System.out.println("Result of getting mastermind file score parser: " + result);
+        
+        /**
+         * Get the mastermind game file parser from mastermind
+         */
+        MastermindGameFileParser gameParser = test.mastermind.getGameParser();
 
         /**
-         * Put mastermind file parser in mastermind
+         * Checking is mastermind file game parser generated successful
          */
-        test.mastermind.setParser(new MastermindScoreFileParser());
+        if(gameParser != null){
+            result = "SUCCESS";
+        }else{
+            result = "FAIL";
+        }
+        System.out.println("Result of getting mastermind file game parser: " + result);
+
+        /**
+         * Put mastermind score file parser in mastermind
+         */
+        test.mastermind.setScoreParser(new MastermindScoreFileParser());
 
         /**
          * Get the scores from mastermind

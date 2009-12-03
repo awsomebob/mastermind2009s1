@@ -70,4 +70,31 @@ public class MastermindStatus {
         }
         return true;
     }
+    
+    /**
+     * 
+     * @return the number of colors on right position
+     */
+    public int numCorrectPosition(){
+    	int cnt = 0;
+    	for(int i=0; i<4; i++){
+            if(matrixMastermind.getCellValue(currentRow, i) == value[i])
+                cnt++;
+        }
+    	return cnt;
+    }
+    
+    /**
+     * 
+     * @return the number of colors on wrong position
+     */
+    public int numWrongPosition(){
+    	int cnt = 0;
+    	for(int i=0; i<4; i++)
+    		for(int j=0; j<4; j++){
+    			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j != i))
+    				cnt++;
+    		}
+    	return cnt;
+    }
 }

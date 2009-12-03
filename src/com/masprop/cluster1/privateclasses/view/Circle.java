@@ -12,7 +12,11 @@ import java.io.FileWriter;
 
 import javax.swing.JComponent;
 
-
+/**
+ * This class draws a circle
+ * @author Milovan
+ *
+ */
 public class Circle extends JComponent implements MouseListener{
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +29,7 @@ public class Circle extends JComponent implements MouseListener{
             Color.yellow, Color.cyan, Color.pink, Color.MAGENTA};
 
     /**
-     * GUI manager for communication with 
+     * GUI manager for communication with
      * domain layer
      */
     GUIManager manager;
@@ -74,12 +78,12 @@ public class Circle extends JComponent implements MouseListener{
         this.addMouseListener(this);
 
     }
-    
-    
+
+
     /**
      * class constructor
      * @params x, y position of circle
-     * this circles are only for results and status 
+     * this circles are only for results and status
      */
     public Circle(int x, int y, int r, GUIManager manager, int color){
         this.x = x;
@@ -112,29 +116,29 @@ public class Circle extends JComponent implements MouseListener{
     public void mouseClicked(MouseEvent arg0) {
        if(manager.getMastermind() != null){
            if(manager.getMastermind().getMastermindStatus().
-           		getMatrixMastermind().getCell(i, j).isEditable()){
+                   getMatrixMastermind().getCell(i, j).isEditable()){
                int xclick = arg0.getX();
                int yclick = arg0.getY();
                if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
-               	
-               	int value = manager.getMastermind().getMastermindStatus().
-           		getMatrixMastermind().getCell(i, j).getCurrentValue();
-               	
-               	value = (value + 1) % manager.numColors
-               	(manager.getMastermind().getGameLevelType());
-               	
-               	manager.getMastermind().getMastermindStatus().
-           		getMatrixMastermind().getCell(i, j).setCurrentValue(value);
-               	
-               	manager.getMastermind().getMastermindStatus().
-           		getMatrixMastermind().getCell(i, j).setActive(true);
-               	
-               	color = value + 2;
+
+                   int value = manager.getMastermind().getMastermindStatus().
+                   getMatrixMastermind().getCell(i, j).getCurrentValue();
+
+                   value = (value + 1) % manager.numColors
+                   (manager.getMastermind().getGameLevelType());
+
+                   manager.getMastermind().getMastermindStatus().
+                   getMatrixMastermind().getCell(i, j).setCurrentValue(value);
+
+                   manager.getMastermind().getMastermindStatus().
+                   getMatrixMastermind().getCell(i, j).setActive(true);
+
+                   color = value + 2;
                    repaint();
                 }
-            	
+
            }
-        	   
+
        }
 
     }
@@ -162,14 +166,14 @@ public class Circle extends JComponent implements MouseListener{
     }
 
 
-	public int getColor() {
-		return color;
-	}
+    public int getColor() {
+        return color;
+    }
 
 
-	public void setColor(int color) {
-		this.color = color;
-	}
+    public void setColor(int color) {
+        this.color = color;
+    }
 
 
 

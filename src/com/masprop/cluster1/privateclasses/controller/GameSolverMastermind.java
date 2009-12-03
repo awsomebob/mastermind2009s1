@@ -4,25 +4,30 @@ import com.masprop.cluster1.privateclasses.model.*;
 import com.masprop.cluster1.shared.controller.*;
 import com.masprop.cluster1.shared.model.Game;
 /**
- * This class manages how the algorithm is used
+ * This class manages how the algorithm is used and provides functions to solve the entire Game
+ * A general Game solver exists together with a mastermind solver.
+ * The general should check if the game object is a mastermind object and then solve the game.
  *
- * @author Nick
+ * @author Nick Veenhof
  *
  */
 public class GameSolverMastermind implements GameSolver {
-    public GameSolverMastermind() {
-        // TODO Auto-generated constructor stub
-    }
 
+    /**
+     * Solve a generic game
+     * @param game General game object
+     */
     public Game solveGame(Game game) {
         MastermindAlgorithm Algo = new MastermindAlgorithm();
         Algo.performAlgorithmics(game);
         return game;
     }
 
-
-    //milan add this, because argument must be Mastermind
-    // probably we can fix that on different way
+    /**
+     * Function to solve a mastermind game
+     * @param mastermind a mastermind object
+     * @return mastermind object with the solved solution inside
+     */
     public Mastermind solveMastermind(Mastermind mastermind) {
         MastermindAlgorithm Algo = new MastermindAlgorithm();
         Algo.performAlgorithmics(mastermind);

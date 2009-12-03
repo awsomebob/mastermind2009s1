@@ -57,19 +57,23 @@ public class Mastermind extends Game {
     }
 
     /**
-     *
-     * @param separator
-     * @return
+     * toString function used for writing to a csv or other kind of file that uses any kind of separator
+     * Added when trying to save the game objects
+     * @author Nick Veenhof
+     * @param separator separator used to join the values
+     * @return String of a mastermind object
+     * @see GameLevelType
+     * @see GameModeType
+     * @see MatrixMastermind
+     * @see Cell
      */
     public String toString(String separator) {
         GameLevelType gameLevelType = super.getGameLevelType();
         GameModeType gameModeType = super.getGameModeType();
         int[] value = this.mastermindStatus.getValue();
         String valueString = intarrayToString(value, ",");
-        String output = gameLevelType + separator + gameModeType + separator
-                + valueString;
+        String output = gameLevelType + separator + gameModeType + separator + valueString;
         output += System.getProperty("line.separator");
-
         MatrixMastermind matrix = this.mastermindStatus.getMatrixMastermind();
         Cell[][] matrixcell = matrix.getMatrix();
 

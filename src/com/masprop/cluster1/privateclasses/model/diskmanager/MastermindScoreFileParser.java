@@ -14,8 +14,8 @@ import java.util.Iterator;
 public class MastermindScoreFileParser extends MastermindFileParser {
     /**
      * @param name
-     *            Function to create a file where we are going to save our data.
-     *            Can be used multiple times
+     * Function to create a file where we are going to save our data.
+     * Can be used multiple times
      */
     public MastermindScoreFileParser() {
         for (GameLevelType g : GameLevelType.values()) {
@@ -44,8 +44,6 @@ public class MastermindScoreFileParser extends MastermindFileParser {
             while (itr.hasNext()) {
 
                 Score scoreInList = itr.next();
-                System.out.print("written to the file\n");
-                System.out.print(scoreInList.toString("|") + "\n");
                 output.write(scoreInList.toString("|"));
                 String newline = System.getProperty("line.separator");
                 output.write(newline);
@@ -54,7 +52,6 @@ public class MastermindScoreFileParser extends MastermindFileParser {
         } catch (IOException io) {
             System.out.println("IO Error " + io.toString());
         }
-        System.out.println("Your file has been written");
     }
 
     /**
@@ -76,7 +73,6 @@ public class MastermindScoreFileParser extends MastermindFileParser {
         String s;
         try {
             while ((s = br.readLine()) != null) {
-                System.out.println(s);
                 Score score = stringToScore(s, "|");
                 scores.addScore(score);
             }
@@ -103,8 +99,6 @@ public class MastermindScoreFileParser extends MastermindFileParser {
     public Score stringToScore(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         if (pieces.length == 2) {
-            System.out.println("testing another readout");
-            System.out.println(pieces[0]+" "+pieces[1]);
             String name = pieces[0];
             int score_nr = Integer.parseInt(pieces[1]);
             Score score = new Score(name, score_nr);

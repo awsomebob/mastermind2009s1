@@ -1,6 +1,5 @@
 package com.masprop.cluster1.privateclasses.tests;
 
-import java.util.Random;
 
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
@@ -14,7 +13,7 @@ public class MastermindSaveGameTest {
         // Initialize our game file with empty files
         MastermindGameFileParser parser = new MastermindGameFileParser();
 
-        //read the file
+        //read the file - USED FOR LOADING A GAME
         Mastermind mastermind = parser.getMastermindFromFile();
 
         /**
@@ -32,6 +31,10 @@ public class MastermindSaveGameTest {
 
         status.setMatrixMastermind(new MatrixMastermind(width,height));
         MatrixMastermind matrix = status.getMatrixMastermind();
+
+        System.out.println("Our initial game");
+        System.out.println(mastermind.toString("|"));
+
         /**
          * parameters for changing value in matrix
          *
@@ -49,7 +52,7 @@ public class MastermindSaveGameTest {
          */
         matrix.setCellValue(i, j, value);
 
-        //write our game to the file
+        //write our game to the file - USED FOR SAVING A GAME
         parser.update(mastermind);
 
 

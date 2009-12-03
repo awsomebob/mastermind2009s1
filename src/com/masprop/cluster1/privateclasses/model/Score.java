@@ -1,7 +1,9 @@
 package com.masprop.cluster1.privateclasses.model;
 
-/*
- * @author Nick
+/**
+ *
+ * @author nick
+ *
  */
 public class Score implements Comparable<Score> {
     private int score;

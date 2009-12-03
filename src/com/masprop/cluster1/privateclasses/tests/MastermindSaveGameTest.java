@@ -8,6 +8,11 @@ import com.masprop.cluster1.privateclasses.model.MatrixMastermind;
 import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindGameFileParser;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
+/**
+ *
+ * @author nick
+ *
+ */
 public class MastermindSaveGameTest {
 
     public void run() {

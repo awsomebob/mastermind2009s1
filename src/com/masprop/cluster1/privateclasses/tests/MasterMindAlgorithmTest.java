@@ -9,7 +9,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
  *
- * @author nick
+ * @author Nick
  * Class for testing the algorithm that will solve the game
  */
 public class MasterMindAlgorithmTest {

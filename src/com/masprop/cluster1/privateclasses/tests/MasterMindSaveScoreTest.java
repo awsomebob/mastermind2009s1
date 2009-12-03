@@ -7,6 +7,11 @@ import com.masprop.cluster1.privateclasses.model.Scores;
 import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFileParser;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
+/**
+ *
+ * @author nick
+ *
+ */
 public class MasterMindSaveScoreTest {
     public void run() {
 

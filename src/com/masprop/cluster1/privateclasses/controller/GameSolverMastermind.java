@@ -6,7 +6,7 @@ import com.masprop.cluster1.shared.model.Game;
 /**
  * This class manages how the algorithm is used
  *
- * @author nick
+ * @author Nick
  *
  */
 public class GameSolverMastermind implements GameSolver {

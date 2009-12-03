@@ -320,7 +320,40 @@ public class MyGUI extends javax.swing.JFrame {
     private void checkMastermindEventActionPerformed(java.awt.event.ActionEvent evt){
     	//Here should be check MastermindStatus and....
     	//This is only example
-    	
+    	boolean result = guiManager.check();
+    	if(result){
+    		if(guiManager.isResolved()){
+    			//open dialog that show score, etc...
+    		}else{
+    			int numRight = guiManager.numCorrectPosition();
+    			int numWrong = guiManager.numWrongPosition();
+    			int currRow = guiManager.currentRow();
+    			
+    			for(int i=0; i<numRight; i++){
+    				results[(6-currRow)*4 + i].setColor(2);
+    				results[(6-currRow)*4 + i].repaint();
+    			}
+    			System.out.println("broj tacnih " + numRight);
+    			for(int i=0; i<numWrong; i++){
+    				results[(6-currRow)*4 + i + numRight].setColor(4);
+    				results[(6-currRow)*4 + i + numRight].repaint();
+    			}
+    			System.out.println("broj pogresnih " + numWrong);
+    			if(currRow<6){
+    				guiManager.getMastermind().getMastermindStatus().setCurrentRow(currRow+1);
+    				for(int i=0; i<4; i++){
+    					guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow+1,i).setEditable(true);
+    					guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow,i).setEditable(false);
+    					inputs[(6-currRow-1)*4 + i].setColor(1);
+    					inputs[(6-currRow-1)*4 + i].repaint();				
+    				}
+    				line[6-currRow-1].setColor(Color.white);
+    				line[6-currRow-1].repaint();
+    			}else{
+    				//dialog and game
+    			}
+    		}
+    	}
     }
     
     
@@ -520,6 +553,10 @@ public class MyGUI extends javax.swing.JFrame {
 
 	     MyGUI gui = new MyGUI();
 	     gui.guiManager.createNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
+	     gui.guiManager.getMastermind().getMastermindStatus().setValue(gui.guiManager.randomCoputeValue(GameLevelType.DIFFICULT));
+	    // int[] niz = gui.guiManager.getMastermind().getMastermindStatus().getValue();
+	     //for(int i=0; i<4; i++)
+	    	// System.out.print(" " + niz[i]);
          gui.setVisible(true);
     }  
 }

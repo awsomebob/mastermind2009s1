@@ -162,6 +162,16 @@ public class Circle extends JComponent implements MouseListener{
     }
 
 
+	public int getColor() {
+		return color;
+	}
+
+
+	public void setColor(int color) {
+		this.color = color;
+	}
+
+
 
 
 

@@ -27,6 +27,9 @@ public class MastermindGameFileParser extends MastermindFileParser {
 
     /**
      * Updating of our file. Only used for game
+     *
+     * @param mastermind
+     *            our game object
      */
     public void update(Mastermind mastermind) {
         File file = new File(System.getProperty("user.dir") + "/SAVEDGAME");
@@ -47,6 +50,9 @@ public class MastermindGameFileParser extends MastermindFileParser {
 
     /**
      * Get all of our content in an string arraylist
+     *
+     * @param file
+     *            file used to retrieve the information from
      */
     public Mastermind retrieve(File file) {
 
@@ -101,8 +107,13 @@ public class MastermindGameFileParser extends MastermindFileParser {
         return mastermind;
     }
 
+    /**
+     * Gets a mastermind game object out of the defined file
+     *
+     * @return mastermind object
+     */
     public Mastermind getMastermindFromFile() {
-        // TODO: convert this to a field
+        // TODO: convert this SAVEDGAME to a constant field
         File file = new File(System.getProperty("user.dir") + "/SAVEDGAME");
         if (file.canRead()) {
             Mastermind data = retrieve(file);
@@ -113,31 +124,56 @@ public class MastermindGameFileParser extends MastermindFileParser {
         }
     }
 
-    // Convert an string to array of strings
-    // Delete the seperator string
+    /**
+     * Convert an string to a mastermind object + including matrix if possible
+     *
+     * @param a
+     *            our mastermind string object
+     * @param separator
+     *            the used separator to split our strings
+     * @return a mastermind object or empty mastermind object if failed
+     * @see Mastermind
+     * @see MatrixMastermind
+     */
     public Mastermind stringToMastermind(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         Mastermind mastermind = null;
+        // TODO implement a better check to say that our file is an mastermind
+        // object!
         if (pieces.length == 3) {
+            try {
+                // initiate our type from the file
+                GameLevelType gameLevelType = GameLevelType.valueOf(pieces[0]);
+                GameModeType gameModeType = GameModeType.valueOf(pieces[1]);
+                String value = pieces[2];
 
-            // initiate our type from the file
-            GameLevelType gameLevelType = GameLevelType.valueOf(pieces[0]);
-            GameModeType gameModeType = GameModeType.valueOf(pieces[1]);
-            String value = pieces[2];
+                // make the gameleveltype from the readout
+                mastermind = new Mastermind(gameLevelType, gameModeType);
 
-            // make the gameleveltype from the readout
-            mastermind = new Mastermind(gameLevelType, gameModeType);
-
-            // return an empty status so they can fill it
-            MastermindStatus mastermindStatus = new MastermindStatus();
-            mastermindStatus.setValue(stringToMastermindValue(value, ","));
-            mastermind.setMastermindStatus(mastermindStatus);
-            return mastermind;
+                // return an empty status so they can fill it
+                MastermindStatus mastermindStatus = new MastermindStatus();
+                mastermindStatus.setValue(stringToMastermindValue(value, ","));
+                mastermind.setMastermindStatus(mastermindStatus);
+                return mastermind;
+            } catch (Exception e) {
+                return mastermind = null;
+            }
         }
 
         return mastermind;
     }
 
+    /**
+     * Convert a string to a MatrixMastermindRow
+     *
+     * @param a
+     *            the row as a string
+     * @param separator
+     *            the used separator between the values in the row
+     * @return Cell[] cell array with cell objects
+     * @see MatrixMastermind
+     * @see Cell
+     */
     public Cell[] stringToMatrixMastermindRow(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         Cell[] row = null;
@@ -156,6 +192,14 @@ public class MastermindGameFileParser extends MastermindFileParser {
         return row;
     }
 
+    /**
+     * Convert a string into a Mastermind game object
+     *
+     * @param a the game object as a string
+     * @param separator used between the values in our string
+     * @return Mastermind object
+     * @see Mastermind
+     */
     public int[] stringToMastermindValue(String a, String separator) {
         String[] pieces = a.split("\\" + separator, -1);
         int[] row = null;

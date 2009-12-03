@@ -149,4 +149,24 @@ public class GUIManager {
 		this.isResolved = isResolved;
 	}
 	
+	/**
+     * 
+     * @return the number of colors on right position
+     */
+    public int numCorrectPosition(){
+    	return mastermind.getMastermindStatus().numCorrectPosition();
+    }
+    
+    /**
+     * 
+     * @return the number of colors on wrong position
+     */
+    public int numWrongPosition(){
+    	return mastermind.getMastermindStatus().numWrongPosition();
+    }
+    
+    public int currentRow(){
+    	return mastermind.getMastermindStatus().getCurrentRow();
+    }
+	
 }

@@ -4,7 +4,7 @@
 package com.masprop.cluster1;
 
 /**
- * @author nick
+ * @author Nick
  *
  */
 public class Main {

@@ -8,9 +8,9 @@ import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFile
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
+ * Class for testing the algorithm that will solve the game
  *
  * @author Nick
- * Class for testing the algorithm that will solve the game
  */
 public class MasterMindAlgorithmTest {
     /**
@@ -36,23 +36,21 @@ public class MasterMindAlgorithmTest {
          */
         test.mastermind = new Mastermind(gameLevelType, gameModeType);
 
-
         /**
          * Get the mastermind status from mastermind
          */
         MastermindStatus status = test.mastermind.getMastermindStatus();
         /**
-         * Set our color value. Integers are mapped to a certain color in the GUI
+         * Set our color value. Integers are mapped to a certain color in the
+         * GUI
          */
-        int[] value = {1,2,3,4};
+        int[] value = { 1, 2, 3, 4 };
         status.setValue(value);
-
 
         /**
          * Put mastermind status in mastermind
          */
         test.mastermind.setMastermindStatus(status);
-
 
         /**
          * Get the mastermind file parser from mastermind
@@ -68,8 +66,6 @@ public class MasterMindAlgorithmTest {
          * Get the scores from mastermind
          */
         Scores scores = test.mastermind.getScores();
-
-
 
     }
 

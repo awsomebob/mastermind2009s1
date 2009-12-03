@@ -1,4 +1,5 @@
 package com.masprop.cluster1.privateclasses.model.diskmanager;
+
 /**
  * Interface that defines what we need for a generic fileparser
  *
@@ -8,22 +9,25 @@ package com.masprop.cluster1.privateclasses.model.diskmanager;
 public interface Parser {
     /**
      * @param name
-     * @return true if file/database could be created
-     * file/database/whatever somebody writes in the interface
+     * @return true if file/database could be created file/database/whatever
+     *         somebody writes in the interface
      */
     public boolean create(String filename);
 
     /**
      * @param name
-     * @return true if our file/database/.. had been deleted
-     * used to delete our static file/db/layer
+     * @return true if our file/database/.. had been deleted used to delete our
+     *         static file/db/layer
      */
     public boolean delete(String filename);
 
     /**
      * Used to update our with
-     * @param value to give our value what we need to write in our layer
-     * @param rownumber, defines where in our file we want to write the value
+     *
+     * @param value
+     *            to give our value what we need to write in our layer
+     * @param rownumber,
+     *            defines where in our file we want to write the value
      */
     public void update(String filename);
 }

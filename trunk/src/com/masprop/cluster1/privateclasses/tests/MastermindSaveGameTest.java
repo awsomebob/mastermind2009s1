@@ -59,7 +59,7 @@ public class MastermindSaveGameTest {
         Mastermind mastermind = parser.getMastermindFromFile();
         MastermindStatus status = null;
 
-        /**
+        /*
          * load our game from the file and check if  our file is correctly formatted
          */
         if(mastermind != null) {
@@ -82,7 +82,7 @@ public class MastermindSaveGameTest {
         System.out.println(mastermind.toString("|"));
 
 
-        /**
+        /*
          * change matrix value on defined coordinates please note that i is
          * horizontal position and j is vertical position
          */
@@ -99,6 +99,10 @@ public class MastermindSaveGameTest {
         System.out.println(mastermind.toString("|"));
     }
 
+    /**
+     * Main constructor for the Save - Load Game Test
+     * @param args
+     */
     public static void main(String[] args) {
         MastermindSaveGameTest test = new MastermindSaveGameTest();
         test.run();

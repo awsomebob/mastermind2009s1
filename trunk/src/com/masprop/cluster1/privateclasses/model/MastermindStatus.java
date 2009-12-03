@@ -47,6 +47,10 @@ public class MastermindStatus {
         return matrixMastermind;
     }
 
+    /**
+     *
+     * @param matrixMastermind
+     */
     public void setMatrixMastermind(MatrixMastermind matrixMastermind) {
         this.matrixMastermind = matrixMastermind;
     }
@@ -70,22 +74,22 @@ public class MastermindStatus {
         }
         return true;
     }
-    
+
     /**
-     * 
+     *
      * @return the number of colors on right position
      */
     public int numCorrectPosition(){
-    	int cnt = 0;
-    	for(int i=0; i<4; i++){
+        int cnt = 0;
+        for(int i=0; i<4; i++){
             if(matrixMastermind.getCellValue(currentRow, i) == value[i])
                 cnt++;
         }
-    	return cnt;
+        return cnt;
     }
-    
+
     /**
-     * 
+     *
      * @return the number of colors on wrong position
      */
     public int numWrongPosition(){

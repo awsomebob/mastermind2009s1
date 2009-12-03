@@ -57,12 +57,12 @@ public class MasterMindAlgorithmTest {
         /**
          * Get the mastermind file parser from mastermind
          */
-        MastermindScoreFileParser parser = test.mastermind.getParser();
+        MastermindScoreFileParser parser = test.mastermind.getScoreParser();
 
         /**
          * Put mastermind file parser in mastermind
          */
-        test.mastermind.setParser(new MastermindScoreFileParser());
+        test.mastermind.setScoreParser(parser);
 
         /**
          * Get the scores from mastermind

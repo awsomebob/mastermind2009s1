@@ -22,12 +22,18 @@ public class GUIManager {
 	private GameManagerMastermind gameManager;
 	
 	/**
+	 * Is game resolved
+	 */
+	private boolean isResolved;
+	
+	/**
 	 * Constructor
 	 */
 	public GUIManager(){
 		gameManager = new GameManagerMastermind();
 		gameManager.setMastermindGenerator(new MastermindGenerator());
 		gameManager.setGameSolverMastermind(new GameSolverMastermind());
+		isResolved = false;
 	}
 	
 	/**
@@ -63,10 +69,20 @@ public class GUIManager {
 		}
 	}
 	
-	public void check(int[] values){
+	public boolean check(){
 		if(mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP){
-			
+			int currentRow = mastermind.getMastermindStatus().getCurrentRow();
+			boolean correct = true;
+			for(int i=0; i<4; i++)
+				if(isCorrectValue(currentRow, i) == false)
+					correct = false;
+			if(correct){
+				isResolved = mastermind.getMastermindStatus().isCorrectValue();
+				return true;
+			}
+			return false;
 		}
+		return false;
 	}
 	
 	/**
@@ -96,14 +112,16 @@ public class GUIManager {
 	 * @param gameLevelType game difficulty level
 	 * @return true or false
 	 */
-	boolean isCorrectValue(int currentRow, int currenPositionInRow, GameLevelType gameLevelType){
-		int numColors = numColors(gameLevelType);
-		int currentColors = mastermind.getMastermindStatus().getMatrixMastermind().getCellValue(currentRow, currenPositionInRow);
-		if((currentColors >= 0) && (currentColors < numColors))
-			return true;
-		return false;
+	boolean isCorrectValue(int currentRow, int currenPositionInRow){
+		return mastermind.getMastermindStatus().getMatrixMastermind().getCell(currentRow, currenPositionInRow).isActive();
 	}
 	
+	/**
+	 * Number of colors 
+	 * 
+	 * @param gameLevelType
+	 * @return
+	 */
 	int numColors(GameLevelType gameLevelType){
 		int numColors;
 		if(gameLevelType == GameLevelType.EASY)
@@ -114,4 +132,21 @@ public class GUIManager {
 			numColors = 6;
 		return numColors;
 	}
+
+	/**
+	 * Gets the information is game resolved
+	 * @return is game resolved
+	 */
+	public boolean isResolved() {
+		return isResolved;
+	}
+
+	/**
+	 * Sets the information is game resolved
+	 * @param isResolved is game resolved
+	 */
+	public void setResolved(boolean isResolved) {
+		this.isResolved = isResolved;
+	}
+	
 }

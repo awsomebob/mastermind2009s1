@@ -324,7 +324,12 @@ public class MyGUI extends javax.swing.JFrame {
     	if(result){
     		if(guiManager.isResolved()){
     			//open dialog that show score, etc...
-    			System.out.println("POGODAK!");
+    			int currRow = guiManager.currentRow();
+    			for(int i=0; i<4; i++){
+    				results[(6-currRow)*4 + i].setColor(2);
+    				results[(6-currRow)*4 + i].repaint();
+    			}
+    			//System.out.println("POGODAK!");
     		}else{
     			int numRight = guiManager.numCorrectPosition();
     			int numWrong = guiManager.numWrongPosition();
@@ -334,12 +339,12 @@ public class MyGUI extends javax.swing.JFrame {
     				results[(6-currRow)*4 + i].setColor(2);
     				results[(6-currRow)*4 + i].repaint();
     			}
-    			System.out.println("broj tacnih " + numRight);
+    			//System.out.println("broj tacnih " + numRight);
     			for(int i=0; i<numWrong; i++){
     				results[(6-currRow)*4 + i + numRight].setColor(4);
     				results[(6-currRow)*4 + i + numRight].repaint();
     			}
-    			System.out.println("broj pogresnih " + numWrong);
+    			//System.out.println("broj pogresnih " + numWrong);
     			if(currRow<6){
     				guiManager.getMastermind().getMastermindStatus().setCurrentRow(currRow+1);
     				for(int i=0; i<4; i++){
@@ -555,9 +560,9 @@ public class MyGUI extends javax.swing.JFrame {
 	     MyGUI gui = new MyGUI();
 	     gui.guiManager.createNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
 	     gui.guiManager.getMastermind().getMastermindStatus().setValue(gui.guiManager.randomCoputeValue(GameLevelType.DIFFICULT));
-	    // int[] niz = gui.guiManager.getMastermind().getMastermindStatus().getValue();
-	     //for(int i=0; i<4; i++)
-	    	// System.out.print(" " + niz[i]);
+	     //int[] niz = gui.guiManager.getMastermind().getMastermindStatus().getValue();
+	    // for(int i=0; i<4; i++)
+	    	 //System.out.print(" " + niz[i]);
          gui.setVisible(true);
     }  
 }

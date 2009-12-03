@@ -135,6 +135,7 @@ public class GUIManager {
 
 	/**
 	 * Gets the information is game resolved
+	 * 
 	 * @return is game resolved
 	 */
 	public boolean isResolved() {
@@ -143,6 +144,7 @@ public class GUIManager {
 
 	/**
 	 * Sets the information is game resolved
+	 * 
 	 * @param isResolved is game resolved
 	 */
 	public void setResolved(boolean isResolved) {
@@ -150,6 +152,7 @@ public class GUIManager {
 	}
 	
 	/**
+     * The number of colors on right position
      * 
      * @return the number of colors on right position
      */
@@ -158,6 +161,7 @@ public class GUIManager {
     }
     
     /**
+     * The number of colors on wrong position
      * 
      * @return the number of colors on wrong position
      */
@@ -165,6 +169,11 @@ public class GUIManager {
     	return mastermind.getMastermindStatus().numWrongPosition();
     }
     
+    /**
+     * Current row in matrix
+     * 
+     * @return current row in matrix
+     */
     public int currentRow(){
     	return mastermind.getMastermindStatus().getCurrentRow();
     }

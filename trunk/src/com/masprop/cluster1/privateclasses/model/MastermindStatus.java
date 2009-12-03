@@ -97,8 +97,10 @@ public class MastermindStatus {
     			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j != i))
     				if(matrixMastermind.getCellValue(currentRow, i) == value[i])
     					break;
-    				else
+    				else{
     					cnt++;
+    					break;
+    				}
     		}
     	return cnt;
     }

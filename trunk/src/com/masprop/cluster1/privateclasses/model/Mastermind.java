@@ -25,8 +25,8 @@ public class Mastermind extends Game {
      *
      * @param gameLevelType game difficulty level
      */
-    public Mastermind(GameLevelType gameLevelType) {
-            super(gameLevelType);
+    public Mastermind(GameLevelType gameLevelType, GameModeType gameModeType) {
+            super(gameLevelType, gameModeType);
             mastermindStatus = new MastermindStatus();
     }
 

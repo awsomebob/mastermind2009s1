@@ -1,5 +1,6 @@
 package com.masprop.cluster1.privateclasses.tests;
 
+import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
 import com.masprop.cluster1.privateclasses.model.Scores;
@@ -28,11 +29,12 @@ public class MasterMindAlgorithmTest {
          * Difficulty level of game which we want to generate
          */
         GameLevelType gameLevelType = GameLevelType.DIFFICULT;
+        GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
 
         /**
          * Creating new mastermind game
          */
-        test.mastermind = new Mastermind(gameLevelType);
+        test.mastermind = new Mastermind(gameLevelType, gameModeType);
 
 
         /**

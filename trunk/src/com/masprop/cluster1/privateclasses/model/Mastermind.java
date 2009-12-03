@@ -23,11 +23,12 @@ public class Mastermind extends Game {
     /**
      * Constructor
      *
-     * @param gameLevelType game difficulty level
+     * @param gameLevelType
+     *            game difficulty level
      */
     public Mastermind(GameLevelType gameLevelType, GameModeType gameModeType) {
-            super(gameLevelType, gameModeType);
-            mastermindStatus = new MastermindStatus();
+        super(gameLevelType, gameModeType);
+        mastermindStatus = new MastermindStatus();
     }
 
     /**
@@ -40,7 +41,8 @@ public class Mastermind extends Game {
 
     /**
      *
-     * @param mastermindStatus status of current game
+     * @param mastermindStatus
+     *            status of current game
      */
     public void setMastermindStatus(MastermindStatus mastermindStatus) {
         this.mastermindStatus = mastermindStatus;
@@ -54,34 +56,33 @@ public class Mastermind extends Game {
         return this.toString("|");
     }
 
-   /**
+    /**
      *
      * @param separator
      * @return
      */
     public String toString(String separator) {
-        GameLevelType gameleveltype = super.getGameLevelType();
+        GameLevelType gameLevelType = super.getGameLevelType();
+        GameModeType gameModeType = super.getGameModeType();
         int[] value = this.mastermindStatus.getValue();
         String valueString = intarrayToString(value, ",");
-        String output = gameleveltype + separator + valueString + separator;
+        String output = gameLevelType + separator + gameModeType + separator
+                + valueString;
         output += System.getProperty("line.separator");
 
         MatrixMastermind matrix = this.mastermindStatus.getMatrixMastermind();
         Cell[][] matrixcell = matrix.getMatrix();
+
         for (int i = 0; i < matrixcell.length; i++) {
-
-            // resize our value array
-            if (matrixcell[i] != null) {
-                value = new int[matrixcell[i].length];
-
-                for (int j = 0; j < matrixcell[i].length; j++) {
-                    value[j] = matrixcell[i][j].getCurrentValue();
+            for (int j = 0; j < matrixcell[i].length; j++) {
+                // everything except last value
+                if ((matrixcell[i].length - j) != 1) {
+                    output += matrixcell[i][j].getCurrentValue() + separator;
+                } else {
+                    output += matrixcell[i][j].getCurrentValue();
                 }
-                valueString = intarrayToString(value, "|");
-                output += valueString;
-                output += System.getProperty("line.separator");
             }
-
+            output += System.getProperty("line.separator");
         }
         return output;
     }

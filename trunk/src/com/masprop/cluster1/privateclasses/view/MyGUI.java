@@ -36,6 +36,10 @@ public class MyGUI extends javax.swing.JFrame {
 	 * end declaration components
 	 */
 	
+	/**
+	 * GUI manager for handling gui events and domain layer dates
+	 */
+	GUIManager guiManager;
 	
     /**
      * Initialization of all the components included in this JFrame.
@@ -188,6 +192,11 @@ public class MyGUI extends javax.swing.JFrame {
         newGameMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newGameMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/masprop/cluster1/shared/view/graphics/menu_new_game.png"))); // NOI18N
         newGameMenuItem.setText("New game");
+        newGameMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(newGameMenuItem);
 
         loadGameMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
@@ -269,6 +278,10 @@ public class MyGUI extends javax.swing.JFrame {
     private void saveGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameMenuItemActionPerformed
         fileChooser.showSaveDialog(menuBar);
     }//GEN-LAST:event_saveGameMenuItemActionPerformed
+    
+    private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
+    	//guiManager.createNewGame(gameLevelType, gameModeType)
+    }
 
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
 
@@ -482,5 +495,6 @@ public class MyGUI extends javax.swing.JFrame {
 
 	     MyGUI gui = new MyGUI();
          gui.setVisible(true);
+         gui.guiManager = new GUIManager();
     }  
 }

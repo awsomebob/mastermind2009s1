@@ -1,6 +1,7 @@
 package com.masprop.cluster1.privateclasses.tests;
 
 import com.masprop.cluster1.privateclasses.controller.MastermindGenerator;
+import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
@@ -38,9 +39,14 @@ public class MastermindGeneratorTest {
 		GameLevelType gameLevelType = GameLevelType.DIFFICULT; 
 		
 		/**
+		 * Game mode type
+		 */
+		GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
+		
+		/**
 		 * Generating new game
 		 */
-		mastermind = test.generator.generateGame(gameLevelType);
+		mastermind = test.generator.generateGame(gameLevelType, gameModeType);
 		
 		String result;
 		

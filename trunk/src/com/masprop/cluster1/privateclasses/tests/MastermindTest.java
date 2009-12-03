@@ -1,5 +1,6 @@
 package com.masprop.cluster1.privateclasses.tests;
 
+import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
 import com.masprop.cluster1.privateclasses.model.Scores;
@@ -31,11 +32,13 @@ public class MastermindTest {
          * Difficulty level of game which we want to generate
          */
         GameLevelType gameLevelType = GameLevelType.DIFFICULT;
+        
+        GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
 
         /**
          * Creating new mastermind game
          */
-        test.mastermind = new Mastermind(gameLevelType);
+        test.mastermind = new Mastermind(gameLevelType, gameModeType);
 
         /**
          * Get the mastermind status from mastermind
@@ -76,6 +79,22 @@ public class MastermindTest {
         }
         System.out.println("Result of changing difficulty level: " + result);
 
+        /**
+         * Changing game mose type and set the mose type in mastermind
+         */
+        test.mastermind.setGameModeType(GameModeType.PLAYERvsPLAYER);
+
+        /**
+         * Checking is mode type correctly changed in mastermind
+         */
+        gameModeType = test.mastermind.getGameModeType();
+        if(gameModeType == GameModeType.PLAYERvsPLAYER){
+            result = "SUCCESS";
+        }else{
+            result = "FAIL";
+        }
+        System.out.println("Result of changing mode type: " + result);
+        
         /**
          * Get the mastermind file parser from mastermind
          */

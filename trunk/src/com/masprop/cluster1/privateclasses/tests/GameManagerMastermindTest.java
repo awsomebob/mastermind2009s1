@@ -3,6 +3,7 @@ package com.masprop.cluster1.privateclasses.tests;
 import com.masprop.cluster1.privateclasses.controller.GameManagerMastermind;
 import com.masprop.cluster1.privateclasses.controller.GameSolverMastermind;
 import com.masprop.cluster1.privateclasses.controller.MastermindGenerator;
+import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
@@ -81,7 +82,7 @@ public class GameManagerMastermindTest {
 		/**
 		 * Generate new mastermind game
 		 */
-		mastermind = test.manager.getNewGame(GameLevelType.DIFFICULT);
+		mastermind = test.manager.getNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
 		
 		/**
 		 * Checking is mastermind game generated successful 

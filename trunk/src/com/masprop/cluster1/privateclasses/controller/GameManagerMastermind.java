@@ -15,7 +15,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 public class GameManagerMastermind {
 
 	/**
-	 * contains mastermind game
+	 * generates mastermind game
 	 */
 	protected MastermindGenerator mastermindGenerator;
 	
@@ -81,4 +81,22 @@ public class GameManagerMastermind {
 		this.gameSolverMastermind = gameSolverMastermind;
 	}
 	
+	/**
+	 * Save current mastermind game
+	 * 
+	 * @param mastermind mastermind game
+	 */
+	public void saveMastermindGame(Mastermind mastermind){
+		mastermind.getGameParser().update(mastermind);
+	}
+	
+	/**
+	 * Open the last saved mastermind game
+	 * 
+	 * @param mastermind mastermind game
+	 * @return the last saved mastermind game
+	 */
+	public Mastermind openLastSaveMastermindGame(Mastermind mastermind){
+		return mastermind.getGameParser().getMastermindFromFile();
+	}
 }

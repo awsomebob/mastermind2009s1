@@ -89,7 +89,7 @@ public class GUIManager {
 		
 		Random random = new Random();
 		for(int k=0; k<4; k++){
-			i[k] = random.nextInt(numColors);
+			i[k] = random.nextInt(numColors) + 2;
 		}
 		return i;
 	}

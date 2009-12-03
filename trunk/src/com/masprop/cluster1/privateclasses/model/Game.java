@@ -5,6 +5,8 @@ package com.masprop.cluster1.privateclasses.model;
  *  and current level type.
  *
  *  @see MastermindFileParser
+ *  @see MastermindScoreFileParser
+ *  @see MastermindGameFileParser
  *  @see Scores
  *  @author Milan Stanic
  */
@@ -29,10 +31,14 @@ public abstract class Game {
     private GameLevelType gameLevelType;
 
     /**
-     * Game parser
-     * Nick will describe functions for him
+     * Game score parser
      */
-    private MastermindScoreFileParser parser;
+    private MastermindScoreFileParser scoreParser;
+    
+    /**
+     * Game parser
+     */
+    private MastermindGameFileParser gameParser;
 
     /**
      * Constructor to make a new game
@@ -42,8 +48,9 @@ public abstract class Game {
     public Game(GameLevelType gameLevelType, GameModeType gameModeType){
         this.gameLevelType = gameLevelType;
         this.gameModeType = gameModeType;
-        parser = new MastermindScoreFileParser();
-        scores = new Scores(parser, gameLevelType);
+        scoreParser = new MastermindScoreFileParser();
+        gameParser = new MastermindGameFileParser(false);
+        scores = new Scores(scoreParser, gameLevelType);
     }
 
     /**
@@ -87,8 +94,8 @@ public abstract class Game {
      *
      * @return mastermind file parser
      */
-    public MastermindScoreFileParser getParser() {
-        return parser;
+    public MastermindScoreFileParser getScoreParser() {
+        return scoreParser;
     }
 
     /**
@@ -96,8 +103,8 @@ public abstract class Game {
      *
      * @param parser mastermind file parser
      */
-    public void setParser(MastermindScoreFileParser parser) {
-        this.parser = parser;
+    public void setScoreParser(MastermindScoreFileParser scoreParser) {
+        this.scoreParser = scoreParser;
     }
 
     /**
@@ -118,6 +125,24 @@ public abstract class Game {
 		this.gameModeType = gameModeType;
 	}
 
+	/**
+	 * Gets game parser
+	 * 
+	 * @return mastermind game file parser
+	 */
+	public MastermindGameFileParser getGameParser() {
+		return gameParser;
+	}
 
+	/**
+	 * Sets game parser
+	 * 
+	 * @param gameParser mastermind game file parser
+	 */
+	public void setGameParser(MastermindGameFileParser gameParser) {
+		this.gameParser = gameParser;
+	}
+
+	
 
 }

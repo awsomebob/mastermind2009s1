@@ -49,7 +49,7 @@ public abstract class Game {
         this.gameLevelType = gameLevelType;
         this.gameModeType = gameModeType;
         scoreParser = new MastermindScoreFileParser();
-        gameParser = new MastermindGameFileParser(false);
+       // gameParser = new MastermindGameFileParser(false);
         scores = new Scores(scoreParser, gameLevelType);
     }
 

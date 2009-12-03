@@ -25,9 +25,15 @@ public class Circle extends JComponent implements MouseListener{
             Color.yellow, Color.cyan, Color.pink, Color.MAGENTA};
 
     /**
-     * difficulty level
+     * GUI manager for communication with 
+     * domain layer
      */
-    private int level;
+    GUIManager manager;
+
+    /**
+     * position in domain layer
+     */
+    private int i, j;
 
     /**
      * position where circle will be drawn
@@ -43,11 +49,6 @@ public class Circle extends JComponent implements MouseListener{
     private int color;
 
 
-    /**
-     * is only for input
-     */
-    boolean input;
-
     // FIXME This should be removed later
     FileWriter fstream = null;
     BufferedWriter out;
@@ -56,23 +57,38 @@ public class Circle extends JComponent implements MouseListener{
     /**
      * class constructor
      * @params x, y position of circle
+     * @params i, j position in domain layer
      */
-    public Circle(int x, int y, int r, int level, boolean input, int color){
+    public Circle(int x, int y, int r, GUIManager manager, int i , int j,  int color){
         this.x = x;
         this.y = y;
 
-        /**
-         * level value   easy = 0, medium = 1, hard = 2
-         * num of colors easy = 3, medium = 6, hard = 9
-         */
-        this.level = 3 * (level+1);
+        this.manager = manager;
+        this.i = i;
+        this.j = j;
 
-        this.input = input;
 
         this.r = r;
         this.color = color;
 
         this.addMouseListener(this);
+
+    }
+    
+    
+    /**
+     * class constructor
+     * @params x, y position of circle
+     * this circles are only for results and status 
+     */
+    public Circle(int x, int y, int r, GUIManager manager, int color){
+        this.x = x;
+        this.y = y;
+
+        this.manager = manager;
+
+        this.r = r;
+        this.color = color;
 
     }
 
@@ -94,32 +110,33 @@ public class Circle extends JComponent implements MouseListener{
 
 
     public void mouseClicked(MouseEvent arg0) {
-        //FIX ME
-        //here should be check if cell is editable
-        //if not do nothing
-        //controler.check....
-        if(input){
-            int xclick = arg0.getX();
-            int yclick = arg0.getY();
-            if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
-                color = (color + 1) % level;
-                repaint();
-        }
+       if(manager.getMastermind() != null){
+           if(manager.getMastermind().getMastermindStatus().
+           		getMatrixMastermind().getCell(i, j).isEditable()){
+               int xclick = arg0.getX();
+               int yclick = arg0.getY();
+               if(xclick>x && xclick<x+2*r && yclick>y && yclick<y+2*r){
+               	
+               	int value = manager.getMastermind().getMastermindStatus().
+           		getMatrixMastermind().getCell(i, j).getCurrentValue();
+               	
+               	value = (value + 1) % manager.numColors
+               	(manager.getMastermind().getGameLevelType());
+               	
+               	manager.getMastermind().getMastermindStatus().
+           		getMatrixMastermind().getCell(i, j).setCurrentValue(value);
+               	
+               	manager.getMastermind().getMastermindStatus().
+           		getMatrixMastermind().getCell(i, j).setActive(true);
+               	
+               	color = value + 2;
+                   repaint();
+                }
+            	
+           }
+        	   
+       }
 
-    }
-
-
-
-
-
-        /*
-        try {
-            out.write("input[" + ++i +"] = new Circle(" + x + "," + y + ", 1)\n");
-            if(i==7) out.close();
-            }catch (Exception e){//Catch exception if any
-              System.err.println("Error: " + e.getMessage());
-            }
-        */
     }
 
 

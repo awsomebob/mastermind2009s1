@@ -6,12 +6,14 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+import com.masprop.cluster1.privateclasses.model.GameModeType;
+import com.masprop.cluster1.shared.model.GameLevelType;
 
 
 public class MyGUI extends javax.swing.JFrame {
@@ -45,8 +47,8 @@ public class MyGUI extends javax.swing.JFrame {
      * Initialization of all the components included in this JFrame.
      */
     public MyGUI() {
-
    	    super("Mastermind");
+   	    guiManager = new GUIManager();
         createMenuComponents();
         createMastermindComponents(this,2);
       
@@ -62,7 +64,7 @@ public class MyGUI extends javax.swing.JFrame {
    	     //background image for center panel
 	         BufferedImage loadImg = JImagePanel.loadImage("Mastermind-hiddenbox.png") ;
 	         
-	         frame.setBounds(0, 0, 480, 810);
+	         frame.setBounds(0, 0, 356, 680);
 	         frame.setResizable(false);
 	         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	         
@@ -71,7 +73,7 @@ public class MyGUI extends javax.swing.JFrame {
 	         basePanel = new JPanel(new BorderLayout());
 	         
 	         
-	         imagePanel = new JImagePanel(loadImg, 50, 38);
+	         imagePanel = new JImagePanel(loadImg, 16, 0);
 	         
 	         buttonPanel = new JPanel();
 	         buttonPanel.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
@@ -80,47 +82,47 @@ public class MyGUI extends javax.swing.JFrame {
 	         //components are placed in inverse order
 	         //first physical row is with index i=7 
 	         inputs = new Circle[28];
-	         int xInput = 100;
-	         int yInput = 96;
+	         int xInput = 40;
+	         int yInput = 30;
 	         line = new MyLine[7];
 	         
 	         for(int i=0; i<7; i++){
 	        	 for(int j=0; j<4; j++){
 	        		 if(i==6)
-	        			 inputs[i*4 + j] = new Circle(xInput + j*52, yInput + i*78, 20, 1, true, 1);
+	        			 inputs[i*4 + j] = new Circle(xInput + j*52, yInput + i*70, 20, guiManager, 6-i, j, 1);
 	        		 else
-	        			 inputs[i*4 + j] = new Circle(xInput + j*52, yInput + i*78, 20, 1, true, 0);
+	        			 inputs[i*4 + j] = new Circle(xInput + j*52, yInput + i*70, 20, guiManager, 6-i, j, 0);
 	        		 imagePanel.add(inputs[i*4 + j]);
 	        	 }
 	        	 
 	        	 //separator between rows
 	        	 //also if separator is white row is edit able
 	        	 if(i==6)
-	        		 line [i] = new MyLine(xInput, yInput + (i+1)*78 - 28, 2, Color.white);
+	        		 line [i] = new MyLine(xInput, yInput + (i+1)*70 - 28, 2, Color.white);
 	        	 else 
-	        		 line [i] = new MyLine(xInput, yInput + (i+1)*78 - 28, 2, Color.GRAY);
+	        		 line [i] = new MyLine(xInput, yInput + (i+1)*70 - 28, 2, Color.GRAY);
    		     imagePanel.add(line[i]);
 	         }
 	         
 	         results = new Circle[28];
-	         int xOutput = 320;
-	         int yOutput = 92;
+	         int xOutput = 265;
+	         int yOutput = 32;
 	         
 	         for(int i=0; i<7; i++)
 	        	 for(int j=0; j<2; j++)
 	        		 for(int k=0; k<2; k++){
-	        		 results[i*4 + j*2 + k] = new Circle(xOutput + j*26, yOutput + i*78 + k*26, 11, 1, false, 0);
+	        		 results[i*4 + j*2 + k] = new Circle(xOutput + j*24, yOutput + i*70 + k*20, 9, guiManager, 0);
 	        		 imagePanel.add(results[i*4 + j*2 + k]);
 	        	 }
 	         
 	         //this should be mode player against computer
-	         int xValue = 144;
-	         int yValue = 655;
+	         int xValue = 90;
+	         int yValue = 528;
 	         if(mode==2){
 	        	 value = new Circle[4];
 	        	 for(int i=0; i<4; i++){
 	        		 //FIXME here should instead of i+1 value that player defined
-	        		 value[i] = new Circle(xValue + i*50, yValue, 20, 1, false, i+1);
+	        		 value[i] = new Circle(xValue + i*46, yValue, 18, guiManager, i+1);
 	        		 imagePanel.add(value[i]);
 	        	 }
 	         }
@@ -155,9 +157,10 @@ public class MyGUI extends javax.swing.JFrame {
     private void createMenuComponents() {
 
         aboutDialog = new javax.swing.JDialog();
+        newGameDialog = new javax.swing.JDialog();
 
  
-        fileChooser = new javax.swing.JFileChooser();
+  //      fileChooser = new javax.swing.JFileChooser();
 
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -173,17 +176,31 @@ public class MyGUI extends javax.swing.JFrame {
         aboutDialog.setTitle("About");
         aboutDialog.setIconImage(null);
         aboutDialog.setIconImages(null);
-        aboutDialog.setMinimumSize(new java.awt.Dimension(400, 400));
+        aboutPanel = new JPanel();
+        aboutPanel.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
+        aboutDialog.add(aboutPanel);
+        aboutDialog.setMinimumSize(new java.awt.Dimension(300, 300));
         aboutDialog.setResizable(false);
         aboutDialog.setLocation(0,0);
         
+        
+        newGameDialog.setTitle("New game");
+        newGameDialog.setIconImage(null);
+        newGameDialog.setIconImages(null);
+        newGamePanel = new JPanel();
+        newGamePanel.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
+        newGameDialog.add(newGamePanel);
+        newGameDialog.setMinimumSize(new java.awt.Dimension(300, 300));
+        newGameDialog.setResizable(false);
+        newGameDialog.setLocation(0,0);
+    /*    
         fileChooser.setBackground(new java.awt.Color(230, 215, 193));
         fileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileChooserActionPerformed(evt);
             }
         });
-        
+    */    
     
         menuBar.setBackground(new java.awt.Color(230, 215, 193));
 
@@ -272,17 +289,20 @@ public class MyGUI extends javax.swing.JFrame {
 
 
     private void loadGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadGameMenuItemActionPerformed
-        fileChooser.showOpenDialog(menuBar);
+        //fileChooser.showOpenDialog(menuBar);
     }//GEN-LAST:event_loadGameMenuItemActionPerformed
 
     private void saveGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameMenuItemActionPerformed
-        fileChooser.showSaveDialog(menuBar);
+        //fileChooser.showSaveDialog(menuBar);
     }//GEN-LAST:event_saveGameMenuItemActionPerformed
     
     private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	//guiManager.createNewGame(gameLevelType, gameModeType)
+    	newGameDialog.setVisible(true);
     }
 
+    
+    /*
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
 
         if(fileChooser.getDialogType() == JFileChooser.OPEN_DIALOG) {
@@ -294,21 +314,26 @@ public class MyGUI extends javax.swing.JFrame {
         }
 
     }
+    */
+    
     
     private void checkMastermindEventActionPerformed(java.awt.event.ActionEvent evt){
     	//Here should be check MastermindStatus and....
     	//This is only example
-    	line[5].setColor(Color.WHITE);
-    	line[5].repaint();
+    	
     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog aboutDialog;
+    private JPanel aboutPanel;
     private javax.swing.JMenuItem aboutMenuItem;
+    
+    private javax.swing.JDialog newGameDialog;
+    private JPanel newGamePanel;
 
     private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JFileChooser fileChooser;
+  //  private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
 
     private javax.swing.JMenu helpMenu;
@@ -494,7 +519,7 @@ public class MyGUI extends javax.swing.JFrame {
     public static void main(String[] args) {  
 
 	     MyGUI gui = new MyGUI();
+	     gui.guiManager.createNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
          gui.setVisible(true);
-         gui.guiManager = new GUIManager();
     }  
 }

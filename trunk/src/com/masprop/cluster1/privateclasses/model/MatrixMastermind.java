@@ -21,7 +21,10 @@ public class MatrixMastermind implements Matrix {
         this.matrix = new Cell[height][width];
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
-                this.matrix[i][j] = new Cell(0, false, false);
+            	if(i == 0) 
+            		this.matrix[i][j] = new Cell(0, true, false);
+            	else 
+            		this.matrix[i][j] = new Cell(0, false, false);
     }
     public MatrixMastermind(Cell[][] matrix) {
         this.matrix = matrix;

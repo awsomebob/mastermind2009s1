@@ -32,6 +32,7 @@ public class Mastermind extends Game {
     }
 
     /**
+     * Gets the mastermind status
      *
      * @return mastermindStaus
      */
@@ -40,9 +41,9 @@ public class Mastermind extends Game {
     }
 
     /**
+     * Sets the mastermind status
      *
-     * @param mastermindStatus
-     *            status of current game
+     * @param mastermindStatus status of current game
      */
     public void setMastermindStatus(MastermindStatus mastermindStatus) {
         this.mastermindStatus = mastermindStatus;
@@ -92,6 +93,7 @@ public class Mastermind extends Game {
     }
 
     /**
+     * This method converts array of integer to string
      *
      * @param a
      * @param separator

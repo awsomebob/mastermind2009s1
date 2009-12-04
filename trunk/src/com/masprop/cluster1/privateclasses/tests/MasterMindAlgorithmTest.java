@@ -14,11 +14,8 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 public class MasterMindAlgorithmTest {
 
     public void run() {
-        /* Changeable variables
-         * When wanting other output, please change these values
-         */
-
-        /*
+        /* NO CHANGABLE VALUES HERE SINCE THIS IS NOT FINISHED YET
+         *
          * Class for testing
          *
          * Here we are testing get and set methods and function for creating new game,
@@ -26,6 +23,7 @@ public class MasterMindAlgorithmTest {
          * We doesn't test here function for saving and open last save game,
          * because it's testing in MastermindSaveGame
          */
+
         Mastermind mastermind = null;
 
         /**

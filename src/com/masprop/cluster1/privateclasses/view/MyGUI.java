@@ -4,7 +4,6 @@ package com.masprop.cluster1.privateclasses.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -15,24 +14,64 @@ import javax.swing.JPanel;
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
-
+/**
+ * GUI class which instantiate all graphics
+ * components and handle all events for playing game
+ * Also here is main class that run game
+ * 
+ * @see GameModeType
+ * @see GameLevelType
+ * @see Circle
+ * @see MyLine
+ * @see JImagePanel
+ * @see GUIManager
+ * 
+ * @author Milovan Duric
+ */
 public class MyGUI extends javax.swing.JFrame {
 
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * declaration components 
-	 * for Mastermind graphics
+
+	/**
+	 * input circles where player
+	 * guess value
 	 */
 	Circle inputs[];
+	
+	/**
+	 * line separators
+	 * from active and no active inputs
+	 */
 	MyLine line[];
+	
+	/**
+	 * results circles for
+	 * displaying information about
+	 * player accuracy 
+	 */
 	Circle results[];
+	
+	/**
+	 * only computer play 
+	 * against human and displaying
+	 * value that player defined
+	 */
 	Circle value[];
 	
+	
+	/**
+	 * panels for scheduling components 
+	 */
 	JPanel basePanel;
 	JImagePanel imagePanel;
 	JPanel buttonPanel;
+	
+	/**
+	 * main button for comparing current row
+	 * values with correct values
+	 */
 	JButton check;
 	/*
 	 * end declaration components
@@ -54,12 +93,13 @@ public class MyGUI extends javax.swing.JFrame {
       
     }
     
+
     
-	 /**
-	  * drawing Mastermind components in defined frame
-	  * mode is for 1 or 2 player
-	  * or player against computer  
-	  */	
+    /**
+     * Drawing Mastermind components in defined frame
+     * mode is param for 1, 2 player
+	 * or player against computer 
+     */
     public void createMastermindComponents(JFrame frame, int mode) { 
    	     //background image for center panel
 	         BufferedImage loadImg = JImagePanel.loadImage("Mastermind-hiddenbox.png") ;
@@ -123,6 +163,7 @@ public class MyGUI extends javax.swing.JFrame {
 	        	 for(int i=0; i<4; i++){
 	        		 //FIXME here should instead of i+1 value that player defined
 	        		 value[i] = new Circle(xValue + i*46, yValue, 18, guiManager, i+1);
+	        		 value[i].setVisible(false);
 	        		 imagePanel.add(value[i]);
 	        	 }
 	         }
@@ -316,7 +357,14 @@ public class MyGUI extends javax.swing.JFrame {
     }
     */
     
-    
+    /**
+     * this method handle action event of button
+     * for checking values for current row whether
+     * they are correct or wrong and  also set result 
+     * on circles for displaying it. If user correctly 
+     * fill all fields game is finished, otherwise 
+     * just make next row as editable  
+     */
     private void checkMastermindEventActionPerformed(java.awt.event.ActionEvent evt){
     	//Here should be check MastermindStatus and....
     	//This is only example
@@ -554,15 +602,23 @@ public class MyGUI extends javax.swing.JFrame {
     }
     
     
-    
+    /**
+     * 
+     * @param args
+     * This is main that will create 
+     * graphics components and other object 
+     * necessary for the playing game
+     */
     public static void main(String[] args) {  
 
 	     MyGUI gui = new MyGUI();
+	     
+	     
+	     // Here should be parametars from dialog 
+	     // Open new game 	     
 	     gui.guiManager.createNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
 	     gui.guiManager.getMastermind().getMastermindStatus().setValue(gui.guiManager.randomCoputeValue(GameLevelType.DIFFICULT));
-	     //int[] niz = gui.guiManager.getMastermind().getMastermindStatus().getValue();
-	    // for(int i=0; i<4; i++)
-	    	 //System.out.print(" " + niz[i]);
+
          gui.setVisible(true);
     }  
 }

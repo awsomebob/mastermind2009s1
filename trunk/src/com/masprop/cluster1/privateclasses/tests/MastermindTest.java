@@ -17,37 +17,60 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 public class MastermindTest {
 
-    /**
-     * Class for testing
-     */
-    public Mastermind mastermind;
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        MastermindTest test = new MastermindTest();
-
-        /**
-         * Difficulty level of game which we want to generate
+    public void run(){
+    	/* Changeable variables
+         * When wanting other output, please change these values
          */
+    	
+		/*
+	     * Class for testing
+	     */
+	    Mastermind mastermind;
+	    
+	    //Which GameLevelType do you want to use?
+        //possible values
+        //GameLevelType.DIFFICULT;
+        //GameLevelType.MEDIUM;
+        //GameLevelType.EASY;
         GameLevelType gameLevelType = GameLevelType.DIFFICULT;
         
+        //Which GameLevelType do you want to use?
+        //possible values
+        //GameLevelType.DIFFICULT;
+        //GameLevelType.MEDIUM;
+        //GameLevelType.EASY
+        GameLevelType newGameLevelType = GameLevelType.MEDIUM;
+        
+        //Which GameModeType do you want to use?
+        //Possible values
+        //GameModeType.COMPvsPLAYER
+        //GameModeType.PLAYERvsCOMP
+        //GameModeType.PLAYERvsPLAYER
         GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
+        
+        //Which GameModeType do you want to use?
+        //Possible values
+        //GameModeType.COMPvsPLAYER
+        //GameModeType.PLAYERvsCOMP
+        //GameModeType.PLAYERvsPLAYER
+        GameModeType newGameModeType = GameModeType.PLAYERvsPLAYER;
+        
+        //-------------------------------------------------------------------
+        //Do not modify below this line please
+        //-------------------------------------------------------------------
 
-        /**
+        /*
          * Creating new mastermind game
          */
-        test.mastermind = new Mastermind(gameLevelType, gameModeType);
+        mastermind = new Mastermind(gameLevelType, gameModeType);
 
-        /**
+        /*
          * Get the mastermind status from mastermind
          */
-        MastermindStatus status = test.mastermind.getMastermindStatus();
+        MastermindStatus status = mastermind.getMastermindStatus();
         String result;
 
-        /**
+        /*
          * Checking is mastermind status generated successful
          */
         if(status != null){
@@ -57,51 +80,51 @@ public class MastermindTest {
         }
         System.out.println("Result of getting mastermind status: " + result);
 
-        /**
+        /*
          * Put mastermind status in mastermind
          */
-        test.mastermind.setMastermindStatus(new MastermindStatus());
+        mastermind.setMastermindStatus(new MastermindStatus());
 
 
 
-        /**
+        /*
          * Changing game level type and set the level type in mastermind
          */
-        test.mastermind.setGameLevelType(GameLevelType.MEDIUM);
+        mastermind.setGameLevelType(newGameLevelType);
 
-        /**
+        /*
          * Checking is difficulty level correctly changed in mastermind
          */
-        gameLevelType = test.mastermind.getGameLevelType();
-        if(gameLevelType == GameLevelType.MEDIUM){
+        gameLevelType = mastermind.getGameLevelType();
+        if(gameLevelType == newGameLevelType){
             result = "SUCCESS";
         }else{
             result = "FAIL";
         }
         System.out.println("Result of changing difficulty level: " + result);
 
-        /**
+        /*
          * Changing game mose type and set the mose type in mastermind
          */
-        test.mastermind.setGameModeType(GameModeType.PLAYERvsPLAYER);
+        mastermind.setGameModeType(newGameModeType);
 
-        /**
+        /*
          * Checking is mode type correctly changed in mastermind
          */
-        gameModeType = test.mastermind.getGameModeType();
-        if(gameModeType == GameModeType.PLAYERvsPLAYER){
+        gameModeType = mastermind.getGameModeType();
+        if(gameModeType == newGameModeType){
             result = "SUCCESS";
         }else{
             result = "FAIL";
         }
         System.out.println("Result of changing mode type: " + result);
         
-        /**
+        /*
          * Get the mastermind score file parser from mastermind
          */
-        MastermindScoreFileParser parser = test.mastermind.getScoreParser();
+        MastermindScoreFileParser parser = mastermind.getScoreParser();
 
-        /**
+        /*
          * Checking is mastermind file parser generated successful
          */
         if(parser != null){
@@ -111,12 +134,12 @@ public class MastermindTest {
         }
         System.out.println("Result of getting mastermind file score parser: " + result);
         
-        /**
+        /*
          * Get the mastermind game file parser from mastermind
          */
-        MastermindGameFileParser gameParser = test.mastermind.getGameParser();
+        MastermindGameFileParser gameParser = mastermind.getGameParser();
 
-        /**
+        /*
          * Checking is mastermind file game parser generated successful
          */
         if(gameParser != null){
@@ -126,17 +149,17 @@ public class MastermindTest {
         }
         System.out.println("Result of getting mastermind file game parser: " + result);
 
-        /**
+        /*
          * Put mastermind score file parser in mastermind
          */
-        test.mastermind.setScoreParser(new MastermindScoreFileParser());
+        mastermind.setScoreParser(new MastermindScoreFileParser());
 
-        /**
+        /*
          * Get the scores from mastermind
          */
-        Scores scores = test.mastermind.getScores();
+        Scores scores = mastermind.getScores();
 
-        /**
+        /*
          * Checking is mastermind scores generated successful
         */
         if(scores != null){
@@ -146,10 +169,21 @@ public class MastermindTest {
         }
         System.out.println("Result of getting mastermind scores: " + result);
 
-        /**
+        /*
          * Put scores in mastermind
          */
-        test.mastermind.setScores(new Scores(parser, gameLevelType));
+        mastermind.setScores(new Scores(parser, gameLevelType));
+    
+    }
+    /**
+     * Main constructor for the Mastermind and Game Test
+     * @param args
+     */
+    public static void main(String[] args) {
+
+        MastermindTest test = new MastermindTest();
+
+        test.run();
     }
 
 }

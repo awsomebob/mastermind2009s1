@@ -14,43 +14,49 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 public class MastermindGeneratorTest {
 	
-	/**
-	 *  Class for testing 
-	 */
-	public MastermindGenerator generator;
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public void run(){
+		/* Changeable variables
+         * When wanting other output, please change these values
+         */
+	
+		/*
+		 *  Class for testing 
+		 */
+		MastermindGenerator generator;
+	
+		generator = new MastermindGenerator();
 		
-		MastermindGeneratorTest test = new MastermindGeneratorTest();
-		
-		test.generator = new MastermindGenerator();
-		
-		/**
+		/*
 		 * We want to generate this game
 		 */
 		Mastermind mastermind = null;
 		
-		/**
-		 * Difficulty level of game which we want to generate
-		 */
+		//Which GameLevelType do you want to use?
+        //possible values
+        //GameLevelType.DIFFICULT;
+        //GameLevelType.MEDIUM;
+        //GameLevelType.EASY;
 		GameLevelType gameLevelType = GameLevelType.DIFFICULT; 
 		
-		/**
-		 * Game mode type
-		 */
+		//Which GameModeType do you want to use?
+        //Possible values
+        //GameModeType.COMPvsPLAYER
+        //GameModeType.PLAYERvsCOMP
+        //GameModeType.PLAYERvsPLAYER
 		GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
 		
-		/**
+		//-------------------------------------------------------------------
+        //Do not modify below this line please
+        //-------------------------------------------------------------------
+		
+		/*
 		 * Generating new game
 		 */
-		mastermind = test.generator.generateGame(gameLevelType, gameModeType);
+		mastermind = generator.generateGame(gameLevelType, gameModeType);
 		
 		String result;
 		
-		/**
+		/*
 		 * Checking is game generate successful 
 		 */
 		if(mastermind != null){
@@ -59,6 +65,17 @@ public class MastermindGeneratorTest {
 			result = "FAIL";
 		}
 		System.out.println("Result of generating mastermind game: " + result);
+	}
+
+	/**
+	 * Main constructor for the MastermindGenerator Test
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		MastermindGeneratorTest test = new MastermindGeneratorTest();
+		
+		test.run();
 	}
 
 }

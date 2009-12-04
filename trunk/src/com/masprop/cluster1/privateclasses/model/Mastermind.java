@@ -16,15 +16,16 @@ import com.masprop.cluster1.shared.model.Cell;
 public class Mastermind extends Game {
 
     /**
-     * pile will describe this class
+     * Mastermind game status
+     * 
+     * @see MastermindStatus
      */
     private MastermindStatus mastermindStatus;
 
     /**
-     * Constructor
+     * Constructor calls game constructor and creates new mastermind game status
      *
-     * @param gameLevelType
-     *            game difficulty level
+     * @param gameLevelType game difficulty level
      */
     public Mastermind(GameLevelType gameLevelType, GameModeType gameModeType) {
         super(gameLevelType, gameModeType);
@@ -97,7 +98,7 @@ public class Mastermind extends Game {
      *
      * @param a
      * @param separator
-     * @return
+     * @return converted array of integer to string
      */
     public static String intarrayToString(int[] a, String separator) {
         StringBuffer result = new StringBuffer();

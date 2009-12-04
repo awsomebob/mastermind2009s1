@@ -1,14 +1,16 @@
 package com.masprop.cluster1.privateclasses.model;
 
 /**
- *  This class represents game and contents top 10 scores for current level of difficulty
- *  and current level type.
+ * This class represents game and contents top 10 scores for current level of difficulty
+ * and current level type.
  *
- *  @see MastermindFileParser
- *  @see MastermindScoreFileParser
- *  @see MastermindGameFileParser
- *  @see Scores
- *  @author Milan Stanic
+ * @see MastermindFileParser
+ * @see GameLevelType
+ * @see GameModeType
+ * @see MastermindScoreFileParser
+ * @see MastermindGameFileParser
+ * @see Scores
+ * @author Milan Stanic
  */
 
 import com.masprop.cluster1.privateclasses.model.diskmanager.*;

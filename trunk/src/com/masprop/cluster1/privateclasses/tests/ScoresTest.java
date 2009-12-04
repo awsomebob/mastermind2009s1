@@ -1,6 +1,6 @@
 package com.masprop.cluster1.privateclasses.tests;
 
-import java.util.ArrayList;
+
 import java.util.Random;
 
 import com.masprop.cluster1.privateclasses.model.Score;

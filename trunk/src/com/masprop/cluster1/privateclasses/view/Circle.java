@@ -14,7 +14,14 @@ import javax.swing.JComponent;
 
 /**
  * This class draws a circle
- * @author Milovan
+ * on defined coordinates with default radius
+ * if it's circle for inputs then it have mouse 
+ * listener that handle click on that circle 
+ * and change value in Matrix and color
+ * 
+ * @see GUIManager
+ * 
+ * @author Milovan Duric
  *
  */
 public class Circle extends JComponent implements MouseListener{
@@ -58,11 +65,19 @@ public class Circle extends JComponent implements MouseListener{
     BufferedWriter out;
 
 
-    /**
-     * class constructor
-     * @params x, y position of circle
-     * @params i, j position in domain layer
-     */
+  /**
+   * Class constructor
+   * with parameters for position on the screen 
+   * and position corresponding cell in matrix 
+   * 
+   * @param x
+   * @param y
+   * @param r
+   * @param manager
+   * @param i
+   * @param j
+   * @param color
+   */
     public Circle(int x, int y, int r, GUIManager manager, int i , int j,  int color){
         this.x = x;
         this.y = y;
@@ -81,9 +96,15 @@ public class Circle extends JComponent implements MouseListener{
 
 
     /**
-     * class constructor
-     * @params x, y position of circle
-     * this circles are only for results and status
+     * Class constructor for circle which will
+     * be used only for displaying information
+     * it doesn't have mouse listener
+     * 
+     * @param x
+     * @param y
+     * @param r
+     * @param manager
+     * @param color
      */
     public Circle(int x, int y, int r, GUIManager manager, int color){
         this.x = x;
@@ -96,6 +117,11 @@ public class Circle extends JComponent implements MouseListener{
 
     }
 
+    
+    /**
+     * painting circle on defined position
+     * in defined color 
+     */
     public void paint(Graphics g) {
         //setBounds(0,0,1000,1000);
         setBounds(0,0,x+2*r+5,y+2*r+5);
@@ -113,6 +139,11 @@ public class Circle extends JComponent implements MouseListener{
     }
 
 
+    /**
+     * handler for mouse click event
+     * it check for the status of corresponding
+     * cell in matrix and change value and color
+     */
     public void mouseClicked(MouseEvent arg0) {
        if(manager.getMastermind() != null){
            if(manager.getMastermind().getMastermindStatus().
@@ -165,12 +196,18 @@ public class Circle extends JComponent implements MouseListener{
         // TODO Auto-generated method stub
     }
 
-
+    /**
+     * 
+     * @return color
+     */
     public int getColor() {
         return color;
     }
 
-
+    /**
+     * set color
+     * @param color
+     */
     public void setColor(int color) {
         this.color = color;
     }

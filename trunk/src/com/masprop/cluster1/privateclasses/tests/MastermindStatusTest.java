@@ -3,8 +3,11 @@ package com.masprop.cluster1.privateclasses.tests;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
 
 /**
- *
- * @author ?
+ * Testing class for MastermindStatus
+ * 
+ * @see MastermindStatus
+ *  
+ * @author Milovan Duric
  *
  */
 public class MastermindStatusTest {

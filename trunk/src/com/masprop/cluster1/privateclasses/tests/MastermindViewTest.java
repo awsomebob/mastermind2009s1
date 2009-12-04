@@ -7,13 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.masprop.cluster1.privateclasses.view.Circle;
 import com.masprop.cluster1.privateclasses.view.JImagePanel;
 import com.masprop.cluster1.privateclasses.view.MyGUI;
-import com.masprop.cluster1.privateclasses.view.MyLine;
 
 
-
+/**
+ * This class is not necessary because there
+ * is new class for GUI
+ * 
+ * @author Milovan Duric
+ *
+ */
 public class MastermindViewTest {
 	
          
@@ -39,7 +43,7 @@ public class MastermindViewTest {
 		         JPanel buttonPanel = new JPanel();
 		         buttonPanel.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
 		         
-		         
+		     /*    
 		         //components are placed in inverse order
 		         //first physical row is with index i=7 
 		         Circle inputs[] = new Circle[28];
@@ -76,7 +80,7 @@ public class MastermindViewTest {
 		        		 imagePanel.add(results[i*4 + j*2 + k]);
 		        	 }
 		         
-		         
+		         */
 		         
 		         //This is button whit purpose of finishing guessing for current row
 		         JButton check = new JButton("Mastermind check");

@@ -1,9 +1,12 @@
 package com.masprop.cluster1.privateclasses.model;
 
 /**
- *
- * @author ?
- *
+ * this class contains current status
+ * with all information for playing Mastermind
+ * 
+ * @see MatrixMastermind
+ * 
+ * @author Milovan Duric
  */
 public class MastermindStatus {
 
@@ -12,6 +15,11 @@ public class MastermindStatus {
      * that computer or player produced
      */
     private int value[];
+    
+    /**
+     * matrix which holds values 
+     * that player guess  
+     */
     private MatrixMastermind matrixMastermind;
 
     /**
@@ -24,9 +32,8 @@ public class MastermindStatus {
     /**
      * class constructor
      *
-     * @no params
-     * @instantiate all parameters on null
-     * @except matrix which is instantiated on default size
+     * matrix which is instantiated on default size
+     * initiate all values on 0
      */
     public MastermindStatus() {
         super();
@@ -35,37 +42,59 @@ public class MastermindStatus {
         currentRow = 0;
     }
 
+    
+    /**
+     * 
+     * @return correct value
+     */
     public int[] getValue() {
         return value;
     }
-
+    
+    /**
+     * set correct value
+     * @param value 
+     */
     public void setValue(int[] value) {
         this.value = value;
     }
 
+    /**
+     * 
+     * @return matrix
+     */
     public MatrixMastermind getMatrixMastermind() {
         return matrixMastermind;
     }
 
     /**
-     *
+     * set matrix 
      * @param matrixMastermind
      */
     public void setMatrixMastermind(MatrixMastermind matrixMastermind) {
         this.matrixMastermind = matrixMastermind;
     }
 
+    
+    /**
+     * 
+     * @return current row
+     */
     public int getCurrentRow() {
         return currentRow;
     }
 
+    /**
+     * set current row
+     * @param currentRow
+     */
     public void setCurrentRow(int currentRow) {
         this.currentRow = currentRow;
     }
 
     /**
      * check if player have correct value
-     * whether is that computer or human
+     * whether is that computers or humans
      */
     public boolean isCorrectValue(){
         for(int i=0; i<4; i++){

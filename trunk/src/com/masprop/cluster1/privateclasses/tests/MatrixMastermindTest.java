@@ -2,6 +2,15 @@ package com.masprop.cluster1.privateclasses.tests;
 
 import com.masprop.cluster1.privateclasses.model.MatrixMastermind;
 
+
+/**
+ * Testing class for the MatrixMastermind 
+ * 
+ * @see MatrixMastermind
+ * 
+ * @author Milovan Duric
+ *
+ */
 public class MatrixMastermindTest {
 	public MatrixMastermind matrix;
 

@@ -8,7 +8,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 
-
+/**
+ * Panel that load image as background
+ * 
+ * @author Milovan Duric
+ *
+ */
 public class JImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -16,12 +21,15 @@ public class JImagePanel extends JPanel {
 	     private BufferedImage image;  
 	     private int x, y;  
 	     
+
 	     /**
-	 	 * class constructor
-	 	 * 
-	 	 * @param image
-	 	 * @params x, y position where image will be displayed 	 	 
-	 	 **/
+	      * Class Constructor
+	      * display image on defined position
+	      * 
+	      * @param image
+	      * @param x
+	      * @param y
+	      */
 	     public JImagePanel(BufferedImage image, int x, int y) {  
 	         super();  
 	         this.image = image;  
@@ -30,7 +38,9 @@ public class JImagePanel extends JPanel {
 	         this.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
 	     }  
 	     
-	     @Override  
+	     /**
+	      * paint of image
+	      */
 	     protected void paintComponent(Graphics g) {  
 	         super.paintComponent(g); 
 	         g.drawImage(image, x, y, null);  
@@ -38,7 +48,7 @@ public class JImagePanel extends JPanel {
 	     
 	     /**
 	 	 * static method for loading image
-	 	 **/
+	 	 */
 	     public static BufferedImage loadImage(String ref) {  
 	         BufferedImage bimg = null;  
 	         try {  

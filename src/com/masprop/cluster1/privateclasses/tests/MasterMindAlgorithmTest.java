@@ -1,29 +1,32 @@
 package com.masprop.cluster1.privateclasses.tests;
 
+import com.masprop.cluster1.privateclasses.controller.GameSolverMastermind;
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
-import com.masprop.cluster1.privateclasses.model.Scores;
-import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFileParser;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
  * Class for testing the algorithm that will solve the game
  *
- * @author Nick
+ * @author Nick Veenhof
  */
 public class MasterMindAlgorithmTest {
-    /**
-     * Class for testing
-     */
-    public Mastermind mastermind;
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+    public void run() {
+        /* Changeable variables
+         * When wanting other output, please change these values
+         */
 
-        MasterMindAlgorithmTest test = new MasterMindAlgorithmTest();
+        /*
+         * Class for testing
+         *
+         * Here we are testing get and set methods and function for creating new game,
+         * function for solving game.
+         * We doesn't test here function for saving and open last save game,
+         * because it's testing in MastermindSaveGame
+         */
+        Mastermind mastermind = null;
 
         /**
          * Difficulty level of game which we want to generate
@@ -34,12 +37,12 @@ public class MasterMindAlgorithmTest {
         /**
          * Creating new mastermind game
          */
-        test.mastermind = new Mastermind(gameLevelType, gameModeType);
+        mastermind = new Mastermind(gameLevelType, gameModeType);
 
         /**
          * Get the mastermind status from mastermind
          */
-        MastermindStatus status = test.mastermind.getMastermindStatus();
+        MastermindStatus status = mastermind.getMastermindStatus();
         /**
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
@@ -50,22 +53,28 @@ public class MasterMindAlgorithmTest {
         /**
          * Put mastermind status in mastermind
          */
-        test.mastermind.setMastermindStatus(status);
+        mastermind.setMastermindStatus(status);
+        System.out.println(mastermind.toString("|"));
 
         /**
-         * Get the mastermind file parser from mastermind
+         * Continue our test with solving the game
          */
-        MastermindScoreFileParser parser = test.mastermind.getScoreParser();
+        System.out.println("Solved the game");
+        GameSolverMastermind GameSolver = new GameSolverMastermind();
+        GameSolver.solveMastermind(mastermind);
+        System.out.println(mastermind.toString("|"));
 
-        /**
-         * Put mastermind file parser in mastermind
-         */
-        test.mastermind.setScoreParser(parser);
 
-        /**
-         * Get the scores from mastermind
-         */
-        Scores scores = test.mastermind.getScores();
+
+    }
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+
+        MasterMindAlgorithmTest test = new MasterMindAlgorithmTest();
+        test.run();
+
 
     }
 

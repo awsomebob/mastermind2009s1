@@ -6,8 +6,14 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
  * 
- * This class provides the management operations on the mastermind game
+ * This class provides the management operations for the mastermind game
  * 
+ * @see MastermindGenerator
+ * @see GameSolverMastermind
+ * @see Mastermind
+ * @see GameLevelType
+ * @see GameModeType
+ * @see GameFileMastermindParser
  * @author Milan Stanic
  *
  */

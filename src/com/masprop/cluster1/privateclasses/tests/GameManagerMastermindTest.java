@@ -17,35 +17,65 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 public class GameManagerMastermindTest {
 
-	/**
-	 * Class for testing
-	 */
-	public GameManagerMastermind manager;
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		GameManagerMastermindTest test = new GameManagerMastermindTest();
+	public void run(){
+		/* Changeable variables
+         * When wanting other output, please change these values
+         */
 		
-		test.manager = new GameManagerMastermind();
+		/*
+		 * Class for testing
+		 * 
+		 * Here we are testing get and set methods and function for creating new game,
+		 * function for solving game.
+		 * We doesn't test here function for saving and open last save game, 
+		 * because it's testing in MastermindSaveGame
+		 */
+		// Initialize our game mastermind manager
+		GameManagerMastermind manager = new GameManagerMastermind();
 		
+		// Initialize our mastermind generator
 		MastermindGenerator generator = new MastermindGenerator();
 		
-		/**
+		// Initialize our game mastermind solver
+		GameSolverMastermind solver = new GameSolverMastermind();
+		
+		// game which we want to generate
+		Mastermind mastermind = null;
+		
+		// solved mastermind
+		Mastermind solvedMastermind = null;
+	    
+	    //Which GameLevelType do you want to use?
+        //possible values
+        //GameLevelType.DIFFICULT;
+        //GameLevelType.MEDIUM;
+        //GameLevelType.EASY;
+        GameLevelType gameLevelType = GameLevelType.DIFFICULT;
+        
+        //Which GameModeType do you want to use?
+        //Possible values
+        //GameModeType.COMPvsPLAYER
+        //GameModeType.PLAYERvsCOMP
+        //GameModeType.PLAYERvsPLAYER
+        GameModeType gameModeType = GameModeType.COMPvsPLAYER;
+		
+		//-------------------------------------------------------------------
+        //Do not modify below this line please
+        //-------------------------------------------------------------------		
+		
+		/*
 		 * Put mastermind generator in game mastermind manager
 		 */
-		test.manager.setMastermindGenerator(generator);
+		manager.setMastermindGenerator(generator);
 		
-		/**
+		/*
 		 * Get the mastermind generator from game mastermind manager
 		 */
-		generator = test.manager.getMastermindGenerator();
+		generator = manager.getMastermindGenerator();
 		
 		String result;
 		
-		/**
+		/*
 		 * Checking is mastermind generator got successful 
 		 */
 		if(generator != null){
@@ -54,20 +84,18 @@ public class GameManagerMastermindTest {
 			result = "FAIL";
 		}
 		System.out.println("Result of getting mastermind generator: " + result);
-		
-		GameSolverMastermind solver = new GameSolverMastermind();
-		
-		/**
+						
+		/*
 		 * Put mastermind game solver in game mastermind manager
 		 */
-		test.manager.setGameSolverMastermind(solver);
+		manager.setGameSolverMastermind(solver);
 		
-		/**
+		/*
 		 * Get the mastermind game solver from game mastermind manager
 		 */
-		solver = test.manager.getGameSolverMastermind();
+		solver = manager.getGameSolverMastermind();
 		
-		/**
+		/*
 		 * Checking is mastermind game solver got successful 
 		 */
 		if(solver != null){
@@ -77,14 +105,13 @@ public class GameManagerMastermindTest {
 		}
 		System.out.println("Result of getting mastermind game solver: " + result);
 		
-		Mastermind mastermind;
 		
-		/**
+		/*
 		 * Generate new mastermind game
 		 */
-		mastermind = test.manager.getNewGame(GameLevelType.DIFFICULT, GameModeType.PLAYERvsCOMP);
+		mastermind = manager.getNewGame(gameLevelType, gameModeType);
 		
-		/**
+		/*
 		 * Checking is mastermind game generated successful 
 		*/
 		if(mastermind != null){
@@ -94,21 +121,32 @@ public class GameManagerMastermindTest {
 		}
 		System.out.println("Result of creating mastermind game: " + result);
 		
-		/**
+		/*
 		 * Solving mastermind game
 		 */
-		Mastermind newmastermind = test.manager.solveGame(mastermind);
+		solvedMastermind = manager.solveGame(mastermind);
 		
-		/**
+		/*
 		 * Checking is mastermind game solved successful 
 		*/
-		//here we need to add additional checking when Nick implement GameSolverMastermind
-		if(newmastermind != null){
+		//here I only checking is funtsion solveGame return mastermind game object
+		if(solvedMastermind != null){
 			result = "SUCCESS";
 		}else{
 			result = "FAIL";
 		}
 		System.out.println("Result of solving mastermind game: " + result);
+	}
+	
+	/**
+	 * Main constructor for the GameManagerMastermind Test
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		GameManagerMastermindTest test = new GameManagerMastermindTest();
+		
+		test.run();
 		
 		
 	}

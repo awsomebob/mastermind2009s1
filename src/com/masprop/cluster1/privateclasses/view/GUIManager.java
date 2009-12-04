@@ -11,6 +11,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
  * This class handles whit GUI interface and domain layer and it is not finished yet
+ * It's reason because I didn't make tests for all functions in this class
  * 
  * @see Mastermind
  * @see MyGUI
@@ -46,6 +47,7 @@ public class GUIManager {
      * Creates mastermind game generator and mastrmind game solver, and also initiate isResolved to false
      */
     public GUIManager(){
+    	gameManager = new GameManagerMastermind();
     	gameManager.setGameSolverMastermind(new GameSolverMastermind());
     	gameManager.setMastermindGenerator(new MastermindGenerator());
     	isResolved = false;
@@ -84,6 +86,10 @@ public class GUIManager {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean check(){
 		if(mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP){
 			int currentRow = mastermind.getMastermindStatus().getCurrentRow();

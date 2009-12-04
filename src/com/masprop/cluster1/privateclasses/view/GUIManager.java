@@ -91,19 +91,23 @@ public class GUIManager {
 	 * @return
 	 */
 	public boolean check(){
-		if(mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP){
-			int currentRow = mastermind.getMastermindStatus().getCurrentRow();
-			boolean correct = true;
-			for(int i=0; i<4; i++)
-				if(isCorrectValue(currentRow, i) == false)
-					correct = false;
-			if(correct){
-				isResolved = mastermind.getMastermindStatus().isCorrectValue();
-				return true;
+		if(mastermind != null){
+			if(mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP){
+				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
+				boolean correct = true;
+				for(int i=0; i<4; i++)
+					if(isCorrectValue(currentRow, i) == false)
+						correct = false;
+				if(correct){
+					isResolved = mastermind.getMastermindStatus().isCorrectValue();
+					return true;
+				}
+				return false;
 			}
 			return false;
 		}
-		return false;
+		else
+			return false;
 	}
 	
 	/**

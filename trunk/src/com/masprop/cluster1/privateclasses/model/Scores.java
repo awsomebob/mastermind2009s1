@@ -62,9 +62,7 @@ public class Scores {
     public int getScore(int score) {
         int position = -1;
         for (Score s : this.scores) {
-            if (score < s.getScore()) {
-                // put it in the arraylist in this position and then quit the
-                // foreach
+            if (score > s.getScore()) {
                 position = scores.indexOf(s);
                 break;
             }

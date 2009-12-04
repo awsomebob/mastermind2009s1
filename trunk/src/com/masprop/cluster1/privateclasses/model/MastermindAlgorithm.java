@@ -4,7 +4,7 @@ import com.masprop.cluster1.shared.controller.Algorithm;
 import com.masprop.cluster1.shared.model.Game;
 
 /**
- * @author nick
+ * @author Nick Veenhof
  * @version 0.1
  *
  * We will implement a minimax algorithm that can solve
@@ -27,7 +27,6 @@ public class MastermindAlgorithm implements Algorithm {
      */
     public void performAlgorithmics(Game game) {
         // TODO Auto-generated method stub
-
     }
 
     /**
@@ -39,10 +38,5 @@ public class MastermindAlgorithm implements Algorithm {
         //Solve the game here!
     }
 
-	@Override
-	public void performArlogrithmics(Game game) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

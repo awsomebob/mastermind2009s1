@@ -37,7 +37,7 @@ public class Score implements Comparable<Score> {
      * @return String name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Score implements Comparable<Score> {
      * @return int score
      */
     public int getScore() {
-        return score;
+        return this.score;
     }
 
     /**

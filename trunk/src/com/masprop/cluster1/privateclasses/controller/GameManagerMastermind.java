@@ -105,4 +105,15 @@ public class GameManagerMastermind {
 	public Mastermind openLastSaveMastermindGame(Mastermind mastermind){
 		return mastermind.getGameParser().getMastermindFromFile();
 	}
+	
+	public int score(int currentRow, GameLevelType gameLevelType){
+		int temp = 0;
+		if(gameLevelType == GameLevelType.EASY)
+			temp = 1;
+		else if(gameLevelType == GameLevelType.MEDIUM)
+			temp = 2;
+		else
+			temp = 3;
+		return (100 * temp - (10 * temp) * currentRow);
+	}
 }

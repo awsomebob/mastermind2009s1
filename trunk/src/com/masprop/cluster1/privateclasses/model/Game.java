@@ -41,6 +41,11 @@ public abstract class Game {
      * Game parser
      */
     private MastermindGameFileParser gameParser;
+    
+    /**
+     * players score at the end of game
+     */
+    private int score;
 
     /**
      * Constructor to make a new game
@@ -53,6 +58,7 @@ public abstract class Game {
         scoreParser = new MastermindScoreFileParser();
         gameParser = new MastermindGameFileParser(false);
         scores = new Scores(scoreParser, gameLevelType);
+        score = 0;
     }
 
     /**
@@ -145,6 +151,22 @@ public abstract class Game {
 		this.gameParser = gameParser;
 	}
 
-	
+	/**
+	 * Gets score for current game
+	 * 
+	 * @return score for current game
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * Sets scores for current game
+	 * 
+	 * @param score current game score
+	 */
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 }

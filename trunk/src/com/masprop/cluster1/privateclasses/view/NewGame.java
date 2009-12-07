@@ -290,9 +290,20 @@ public class NewGame extends JDialog {
     	
 		myGUI.guiManager.createNewGame(level, mode);
 		
+		
+		for(int i=0; i<28; i++){
+			myGUI.inputs[i].setColor(0);
+			myGUI.inputs[i].repaint();
+			myGUI.results[i].setColor(0);
+			myGUI.results[i].repaint();
+		}
+		for(int i=0; i<6; i++){
+			myGUI.line[i].setColor(Color.GRAY);
+			myGUI.line[i].repaint();
+		}
 		for(int i=0; i<4; i++){
-			myGUI.inputs[24 + i].setColor(1);
-			myGUI.inputs[24 + i].repaint();
+			myGUI.inputs[24 +i].setColor(1);
+			myGUI.inputs[i].repaint();
 		}
 		myGUI.line[6].setColor(Color.WHITE);
 		myGUI.line[6].repaint();

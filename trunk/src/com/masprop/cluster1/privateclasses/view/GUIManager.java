@@ -40,7 +40,7 @@ public class GUIManager {
      * Mastermind game manager
      */
     private GameManagerMastermind gameManager;
-    
+        
     /**
      * Constructor
      * 
@@ -69,6 +69,14 @@ public class GUIManager {
 	 */
 	public Mastermind getMastermind() {
 		return mastermind;
+	}
+
+	/**
+	 *  Gets mastermind game manager
+	 * @return mastermind game manager
+	 */
+	public GameManagerMastermind getGameManager() {
+		return gameManager;
 	}
 
 	/**
@@ -206,4 +214,5 @@ public class GUIManager {
         return mastermind.getMastermindStatus().getCurrentRow();
     }
 
+    
 }

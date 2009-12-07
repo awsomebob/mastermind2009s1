@@ -4,6 +4,7 @@ package com.masprop.cluster1.privateclasses.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -12,6 +13,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import com.masprop.cluster1.privateclasses.model.GameModeType;
+import com.masprop.cluster1.privateclasses.model.Score;
+import com.masprop.cluster1.privateclasses.model.Scores;
+import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFileParser;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
@@ -193,7 +197,11 @@ public class MyGUI extends javax.swing.JFrame {
     private void createMenuComponents() {
 
         aboutDialog = new javax.swing.JDialog();
-        newGameDialog = new NewGame(this);        
+        newGameDialog = new NewGame(this);    
+        endGameDialog = new EndGame(this);
+        endGameDialog1 = new EndGame1(this);
+        endGameDialog2 = new EndGame2(this);
+        guiScore = new GUIScore(this);
 
  
   //      fileChooser = new javax.swing.JFileChooser();
@@ -268,6 +276,11 @@ public class MyGUI extends javax.swing.JFrame {
         scoresMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         scoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/masprop/cluster1/shared/view/graphics/menu_scores.png"))); // NOI18N
         scoresMenuItem.setText("Scores");
+        scoresMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scoresMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(scoresMenuItem);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -390,6 +403,16 @@ public class MyGUI extends javax.swing.JFrame {
     	//guiManager.createNewGame(gameLevelType, gameModeType)
     	newGameDialog.setVisible(true);
     }
+    
+    private void scoresMenuItemActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
+    	MastermindScoreFileParser parser = new MastermindScoreFileParser();
+    	Scores scores = parser.getScoreFromFile(GameLevelType.DIFFICULT);
+    	for(Score s : scores.getScores()){
+    		guiScore.getNames()[scores.getScores().indexOf(s)].setText(s.getName());
+    		guiScore.getScores()[scores.getScores().indexOf(s)].setText(String.valueOf(s.getScore()));
+    	}	
+    	guiScore.setVisible(true);
+    }
 
     
     /*
@@ -418,20 +441,46 @@ public class MyGUI extends javax.swing.JFrame {
     	//Here should be check MastermindStatus and....
     	//This is only example
     	boolean result = guiManager.check();
+    	int currRow = guiManager.currentRow();
+    	int numRight = guiManager.numCorrectPosition();
+		int numWrong = guiManager.numWrongPosition();
     	if(result){
     		if(guiManager.isResolved()){
     			//open dialog that show score, etc...
-    			int currRow = guiManager.currentRow();
     			for(int i=0; i<4; i++){
     				results[(6-currRow)*4 + i].setColor(2);
     				results[(6-currRow)*4 + i].repaint();
     			}
-    			//System.out.println("POGODAK!");
-    		}else{
-    			int numRight = guiManager.numCorrectPosition();
-    			int numWrong = guiManager.numWrongPosition();
-    			int currRow = guiManager.currentRow();
     			
+    			guiManager.getMastermind().setScore(guiManager.getGameManager().score(currRow, guiManager.getMastermind().getGameLevelType())) ;
+    			int position = guiManager.getMastermind().getScores().getScore(guiManager.getMastermind().getScore()) + 1;
+    			//System.out.println("Tvoj skor je " + guiManager.getMastermind().getScore() + " i pozicija " + position + " !");
+    			if(position < 1){
+    				endGameDialog1.getJLabel2().setText("Your score is: " + getGuiManager().getMastermind().getScore() + " !");
+    				endGameDialog1.setVisible(true);
+    			}else{
+    				endGameDialog2.getJLabel1().setText("You are in top 10 and your position is " + position + " !");
+    				endGameDialog2.getJLabel2().setText("Your score is: " + getGuiManager().getMastermind().getScore() + " !");
+    				endGameDialog2.setVisible(true);
+    			}
+    			
+    		}else if(currRow == 6){
+    			for(int i=0; i<numRight; i++){
+    				results[(6-currRow)*4 + i].setColor(2);
+    				results[(6-currRow)*4 + i].repaint();
+    			}
+    			//System.out.println("broj tacnih " + numRight);
+    			for(int i=0; i<numWrong; i++){
+    				results[(6-currRow)*4 + i + numRight].setColor(4);
+    				results[(6-currRow)*4 + i + numRight].repaint();
+    			}
+    			for(int i=0; i<4; i++)
+    				guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow,i).setEditable(false);
+    			
+    			//System.out.println("broj pogresnih " + numWrong);
+    			endGameDialog.setVisible(true);
+    		}else
+    		{
     			for(int i=0; i<numRight; i++){
     				results[(6-currRow)*4 + i].setColor(2);
     				results[(6-currRow)*4 + i].repaint();
@@ -452,8 +501,6 @@ public class MyGUI extends javax.swing.JFrame {
     				}
     				line[6-currRow-1].setColor(Color.white);
     				line[6-currRow-1].repaint();
-    			}else{
-    				//dialog and game
     			}
     		}
     	}
@@ -480,6 +527,14 @@ public class MyGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem scoresMenuItem;
     
     private NewGame newGameDialog;
+    
+    private EndGame endGameDialog;
+    
+    private EndGame1 endGameDialog1;
+    
+    private EndGame2 endGameDialog2;
+    
+    private GUIScore guiScore;
 
     // End of variables declaration//GEN-END:variables
 
@@ -651,7 +706,20 @@ public class MyGUI extends javax.swing.JFrame {
     }
     
     
-    /**
+    
+    public NewGame getNewGameDialog() {
+		return newGameDialog;
+	}
+
+
+
+	public void setNewGameDialog(NewGame newGameDialog) {
+		this.newGameDialog = newGameDialog;
+	}
+
+
+
+	/**
      * 
      * @param args
      * This is main that will create 

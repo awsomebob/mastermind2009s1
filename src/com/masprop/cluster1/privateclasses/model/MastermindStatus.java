@@ -123,17 +123,32 @@ public class MastermindStatus {
      */
     public int numWrongPosition(){
     	int cnt = 0;
+    	boolean[] tempCorrect = new boolean[4];
+    	boolean[] tempBusy = new boolean[4];
+    	boolean[] corBusy = new boolean[4];
+    	for(int i=0; i<4; i++)
+    		tempCorrect[i] = false;
+    	for(int i=0; i<4; i++)
+    		tempBusy[i] = false;
+    	for(int i=0; i<4; i++)
+    		corBusy[i] = false;
+    	
+    	for(int i=0; i<4; i++){
+            if(matrixMastermind.getCellValue(currentRow, i) == value[i]){
+                tempCorrect[i] = true;
+               // System.out.println("Poklopile se boje na poziciji " + i);
+            }
+        }
+    	
     	for(int i=0; i<4; i++)
     		for(int j=0; j<4; j++){
-    			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j == i))
-    				break;
-    			if((matrixMastermind.getCellValue(currentRow, j) == value[i]) && (j != i))
-    				if(matrixMastermind.getCellValue(currentRow, i) == value[i])
-    					break;
-    				else{
+    			if(!(tempCorrect[i] || tempCorrect[j] || tempBusy[j] || corBusy[i])){
+    				if(matrixMastermind.getCellValue(currentRow, j) == value[i]){
     					cnt++;
-    					break;
+    					tempBusy[j] = true;
+    					corBusy[i] = true;
     				}
+    			}
     		}
     	return cnt;
     }

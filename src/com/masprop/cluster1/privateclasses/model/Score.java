@@ -92,7 +92,7 @@ public class Score implements Comparable<Score> {
 
     /**
      * Comparator to sort our score objects
-     * @param Score the score object which we want to compare it with
+     * @param GUIScore the score object which we want to compare it with
      */
     public int compareTo(Score score) {
         if ((this.getScore() < score.getScore())) {

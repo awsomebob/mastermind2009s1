@@ -43,7 +43,7 @@ public class MastermindSaveGameTest {
          * matrix_y : which line matrix_x : which row value : which colorcode
          * (currently any int value is ok for testing)
          */
-        int matrix_y = 10;
+        int matrix_y = 7;
         int matrix_x = 3;
         int value = 4;
 

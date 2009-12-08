@@ -28,7 +28,7 @@ public class MasterMindSaveScoreTest {
         // GameLevelType.DIFFICULT;
         // GameLevelType.MEDIUM;
         // GameLevelType.EASY;
-        GameLevelType level = GameLevelType.DIFFICULT;
+        GameLevelType level = GameLevelType.MEDIUM;
 
         // Which name do you want to add to the scores?
         String added_name = "Nick";

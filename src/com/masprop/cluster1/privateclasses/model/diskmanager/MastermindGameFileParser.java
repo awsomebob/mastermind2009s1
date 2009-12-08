@@ -140,18 +140,20 @@ public class MastermindGameFileParser extends MastermindFileParser {
         Mastermind mastermind = null;
         // TODO implement a better check to say that our file is an mastermind
         // object!
-        if (pieces.length == 3) {
+        if (pieces.length == 4) {
             try {
                 // initiate our type from the file
                 GameLevelType gameLevelType = GameLevelType.valueOf(pieces[0]);
                 GameModeType gameModeType = GameModeType.valueOf(pieces[1]);
                 String value = pieces[2];
+                String currentRow = pieces[3];
 
                 // make the gameleveltype from the readout
                 mastermind = new Mastermind(gameLevelType, gameModeType);
 
                 // return an empty status so they can fill it
                 MastermindStatus mastermindStatus = new MastermindStatus();
+                mastermindStatus.setCurrentRow(Integer.parseInt(currentRow));
                 mastermindStatus.setValue(stringToMastermindValue(value, ","));
                 mastermind.setMastermindStatus(mastermindStatus);
                 return mastermind;

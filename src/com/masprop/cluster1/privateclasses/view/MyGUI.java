@@ -202,6 +202,8 @@ public class MyGUI extends javax.swing.JFrame {
         endGameDialog1 = new EndGame1(this);
         endGameDialog2 = new EndGame2(this);
         guiScore = new GUIScore(this);
+        saveGame = new SaveGame(this);
+        openGame = new OpenLastSavedGame(this);
 
  
   //      fileChooser = new javax.swing.JFileChooser();
@@ -392,11 +394,11 @@ public class MyGUI extends javax.swing.JFrame {
 
 
     private void loadGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadGameMenuItemActionPerformed
-        //fileChooser.showOpenDialog(menuBar);
+       openGame.setVisible(true);
     }//GEN-LAST:event_loadGameMenuItemActionPerformed
 
     private void saveGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameMenuItemActionPerformed
-        //fileChooser.showSaveDialog(menuBar);
+        saveGame.setVisible(true);
     }//GEN-LAST:event_saveGameMenuItemActionPerformed
     
     private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
@@ -535,6 +537,10 @@ public class MyGUI extends javax.swing.JFrame {
     private EndGame2 endGameDialog2;
     
     private GUIScore guiScore;
+    
+    private SaveGame saveGame;
+    
+    private OpenLastSavedGame openGame;
 
     // End of variables declaration//GEN-END:variables
 

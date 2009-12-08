@@ -74,7 +74,8 @@ public class Mastermind extends Game {
         GameModeType gameModeType = super.getGameModeType();
         int[] value = this.mastermindStatus.getValue();
         String valueString = intarrayToString(value, ",");
-        String output = gameLevelType + separator + gameModeType + separator + valueString;
+        String currentRowString = String.valueOf(mastermindStatus.getCurrentRow());
+        String output = gameLevelType + separator + gameModeType + separator + valueString + separator + currentRowString;
         output += System.getProperty("line.separator");
         MatrixMastermind matrix = this.mastermindStatus.getMatrixMastermind();
         Cell[][] matrixcell = matrix.getMatrix();

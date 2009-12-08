@@ -133,6 +133,34 @@ public class OpenLastSavedGame extends JDialog {
 	private void yesScoreEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
 		MastermindGameFileParser gameParser = new MastermindGameFileParser(false);
 		myGUI.getGuiManager().setMastermind(gameParser.getMastermindFromFile());
+		int current = myGUI.getGuiManager().getMastermind().getMastermindStatus().getCurrentRow();
+		for(int i=0; i<current; i++){
+			myGUI.getGuiManager().getMastermind().getMastermindStatus().setCurrentRow(i);
+			int numRight = myGUI.getGuiManager().numCorrectPosition();
+			int numWrong = myGUI.getGuiManager().numWrongPosition();
+			for(int j=0; j<4; j++){
+				myGUI.getInputs()[(6-i)*4 + j].setColor(myGUI.getGuiManager().getMastermind().getMastermindStatus().getMatrixMastermind().getCellValue(i, j)+2);
+				myGUI.getInputs()[(6-i)*4 + j].repaint();
+			}
+			for(int j=0; j<numRight; j++){
+				myGUI.getResults()[(6-i)*4 + j].setColor(2);
+				myGUI.getResults()[(6-i)*4 + j].repaint();
+			}
+			for(int j=0; j<numWrong; j++){
+				myGUI.getResults()[(6-i)*4 + j + numRight].setColor(4);
+				myGUI.getResults()[(6-i)*4 + j + numRight].repaint();
+			}
+			myGUI.getLine()[6-i].setColor(Color.white);
+			myGUI.getLine()[6-i].repaint();
+		}
+		myGUI.getGuiManager().getMastermind().getMastermindStatus().setCurrentRow(current);
+		for(int i=0; i<4; i++){
+			myGUI.getGuiManager().getMastermind().getMastermindStatus().getMatrixMastermind().getCell(current,i).setEditable(true);
+			myGUI.getInputs()[(6-current)*4 + i].setColor(1);
+			myGUI.getInputs()[(6-current)*4 + i].repaint();				
+		}
+		myGUI.getLine()[6-current].setColor(Color.white);
+		myGUI.getLine()[6-current].repaint();
 		this.setVisible(false);
 		
     }

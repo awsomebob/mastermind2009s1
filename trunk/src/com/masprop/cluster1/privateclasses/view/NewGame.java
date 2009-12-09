@@ -16,6 +16,17 @@ import javax.swing.JButton;
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
+
+/**
+ * Dialog for instantiating new game
+ * 
+ * @see MyGUI
+ * @see GameModeType
+ * @see GameLevelType
+ * 
+ * @author Milovan Duric
+ *
+ */
 public class NewGame extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -49,6 +60,8 @@ public class NewGame extends JDialog {
 
 
 	/**
+	 * class constructor
+	 * 
 	 * @param owner
 	 */
 	public NewGame(Frame owner) {
@@ -57,6 +70,7 @@ public class NewGame extends JDialog {
 	}
 
 	/**
+	 * class constructor
 	 * 
 	 * @param owner
 	 */
@@ -266,6 +280,10 @@ public class NewGame extends JDialog {
 		return jButton1;
 	}
 
+	/**
+	 * closing dialog
+	 * @param evt
+	 */
 	private void cancelEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		jRadioButton.setSelected(true);
@@ -275,6 +293,13 @@ public class NewGame extends JDialog {
     }
 
 
+	/**
+	 * if this is mode
+	 * when computer set start value open new dialog
+	 * where user will do it
+	 * else instantiate object game 
+	 * @param evt
+	 */
 	private void OKEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		if(jRadioButton.isSelected()) mode = GameModeType.PLAYERvsCOMP; 
@@ -327,23 +352,43 @@ public class NewGame extends JDialog {
 
 
 
-
+    /**
+     * 
+     * @return mode
+     */
 	public GameModeType getMode() {
 		return mode;
 	}
 
+	/**
+	 * set mode
+	 * @param mode
+	 */
 	public void setMode(GameModeType mode) {
 		this.mode = mode;
 	}
-
+    
+	/**
+	 * 
+	 * @return level
+	 */
 	public GameLevelType getLevel() {
 		return level;
 	}
 
+	/**
+	 * set level
+	 * @param level
+	 */
 	public void setLevel(GameLevelType level) {
 		this.level = level;
 	}
 
+	/**
+	 * 
+	 * @return level value
+	 * it's number of colors
+	 */
 	public int getLevelValue(){
 		if(level == GameLevelType.EASY) return 4;
 		else if(level == GameLevelType.MEDIUM) return 5;

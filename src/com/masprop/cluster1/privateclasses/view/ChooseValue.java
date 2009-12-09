@@ -11,6 +11,14 @@ import javax.swing.JPanel;
 
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 
+
+/**
+ * Dialog for instantiating start value
+ * when player does it
+ *  
+ * @author Milovan Duric
+ *
+ */
 public class ChooseValue extends JDialog  {
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
@@ -29,6 +37,8 @@ public class ChooseValue extends JDialog  {
 
 
 	/**
+	 * class constructor
+	 * 
 	 * @param owner
 	 */
 	public ChooseValue(Frame owner) {
@@ -37,6 +47,7 @@ public class ChooseValue extends JDialog  {
 	}
 
 	/**
+	 * class constructor
 	 * 
 	 * @param owner
 	 */
@@ -138,6 +149,12 @@ public class ChooseValue extends JDialog  {
 		return jButton1;
 	}
 
+	/**
+	 * closing the dialog and open another one
+	 * for instantiating new game
+	 *  
+	 * @param evt
+	 */
 	private void cancelEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		myGUI.getNewGameDialog().setVisible(true);
@@ -146,6 +163,15 @@ public class ChooseValue extends JDialog  {
     }
 
 
+	/**
+	 * instantiate object game
+	 * and start value
+	 * if this is mode where player play
+	 * against computer show that values on the
+	 * screen else hide them
+	 * 
+	 * @param evt
+	 */
 	private void OKEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
 		int[] playerValue = new int[4];
         for(int i=0; i<4; i++){

@@ -288,32 +288,69 @@ public class NewGame extends JDialog {
 		jRadioButton.setSelected(true);
 		jRadioButton3.setSelected(true);
     	
-		myGUI.guiManager.createNewGame(level, mode);
 		
-		
-		for(int i=0; i<28; i++){
-			myGUI.inputs[i].setColor(0);
-			myGUI.inputs[i].repaint();
-			myGUI.results[i].setColor(0);
-			myGUI.results[i].repaint();
+		if(mode == GameModeType.COMPvsPLAYER){ 
+			myGUI.setChooseValueDialog(new ChooseValue(myGUI));
+			myGUI.getChooseValueDialog().setVisible(true);
 		}
-		for(int i=0; i<6; i++){
-			myGUI.line[i].setColor(Color.GRAY);
-			myGUI.line[i].repaint();
+		else if(mode == GameModeType.PLAYERvsPLAYER){
+			myGUI.setChooseValueDialog(new ChooseValue(myGUI));
+			myGUI.getChooseValueDialog().setVisible(true);
 		}
-		for(int i=0; i<4; i++){
-			myGUI.inputs[24 +i].setColor(1);
-			myGUI.inputs[i].repaint();
+		else{
+			myGUI.guiManager.createNewGame(level, mode);
+			
+			
+			for(int i=0; i<28; i++){
+				myGUI.inputs[i].setColor(0);
+				myGUI.inputs[i].repaint();
+				myGUI.results[i].setColor(0);
+				myGUI.results[i].repaint();
+			}
+			for(int i=0; i<6; i++){
+				myGUI.line[i].setColor(Color.GRAY);
+				myGUI.line[i].repaint();
+			}
+			for(int i=0; i<4; i++){
+				myGUI.inputs[24 +i].setColor(1);
+				myGUI.inputs[i].repaint();
+			}
+			myGUI.line[6].setColor(Color.WHITE);
+			myGUI.line[6].repaint();
+			
+			
 		}
-		myGUI.line[6].setColor(Color.WHITE);
-		myGUI.line[6].repaint();
 		
 		this.setVisible(false);
+		
     }
 
 
 
 
+	public GameModeType getMode() {
+		return mode;
+	}
+
+	public void setMode(GameModeType mode) {
+		this.mode = mode;
+	}
+
+	public GameLevelType getLevel() {
+		return level;
+	}
+
+	public void setLevel(GameLevelType level) {
+		this.level = level;
+	}
+
+	public int getLevelValue(){
+		if(level == GameLevelType.EASY) return 4;
+		else if(level == GameLevelType.MEDIUM) return 5;
+		else return 6;
+	}
+	
+	
 
 
 }

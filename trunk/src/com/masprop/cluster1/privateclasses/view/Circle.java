@@ -58,6 +58,13 @@ public class Circle extends JComponent implements MouseListener{
      * current color of the circle
      */
     private int color;
+    
+    /**
+     * max value for color
+     * uses for case when user set value
+     * on the begin
+     */
+    private int max;
 
 
     // FIXME This should be removed later
@@ -94,6 +101,39 @@ public class Circle extends JComponent implements MouseListener{
 
     }
 
+   /**
+    * Class constructor
+    * with parameters for position on the screen 
+    * and position corresponding cell in matrix 
+    * max is for max color value 
+    * when computer play against value
+    *  
+    * @param x
+    * @param y
+    * @param r
+    * @param manager
+    * @param i
+    * @param j
+    * @param color
+    * @param max
+    */
+    public Circle(int x, int y, int r, GUIManager manager, int i , int j,  int color, int max){
+        this.x = x;
+        this.y = y;
+
+        this.manager = manager;
+        this.i = i;
+        this.j = j;
+
+
+        this.r = r;
+        this.color = color;
+        
+        this.max = max;
+
+        this.addMouseListener(this);
+
+    }
 
     /**
      * Class constructor for circle which will
@@ -145,7 +185,7 @@ public class Circle extends JComponent implements MouseListener{
      * cell in matrix and change value and color
      */
     public void mouseClicked(MouseEvent arg0) {
-       if(manager.getMastermind() != null){
+       if(manager.getMastermind() != null && i<28 && j<28){
            if(manager.getMastermind().getMastermindStatus().
                    getMatrixMastermind().getCell(i, j).isEditable()){
                int xclick = arg0.getX();
@@ -170,6 +210,12 @@ public class Circle extends JComponent implements MouseListener{
 
            }
 
+       }
+       
+       if(i==100 && j==100){
+    	   color = color + 1;
+    	   if (color==(max+2)) color = 2;
+    	   repaint();
        }
 
     }

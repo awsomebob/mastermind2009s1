@@ -86,12 +86,9 @@ public class GUIManager {
 	 * @param gameModeType game mode type
 	 */
 	public void createNewGame(GameLevelType gameLevelType, GameModeType gameModeType){
-		if(gameModeType == GameModeType.PLAYERvsCOMP){
-			mastermind = gameManager.getNewGame(gameLevelType, gameModeType);
-			mastermind.getMastermindStatus().setValue(randomCoputeValue(gameLevelType));
-		}else if(gameModeType == GameModeType.COMPvsPLAYER){
-			mastermind = gameManager.getNewGame(gameLevelType, gameModeType);
-		}
+		mastermind = gameManager.getNewGame(gameLevelType, gameModeType);
+		if(gameModeType == GameModeType.PLAYERvsCOMP)			
+			mastermind.getMastermindStatus().setValue(randomCoputeValue(gameLevelType));	
 	}
 	
 	/**
@@ -100,7 +97,7 @@ public class GUIManager {
 	 */
 	public boolean check(){
 		if(mastermind != null){
-			if(mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP){
+			if((mastermind.getGameModeType() == GameModeType.PLAYERvsCOMP) || (mastermind.getGameModeType() == GameModeType.PLAYERvsPLAYER)){
 				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
 				boolean correct = true;
 				for(int i=0; i<4; i++)

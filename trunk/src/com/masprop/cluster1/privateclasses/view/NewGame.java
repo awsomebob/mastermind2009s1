@@ -345,6 +345,9 @@ public class NewGame extends JDialog {
 			
 			
 		}
+		for(int i=0; i<4; i++) {   	        	 
+        	myGUI.value[i].setVisible(false);    	
+        }
 		
 		this.setVisible(false);
 		

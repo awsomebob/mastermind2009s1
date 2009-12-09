@@ -89,8 +89,8 @@ public class GUIManager {
 		if(gameModeType == GameModeType.PLAYERvsCOMP){
 			mastermind = gameManager.getNewGame(gameLevelType, gameModeType);
 			mastermind.getMastermindStatus().setValue(randomCoputeValue(gameLevelType));
-		}else{
-			// here I need to implement the other two possibilities 
+		}else if(gameModeType == GameModeType.COMPvsPLAYER){
+			mastermind = gameManager.getNewGame(gameLevelType, gameModeType);
 		}
 	}
 	

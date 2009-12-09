@@ -196,8 +196,8 @@ public class MyGUI extends javax.swing.JFrame {
 	  */
     private void createMenuComponents() {
 
-        aboutDialog = new javax.swing.JDialog();
-        newGameDialog = new NewGame(this);    
+        newGameDialog = new NewGame(this);
+        //chooseValueDialog = new ChooseValue(this);
         endGameDialog = new EndGame(this);
         endGameDialog1 = new EndGame1(this);
         endGameDialog2 = new EndGame2(this);
@@ -219,15 +219,7 @@ public class MyGUI extends javax.swing.JFrame {
         manualMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
-        aboutDialog.setTitle("About");
-        aboutDialog.setIconImage(null);
-        aboutDialog.setIconImages(null);
-        aboutPanel = new JPanel();
-        aboutPanel.setBackground(new Color(Integer.valueOf("f3a15a", 16)));
-        aboutDialog.add(aboutPanel);
-        aboutDialog.setMinimumSize(new java.awt.Dimension(300, 300));
-        aboutDialog.setResizable(false);
-        aboutDialog.setLocation(0,0);
+
         
 
         
@@ -320,6 +312,18 @@ public class MyGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+	public ChooseValue getChooseValueDialog() {
+		return chooseValueDialog;
+	}
+
+
+
+	public void setChooseValueDialog(ChooseValue chooseValueDialog) {
+		this.chooseValueDialog = chooseValueDialog;
+	}
+
+
+
 	public Circle[] getInputs() {
 		return inputs;
 	}
@@ -389,7 +393,7 @@ public class MyGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        aboutDialog.setVisible(true);
+       // aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
 
@@ -510,8 +514,6 @@ public class MyGUI extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog aboutDialog;
-    private JPanel aboutPanel;
     private javax.swing.JMenuItem aboutMenuItem;
     
 
@@ -529,6 +531,8 @@ public class MyGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem scoresMenuItem;
     
     private NewGame newGameDialog;
+    
+    private ChooseValue chooseValueDialog;
     
     private EndGame endGameDialog;
     

@@ -114,6 +114,6 @@ public class GameManagerMastermind {
 			temp = 2;
 		else
 			temp = 3;
-		return (100 * temp - (10 * temp) * currentRow);
+		return (100 * temp - 10  * currentRow);
 	}
 }

@@ -458,6 +458,12 @@ public class MyGUI extends javax.swing.JFrame {
     				results[(6-currRow)*4 + i].repaint();
     			}
     			
+    			for(int i=0; i<4; i++) {
+    	        	value[i].setColor(guiManager.getMastermind().getMastermindStatus().getValue()[i]+2);   	        	 
+    	        	value[i].setVisible(true);
+    	        	value[i].repaint();
+    	        }
+    			
     			guiManager.getMastermind().setScore(guiManager.getGameManager().score(currRow, guiManager.getMastermind().getGameLevelType())) ;
     			int position = guiManager.getMastermind().getScores().getScore(guiManager.getMastermind().getScore()) + 1;
     			//System.out.println("Tvoj skor je " + guiManager.getMastermind().getScore() + " i pozicija " + position + " !");

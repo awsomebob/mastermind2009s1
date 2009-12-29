@@ -59,7 +59,11 @@ public class MasterMindAlgorithmTest {
          */
         System.out.println("Solved the game");
         GameSolverMastermind GameSolver = new GameSolverMastermind();
-        GameSolver.solveMastermind(mastermind);
+        //run our mastermind game trough the solver/guesser.
+        //TODO: add parameters to ask for a new guess or to solve the whole game
+        boolean solveall = true;
+        //1 step
+        GameSolver.solveMastermind(mastermind, solveall);
         System.out.println(mastermind.toString("|"));
 
 

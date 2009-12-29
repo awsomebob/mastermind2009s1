@@ -22,8 +22,6 @@ public class GameSolverMastermind implements GameSolver {
      *            General game object
      */
     public Game solveGame(Game game) {
-        MastermindAlgorithm Algo = new MastermindAlgorithm();
-        Algo.performAlgorithmics(game);
         return game;
     }
 
@@ -37,7 +35,6 @@ public class GameSolverMastermind implements GameSolver {
     public Mastermind solveMastermind(Mastermind mastermind) {
         MastermindAlgorithm Algo = new MastermindAlgorithm();
         Algo.performAlgorithmics(mastermind);
-
         return mastermind;
     }
 

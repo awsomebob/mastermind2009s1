@@ -5,16 +5,16 @@ import com.masprop.cluster1.shared.model.Matrix;
 
 /**
  * Matrix of cell that player will guess
- * it is always 7 x 4, but for implementation of 
- * level difficulty we use more values, 
- * actually more colors 
- *  
+ * it is always 7 x 4, but for implementation of
+ * level difficulty we use more values,
+ * actually more colors
+ *
  * @see Cell
  * @see Matrix
- * 
+ *
  * @author Milovan Duric
  */
-public class MatrixMastermind implements Matrix {
+public class MatrixMastermind extends Matrix {
     private Cell[][] matrix;
 
     /**
@@ -27,16 +27,16 @@ public class MatrixMastermind implements Matrix {
         this.matrix = new Cell[height][width];
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
-            	if(i == 0) 
-            		this.matrix[i][j] = new Cell(0, true, false);
-            	else 
-            		this.matrix[i][j] = new Cell(0, false, false);
+                if(i == 0)
+                    this.matrix[i][j] = new Cell(0, true, false);
+                else
+                    this.matrix[i][j] = new Cell(0, false, false);
     }
-    
+
     /**
-     * class constructor that use matrix 
+     * class constructor that use matrix
      * like argument and just instantiate matrix with it
-     * 
+     *
      * @param matrix
      */
     public MatrixMastermind(Cell[][] matrix) {
@@ -44,7 +44,7 @@ public class MatrixMastermind implements Matrix {
     }
 
     /**
-     * 
+     *
      * @return matrix
      */
     public Cell[][] getMatrix() {
@@ -53,19 +53,19 @@ public class MatrixMastermind implements Matrix {
 
     /**
      * return cell from coordinates i, j
-     * 
+     *
      * @param i
      * @param j
-     * @return Cell 
+     * @return Cell
      */
     public Cell getCell(int i, int j) {
         return this.matrix[i][j];
     }
 
-    
+
     /**
      * set cell on coordinates i, j
-     * 
+     *
      * @param i
      * @param j
      * @param cell
@@ -74,11 +74,11 @@ public class MatrixMastermind implements Matrix {
         this.matrix[i][j] = cell;
     }
 
-    
+
     /**
      * set cell value on coordinates i, j
-     * with value parameter 
-     * 
+     * with value parameter
+     *
      * @param i
      * @param j
      * @param value
@@ -89,7 +89,7 @@ public class MatrixMastermind implements Matrix {
 
     /**
      * return cell value on coordinates i, j
-     * 
+     *
      * @param i
      * @param j
      * @return
@@ -98,18 +98,18 @@ public class MatrixMastermind implements Matrix {
         return this.matrix[i][j].getCurrentValue();
     }
 
-    
+
     /**
-     * 
+     *
      * @return matrix width
      */
     public int getWidth() {
         return this.matrix[0].length;
     }
 
-    
+
     /**
-     * 
+     *
      * @return matrix height
      */
     public int getHeight() {

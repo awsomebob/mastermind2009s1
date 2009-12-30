@@ -1,6 +1,5 @@
 package com.masprop.cluster1.privateclasses.tests;
 
-import com.masprop.cluster1.privateclasses.controller.GameSolverMastermind;
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.privateclasses.model.MastermindAlgorithm;
@@ -46,7 +45,7 @@ public class MasterMindAlgorithmTest {
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
          */
-        int[] value = { 3, 1, 2, 4 };
+        int[] value = { 3, 1, 2, 0 };
         status.setValue(value);
 
         /**
@@ -62,9 +61,10 @@ public class MasterMindAlgorithmTest {
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
         boolean solveall = true;
+        boolean allowDuplicateColors = false;
         //1 step
         MastermindAlgorithm algorithm = new MastermindAlgorithm();
-        algorithm.performAlgorithmics(mastermind, solveall);
+        algorithm.performAlgorithmics(mastermind, solveall, allowDuplicateColors);
 
         System.out.println(mastermind.toString("|"));
 

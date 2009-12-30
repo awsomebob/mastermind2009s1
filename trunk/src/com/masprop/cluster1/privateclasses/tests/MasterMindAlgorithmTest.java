@@ -46,7 +46,7 @@ public class MasterMindAlgorithmTest {
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
          */
-        int[] value = { 1, 2, 3, 4 };
+        int[] value = { 3, 1, 2, 4 };
         status.setValue(value);
 
         /**

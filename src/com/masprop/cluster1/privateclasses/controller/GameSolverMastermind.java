@@ -33,8 +33,7 @@ public class GameSolverMastermind implements GameSolver {
      * @return mastermind object with the solved solution inside
      */
     public Mastermind solveMastermind(Mastermind mastermind, boolean solveall) {
-        MastermindAlgorithm Algo = new MastermindAlgorithm();
-        Algo.performAlgorithmics(mastermind, solveall);
+
         return mastermind;
     }
 

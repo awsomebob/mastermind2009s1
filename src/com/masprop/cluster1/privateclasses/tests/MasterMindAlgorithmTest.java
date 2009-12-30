@@ -3,6 +3,7 @@ package com.masprop.cluster1.privateclasses.tests;
 import com.masprop.cluster1.privateclasses.controller.GameSolverMastermind;
 import com.masprop.cluster1.privateclasses.model.GameModeType;
 import com.masprop.cluster1.privateclasses.model.Mastermind;
+import com.masprop.cluster1.privateclasses.model.MastermindAlgorithm;
 import com.masprop.cluster1.privateclasses.model.MastermindStatus;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
@@ -58,13 +59,15 @@ public class MasterMindAlgorithmTest {
          * Continue our test with solving the game
          */
         System.out.println("Solved the game");
-        GameSolverMastermind GameSolver = new GameSolverMastermind();
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
         boolean solveall = true;
         //1 step
-        GameSolver.solveMastermind(mastermind, solveall);
+        MastermindAlgorithm algorithm = new MastermindAlgorithm();
+        algorithm.performAlgorithmics(mastermind, solveall);
+
         System.out.println(mastermind.toString("|"));
+
 
 
 

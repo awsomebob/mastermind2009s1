@@ -21,7 +21,7 @@ import com.masprop.cluster1.privateclasses.model.Result;
 public class MastermindAlgorithm implements Algorithm {
 
     private byte guessCount;
-    public static final int COLOR_COUNT = 4;
+    public static final int COLOR_COUNT = 5;
     private Result[] result;
 
     /**
@@ -131,9 +131,9 @@ public class MastermindAlgorithm implements Algorithm {
         //since we are working with a matrix of 4 rows we dont do a foreach
         //good for improvements afterwards
         Cell[][] matrix = status.getMatrixMastermind().getMatrix();
-        System.out.println(matrix[height][0].getCurrentValue());
-        System.out.println(matrix[height][1].getCurrentValue());
-        System.out.println(matrix[height][2].getCurrentValue());
+        System.out.print(matrix[height][0].getCurrentValue());
+        System.out.print(matrix[height][1].getCurrentValue());
+        System.out.print(matrix[height][2].getCurrentValue());
         System.out.println(matrix[height][3].getCurrentValue());
 
         if((matrix[height][0].getCurrentValue() == 0) &&
@@ -143,7 +143,9 @@ public class MastermindAlgorithm implements Algorithm {
         {
             //first row so take a random guess
             System.out.println("random first line");
-            return this.randomGuess();
+            Cell[] randomGuess = this.randomGuess();
+            System.out.println(randomGuess[0].getCurrentValue()+""+randomGuess[1].getCurrentValue()+""+randomGuess[2].getCurrentValue()+""+randomGuess[3].getCurrentValue());
+            return randomGuess;
         } else {
 
         //return this.randomGuess();
@@ -164,10 +166,10 @@ public class MastermindAlgorithm implements Algorithm {
                             r2.setCurrentValue(x2);
                             r3.setCurrentValue(x3);
                             r4.setCurrentValue(x4);
-                            guess[0] = r1;
-                            guess[1] = r2;
-                            guess[2] = r3;
-                            guess[3] = r4;
+                            guess[3] = r1;
+                            guess[2] = r2;
+                            guess[1] = r3;
+                            guess[0] = r4;
 
                             //check if the colors are usable
                             //if (g.areAllStonesUsableColors(allowEmptyColor)) {
@@ -182,13 +184,14 @@ public class MastermindAlgorithm implements Algorithm {
                                     //here we check if our guess fits all the information that was given in our previous guesses
                                     //so we make sure we dont give guesses that are unnecessairy
                                     if (!result[y].isGuessConsistent(guess, false)) {
-                                        //if our guess is a consistent guess return it
-                                    //    canReturn = false;
+                                         canReturn = false;
                                     }
                                 }
 
-                                if (canReturn)
+                                if (canReturn) {
+                                    //if our guess is a consistent guess return it
                                     return guess;
+                                }
                             //}
 
                         }

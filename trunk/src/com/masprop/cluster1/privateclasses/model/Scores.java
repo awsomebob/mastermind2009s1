@@ -148,7 +148,8 @@ public class Scores {
      */
     public void cutToLimit(int max) {
         if (this.scores.size() >= max) {
-            for (int i = max - 1; i < this.scores.size(); i++) {
+            //max +1 because we don't have the 0 in account when we define max scores..
+            for (int i = max+1; i < this.scores.size(); i++) {
                 this.scores.remove(i);
             }
         }

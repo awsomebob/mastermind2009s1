@@ -5,6 +5,8 @@ import java.util.Random;
 
 import com.masprop.cluster1.privateclasses.model.Score;
 import com.masprop.cluster1.privateclasses.model.Scores;
+import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindScoreFileParser;
+import com.masprop.cluster1.shared.model.GameLevelType;
 
 
 /**
@@ -17,26 +19,26 @@ import com.masprop.cluster1.privateclasses.model.Scores;
 
 public class ScoresTest {
 
-	public void run(){
-	
-		/* Changeable variables
+    public void run(){
+
+        /* Changeable variables
          * When wanting other output, please change these values
-		
-	    /**
-	     *  Class for testing
-	     */
-	    Scores scores;
-	    
-	    // Initialize scores
-	    scores = new Scores();
-	    
-	    // this score we want to add, you can change this value
-	    int newscore = 78;
-	    
-	    // players name, you can change this value
+
+        /**
+         *  Class for testing
+         */
+        Scores scores;
+
+        // Initialize scores
+        scores = new Scores();
+
+        // this score we want to add, you can change this value
+        int newscore = 78;
+
+        // players name, you can change this value
         String name = "testname";
-	    
-	 	//-------------------------------------------------------------------
+
+         //-------------------------------------------------------------------
         //Do not modify below this line please
         //-------------------------------------------------------------------
 
@@ -84,8 +86,8 @@ public class ScoresTest {
         } else {
             System.out.println("Current score " + newscore + " is not in top 10!");
         }
-	}
-    
+    }
+
     /**
      * Main constructor for the Scores Test
      * @param args

@@ -45,7 +45,7 @@ public class MasterMindAlgorithmTest {
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
          */
-        int[] value = { 3, 1, 2, 0 };
+        int[] value = { 3, 3, 3, 1 };
         status.setValue(value);
 
         /**
@@ -60,11 +60,10 @@ public class MasterMindAlgorithmTest {
         System.out.println("Solved the game");
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
-        boolean solveall = true;
-        boolean allowDuplicateColors = false;
         //1 step
-        MastermindAlgorithm algorithm = new MastermindAlgorithm();
-        algorithm.performAlgorithmics(mastermind, solveall, allowDuplicateColors);
+        MastermindAlgorithm algorithm = new MastermindAlgorithm(status, true, true);
+        algorithm.solveMastermind();
+        mastermind.setMastermindStatus(status);
 
         System.out.println(mastermind.toString("|"));
 

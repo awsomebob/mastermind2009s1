@@ -25,8 +25,33 @@ public class MastermindAlgorithm implements Algorithm {
 
     private byte guessCount;
 
-    public static final int COLOR_COUNT = 8;
     private Result[] result;
+
+    public static final int COLOR_COUNT = 8;
+
+    private boolean allowDuplicateColors;
+
+    private boolean allowEmptyColor;
+
+    private MastermindStatus status;
+
+    public MastermindAlgorithm(MastermindStatus status, boolean AllowDuplicateColors,
+            boolean AllowEmptyColor) {
+        this.status = status;
+        result = new Result[status.getMatrixMastermind().getHeight()];
+        guessCount = 0;
+        allowDuplicateColors = AllowDuplicateColors;
+        allowEmptyColor = AllowEmptyColor;
+    }
+
+    public void addResult(Result r) {
+        result[guessCount] = r;
+        guessCount++;
+    }
+
+    public boolean isGameOver() {
+        return guessCount >= result.length;
+    }
 
     /**
      * Generic game solver. Will check if the game object is a mastermind object
@@ -35,228 +60,149 @@ public class MastermindAlgorithm implements Algorithm {
     public void performAlgorithmics(Game game) {
     }
 
-    /**
-     * Mastermind solver
-     *
-     * @param mastermind
-     */
-    public void performAlgorithmics(Mastermind mastermind, boolean solveall, boolean allowDuplicateColors) {
-        // get the settings from the mastermind game
-        // solve the matrix if (g == null) {
-        result = new Result[10];
-        guessCount = 0;
-
-        MastermindStatus status = mastermind.getMastermindStatus();
-        solveMastermind(status, solveall, allowDuplicateColors);
-        // set our status back so the user can see what happened
-        mastermind.setMastermindStatus(status);
-
-    }
-
-    public void solveMastermind(MastermindStatus status, boolean all, boolean allowDuplicateColors) {
-        MatrixMastermind matrix = status.getMatrixMastermind();
+    public void solveMastermind() {
+        MastermindStatus solvedStatus = null;
+        solvedStatus = this.status;
+        MatrixMastermind matrix = solvedStatus.getMatrixMastermind();
         Cell[][] matrixofrows = matrix.getMatrix();
 
-        int guessCount = 0;
-        // start from the bottom
-        for (int i = matrixofrows.length - 1; i >= 0; i--) {
+        System.out.println("We start our mastermind solving algorithm");
 
-            int countvalue = 0;
-            boolean solvedarow = false;
-            // start from the left
-            for (int j = 0; matrixofrows[i].length > j; j++) {
-                countvalue += matrixofrows[i][j].getCurrentValue();
-            }
+        // Print out the result we would like to guess
+        System.out.println("Code to find" + status.getValue()[0] + ""
+                + status.getValue()[1] + "" + status.getValue()[2] + ""
+                + status.getValue()[3]);
 
-            if (countvalue == 0) {
+        // Take a new guess based on the previous results in our result
+        boolean cont = true;
+        while (cont) {
+            System.out.println("Current guesscount:"+guessCount);
+            int CurrentRow = matrixofrows.length - guessCount - 1;
+            System.out.println("Current row:"+CurrentRow);
+            Guess g = takeCalculatedGuess();
+            if (g == null) {
+                System.out.println("I give up, can't make further consistent guesses");
+                //reset the status
+                //solvedStatus = this.status;
+                guessCount = 0;
+                cont = true;
+            } else {
+                System.out.println(g.toString());
+                System.out
+                        .println("Result? (1 = Exact hit, 0 = Hit, but wrong place)");
+                matrixofrows[CurrentRow] = g.getCells();
+                // Ask milovan if he wants to change the status functions so
+                // we can check the correctpositions straight on a
+                // combinations of cells
+                status.setCurrentRow(CurrentRow);
 
-                // Take a new guess based on the previous results in our result
-                // row
-                matrixofrows[i] = takeCalculatedGuess(matrixofrows[i], status, allowDuplicateColors);
-                if (matrixofrows[i] == null) {
+                System.out.println(matrixofrows[CurrentRow][0].getCurrentValue()+" ; "+
+                                   matrixofrows[CurrentRow][1].getCurrentValue()+" ; "+
+                                   matrixofrows[CurrentRow][2].getCurrentValue()+" ; "+
+                                   matrixofrows[CurrentRow][3].getCurrentValue()+" ; "
+                                   );
 
-                    // no answer was found
-                    System.out
-                            .println("I give up, can't make further consistent guesses");
-                            Cell[] cellrow = new Cell[4];
-                            Cell c1 = new Cell(0, false, false);
-                            Cell c2 = new Cell(0, false, false);
-                            Cell c3 = new Cell(0, false, false);
-                            Cell c4 = new Cell(0, false, false);
-                            cellrow[0] =c1;
-                            cellrow[1] =c2;
-                            cellrow[2] =c3;
-                            cellrow[3] =c4;
-                            matrixofrows[i] = cellrow;
-                    break;
+                // fully correct
+                int numCorrColorAndPosition = status.numCorrectPosition();
+                // half correct
+                int numCorrColor = status.numWrongPosition();
+
+                System.out.println("Correct colors :" + numCorrColor);
+                System.out.println("Correct colors and position :"
+                        + numCorrColorAndPosition);
+
+                /*InputStreamReader converter = new InputStreamReader(System.in);
+                BufferedReader in = new BufferedReader(converter);
+                String x = "";
+                try {
+                    x = in.readLine();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Hit[] hit = new Hit[4];
+                for (byte n = 0; n < x.length(); n++) {
+                    hit[n] = x.substring(n, n + 1).equals("1") ? Hit.FULL
+                            : Hit.HALF;
+                }*/
+                Hit[] hit = new Hit[4];
+                for(int i = 0; i < numCorrColorAndPosition; i++){
+                    hit[i] = Hit.FULL;
+                }
+
+                for(int i = numCorrColorAndPosition; i < numCorrColor+numCorrColorAndPosition; i++){
+                    hit[i] = Hit.HALF;
+                }
+                System.out.println(hit[0]+""+hit[1]+""+hit[2]+""+hit[3]);
+
+
+                Result r = new Result(g, hit);
+
+                if (r.completeHit()) {
+                    System.out.println("I won!");
+                    this.status = solvedStatus;
+                    cont = false;
                 } else {
-                    System.out.println("Computer guess"
-                            + matrixofrows[i][0].getCurrentValue() + ""
-                            + matrixofrows[i][1].getCurrentValue() + ""
-                            + matrixofrows[i][2].getCurrentValue() + ""
-                            + matrixofrows[i][3].getCurrentValue());
-                    // set the current row in the status for easy access to our
-                    // row numbers
-                    status.setCurrentRow(i);
-
-                    // fully correct
-                    int numCorrColorAndPosition = status.numCorrectPosition();
-                    // half correct
-                    int numCorrColor = status.numWrongPosition();
-
-                    System.out.println("Code to find" + status.getValue()[0]
-                            + "" + status.getValue()[1] + ""
-                            + status.getValue()[2] + "" + status.getValue()[3]);
-                    System.out
-                            .println("Result? (1 = Exact hit, 0 = Hit, but wrong place)");
-                    System.out.println("Correct colors :" + numCorrColor);
-                    System.out.println("Correct colors and position :"
-                            + numCorrColorAndPosition);
-
-                    InputStreamReader converter = new InputStreamReader(
-                            System.in);
-                    BufferedReader in = new BufferedReader(converter);
-                    String x = "";
-                    try {
-                        x = in.readLine();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                    // add our guess in history
+                    addResult(r);
+                    if (isGameOver()) {
+                        System.out.println("I give up, end of board");
+                        cont = false;
                     }
+                } // if CompleteHit
 
-                    Hit[] hit = new Hit[4];
-
-                    for (byte n = 0; n < x.length(); n++) {
-                        hit[n] = x.substring(n, n + 1).equals("1") ? Hit.FULL
-                                : Hit.HALF;
-                    }
-
-                     /*for (int j = 0; j < numCorrColor;
-                         j++) { hit[j] = Hit.HALF;
-                     }
-                     for (int j = 0; j < numCorrColorAndPosition; j++) {
-                         hit[j] = Hit.FULL;
-                     }*/
-
-                    Result r = new Result(matrixofrows[i], hit);
-                    if (r.completeHit()) {
-                        System.out.println("I won!");
-                        break;
-                        //keepPlaying = yesOrNo("Keep playing?");
-                        // cont = false;
-                    } else {
-                        //add our guess in history
-                        result[this.guessCount] = r;
-                        this.guessCount++;
-
-                        // if the end of our board is reached quit playing
-                        if (this.guessCount >= matrixofrows.length) {
-                            System.out.println("I give up, end of board");
-                        }
-                    } // if CompleteHit
-                }
-
-                MatrixMastermind newmatrix = new MatrixMastermind(matrixofrows);
-                status.setMatrixMastermind(newmatrix);
-                solvedarow = true;
-                guessCount++;
-            }
-            if (solvedarow) {
-                if (!all) {
-                    break;
-                }
+                // MatrixMastermind newmatrix = new
+                // MatrixMastermind(matrixofrows);
+                // status.setMatrixMastermind(newmatrix);
             }
         }
     }
 
-    public Cell[] takeCalculatedGuess(Cell[] guess, MastermindStatus status, boolean allowDuplicateColors) {
+    public Guess takeCalculatedGuess() {
+        Guess ret = new Guess();
         // analyze the mastermind matrix guesses etc and return the row
-        // MatrixMastermind matrix = status.getMatrixMastermind();
-        // row = this.produceGuess();
-        // for(int i = 0; row.length > i;i++ ){
-        // row[i].setCurrentValue(i);
-        // }
-        // is it the first row?
-        int height = status.getMatrixMastermind().getHeight() - 1;
-        // int width = status.getMatrixMastermind().getWidth();
-        // since we are working with a matrix of 4 rows we dont do a foreach
         // good for improvements afterwards
-        Cell[][] matrix = status.getMatrixMastermind().getMatrix();
-        // if it is the first row and this is empty return a first guess
-        if ((matrix[height][0].getCurrentValue() == 0)
-                && (matrix[height][1].getCurrentValue() == 0)
-                && (matrix[height][2].getCurrentValue() == 0)
-                && (matrix[height][3].getCurrentValue() == 0)) {
 
-            Cell[] randomGuess = this.randomGuess();
-            //Cell[] randomGuess = this.firstGuess();
-            return randomGuess;
+        if (guessCount == 0) {
+            ret = randomGuess();
+            System.out.println(ret.toString());
+            return ret;
+        }
 
-        } else {
-            // otherwise we take a more calculated guess based on the results in
-            // our matrix/status
-            Cell r1 = new Cell(0, false, false);
-            Cell r2 = new Cell(0, false, false);
-            Cell r3 = new Cell(0, false, false);
-            Cell r4 = new Cell(0, false, false);
+        for (byte x1 = 0; x1 < COLOR_COUNT; x1++) {
+            for (byte x2 = 0; x2 < COLOR_COUNT; x2++) {
+                for (byte x3 = 0; x3 < COLOR_COUNT; x3++) {
+                    for (byte x4 = 0; x4 < COLOR_COUNT; x4++) {
 
-            // go through all the colors
-            for (byte x1 = 0; x1 < COLOR_COUNT; x1++) {
-                for (byte x2 = 0; x2 < COLOR_COUNT; x2++) {
-                    for (byte x3 = 0; x3 < COLOR_COUNT; x3++) {
-                        for (byte x4 = 0; x4 < COLOR_COUNT; x4++) {
+                        if (allowDuplicateColors
+                                || (!allowDuplicateColors && x1 != x2
+                                        && x1 != x3 && x1 != x4 && x2 != x3
+                                        && x2 != x4 && x3 != x4)) {
+                            Guess g = new Guess(x1, x2, x3, x4);
 
-                            if (allowDuplicateColors
-                                    || (!allowDuplicateColors && x1 != x2
-                                            && x1 != x3 && x1 != x4 && x2 != x3
-                                            && x2 != x4 && x3 != x4))
-                            {
-
-                                r1.setCurrentValue(x1);
-                                r2.setCurrentValue(x2);
-                                r3.setCurrentValue(x3);
-                                r4.setCurrentValue(x4);
-                                guess[0] = r1;
-                                guess[1] = r2;
-                                guess[2] = r3;
-                                guess[3] = r4;
-
-                                if (this.guessCount == 0) {
-                                    // if we still dont have a guess return out
-                                    // of safety
-                                    // normally this is not necessairy
-                                    return guess;
-                                }
+                            if (g.areAllCellsUsableColors(allowEmptyColor)) {
+                                if (guessCount == 0)
+                                    return g;
 
                                 boolean canReturn = true;
-                                for (int y = 0; y < this.guessCount; y++) {
-                                    // here we check if our guess fits all the
-                                    // information that was given in our
-                                    // previous guesses
-                                    // so we make sure we dont give guesses that
-                                    // are unnecessairy
-                                    if (!result[y].isGuessConsistent(guess,
-                                            false)) {
+                                for (int y = 0; y < guessCount; y++) {
+                                    if (!result[y].isGuessConsistent(g,
+                                            allowDuplicateColors))
                                         canReturn = false;
-                                    }
                                 }
 
-                                if (canReturn) {
-                                    // if our guess is a consistent guess return
-                                    // it
-                                    return guess;
-                                }
-
+                                if (canReturn)
+                                    return g;
                             }
 
                         }
+
                     }
                 }
             }
-
-            return null;
-
         }
+
+        return null;
     }
 
     /**
@@ -264,43 +210,34 @@ public class MastermindAlgorithm implements Algorithm {
      *
      * @return
      */
-    public Cell[] firstGuess() {
-        Cell r1 = new Cell(0, false, false);
-        Cell r2 = new Cell(0, false, false);
-        Cell r3 = new Cell(1, false, false);
-        Cell r4 = new Cell(1, false, false);
-        Cell[] guess = { r1, r2, r3, r4 };
-        return guess;
+    public Guess firstGuess() {
+        int r1 = 1;
+        int r2 = 1;
+        int r3 = 2;
+        int r4 = 2;
+        Guess ret = new Guess(r1, r2, r3, r4);
+        return ret;
     }
 
-    public Cell[] randomGuess() {
-        Cell r1 = new Cell(0, false, false);
-        Cell r2 = new Cell(0, false, false);
-        Cell r3 = new Cell(0, false, false);
-        Cell r4 = new Cell(0, false, false);
+    public Guess randomGuess() {
+        int r1 = 0;
+        int r2 = 0;
+        int r3 = 0;
+        int r4 = 0;
         boolean niceStart = false;
         while (!niceStart) {
             Random rnd = new Random();
-            // TODO depending on the difficulty - adjust this color number
-            r1.setCurrentValue(rnd.nextInt(COLOR_COUNT));
-            r2.setCurrentValue(rnd.nextInt(COLOR_COUNT));
-            r3.setCurrentValue(rnd.nextInt(COLOR_COUNT));
-            r4.setCurrentValue(rnd.nextInt(COLOR_COUNT));
-            niceStart = true;
-            // we want different colors in every line so we compare all of them
-            // and if it's the same we repeat our random generator
-            if (r1.getCurrentValue() == r2.getCurrentValue()
-                    || r1.getCurrentValue() == r3.getCurrentValue()
-                    || r1.getCurrentValue() == r4.getCurrentValue()
-                    || r2.getCurrentValue() == r3.getCurrentValue()
-                    || r2.getCurrentValue() == r4.getCurrentValue()
-                    || r3.getCurrentValue() == r4.getCurrentValue()) {
-                niceStart = false;
-            }
-            // TODO: for amount of color add a row
-        }
-        Cell[] guess = { r1, r2, r3, r4 };
-        return guess;
-    }
+            r1 = rnd.nextInt(COLOR_COUNT);
+            r2 = rnd.nextInt(COLOR_COUNT);
+            r3 = rnd.nextInt(COLOR_COUNT);
+            r4 = rnd.nextInt(COLOR_COUNT);
 
+            niceStart = true;
+            if (r1 == r2 || r1 == r3 || r1 == r4 || r2 == r3 || r2 == r4
+                    || r3 == r4)
+                niceStart = false;
+        }
+        Guess ret = new Guess(r1, r2, r3, r4);
+        return ret;
+    }
 }

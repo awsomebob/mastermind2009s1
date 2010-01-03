@@ -9,7 +9,7 @@ import com.masprop.cluster1.shared.model.Cell;
 
 /**
  *
- * @author kerem
+ * @author Nick Veenhof
  */
 public class Guess {
 

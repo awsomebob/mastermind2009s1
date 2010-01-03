@@ -3,9 +3,9 @@ package com.masprop.cluster1.privateclasses.model;
 /**
  * this class contains current status
  * with all information for playing Mastermind
- * 
+ *
  * @see MatrixMastermind
- * 
+ *
  * @author Milovan Duric
  */
 public class MastermindStatus {
@@ -15,10 +15,10 @@ public class MastermindStatus {
      * that computer or player produced
      */
     private int value[];
-    
+
     /**
-     * matrix which holds values 
-     * that player guess  
+     * matrix which holds values
+     * that player guess
      */
     private MatrixMastermind matrixMastermind;
 
@@ -42,25 +42,25 @@ public class MastermindStatus {
         currentRow = 0;
     }
 
-    
+
     /**
-     * 
+     *
      * @return correct value
      */
     public int[] getValue() {
         return value;
     }
-    
+
     /**
      * set correct value
-     * @param value 
+     * @param value
      */
     public void setValue(int[] value) {
         this.value = value;
     }
 
     /**
-     * 
+     *
      * @return matrix
      */
     public MatrixMastermind getMatrixMastermind() {
@@ -68,16 +68,16 @@ public class MastermindStatus {
     }
 
     /**
-     * set matrix 
+     * set matrix
      * @param matrixMastermind
      */
     public void setMatrixMastermind(MatrixMastermind matrixMastermind) {
         this.matrixMastermind = matrixMastermind;
     }
 
-    
+
     /**
-     * 
+     *
      * @return current row
      */
     public int getCurrentRow() {
@@ -122,34 +122,34 @@ public class MastermindStatus {
      * @return the number of colors on wrong position
      */
     public int numWrongPosition(){
-    	int cnt = 0;
-    	boolean[] tempCorrect = new boolean[4];
-    	boolean[] tempBusy = new boolean[4];
-    	boolean[] corBusy = new boolean[4];
-    	for(int i=0; i<4; i++)
-    		tempCorrect[i] = false;
-    	for(int i=0; i<4; i++)
-    		tempBusy[i] = false;
-    	for(int i=0; i<4; i++)
-    		corBusy[i] = false;
-    	
-    	for(int i=0; i<4; i++){
+        int cnt = 0;
+        boolean[] tempCorrect = new boolean[4];
+        boolean[] tempBusy = new boolean[4];
+        boolean[] corBusy = new boolean[4];
+        for(int i=0; i<4; i++)
+            tempCorrect[i] = false;
+        for(int i=0; i<4; i++)
+            tempBusy[i] = false;
+        for(int i=0; i<4; i++)
+            corBusy[i] = false;
+
+        for(int i=0; i<4; i++){
             if(matrixMastermind.getCellValue(currentRow, i) == value[i]){
                 tempCorrect[i] = true;
                // System.out.println("Poklopile se boje na poziciji " + i);
             }
         }
-    	
-    	for(int i=0; i<4; i++)
-    		for(int j=0; j<4; j++){
-    			if(!(tempCorrect[i] || tempCorrect[j] || tempBusy[j] || corBusy[i])){
-    				if(matrixMastermind.getCellValue(currentRow, j) == value[i]){
-    					cnt++;
-    					tempBusy[j] = true;
-    					corBusy[i] = true;
-    				}
-    			}
-    		}
-    	return cnt;
+
+        for(int i=0; i<4; i++)
+            for(int j=0; j<4; j++){
+                if(!(tempCorrect[i] || tempCorrect[j] || tempBusy[j] || corBusy[i])){
+                    if(matrixMastermind.getCellValue(currentRow, j) == value[i]){
+                        cnt++;
+                        tempBusy[j] = true;
+                        corBusy[i] = true;
+                    }
+                }
+            }
+        return cnt;
     }
 }

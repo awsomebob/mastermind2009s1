@@ -47,7 +47,6 @@ public class Guess {
 
     @Override
     public boolean equals(Object guess) {
-        // TODO Auto-generated method stub
         if( this == guess) return true;
         Guess newGuess = (Guess)guess;
         if((this.getCells()[0].getCurrentValue() == newGuess.getCells()[0].getCurrentValue()) &&

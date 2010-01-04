@@ -14,8 +14,7 @@ import com.masprop.cluster1.shared.model.GameLevelType;
 public class MasterMindAlgorithmTest {
 
     public void run() {
-        /* NO CHANGABLE VALUES HERE SINCE THIS IS NOT FINISHED YET
-         *
+        /*
          * Class for testing
          *
          * Here we are testing get and set methods and function for creating new game,
@@ -23,6 +22,10 @@ public class MasterMindAlgorithmTest {
          * We doesn't test here function for saving and open last save game,
          * because it's testing in MastermindSaveGame
          */
+        //MAX COLOR = 7
+        int[] value = { 1, 1, 1, 1 };
+
+        /* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 
         Mastermind mastermind = null;
 
@@ -45,7 +48,7 @@ public class MasterMindAlgorithmTest {
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
          */
-        int[] value = { 3, 3, 3, 1 };
+
         status.setValue(value);
 
         /**
@@ -57,7 +60,7 @@ public class MasterMindAlgorithmTest {
         /**
          * Continue our test with solving the game
          */
-        System.out.println("Solved the game");
+        System.out.println("Solving the game");
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
         //1 step

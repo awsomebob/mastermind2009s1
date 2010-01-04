@@ -35,8 +35,8 @@ public class MastermindAlgorithm implements Algorithm {
 
     private MastermindStatus status;
 
-    public MastermindAlgorithm(MastermindStatus status, boolean AllowDuplicateColors,
-            boolean AllowEmptyColor) {
+    public MastermindAlgorithm(MastermindStatus status,
+            boolean AllowDuplicateColors, boolean AllowEmptyColor) {
         this.status = status;
         result = new Result[status.getMatrixMastermind().getHeight()];
         guessCount = 0;
@@ -66,8 +66,6 @@ public class MastermindAlgorithm implements Algorithm {
         MatrixMastermind matrix = solvedStatus.getMatrixMastermind();
         Cell[][] matrixofrows = matrix.getMatrix();
 
-        System.out.println("We start our mastermind solving algorithm");
-
         // Print out the result we would like to guess
         System.out.println("Code to find" + status.getValue()[0] + ""
                 + status.getValue()[1] + "" + status.getValue()[2] + ""
@@ -76,65 +74,59 @@ public class MastermindAlgorithm implements Algorithm {
         // Take a new guess based on the previous results in our result
         boolean cont = true;
         while (cont) {
-            System.out.println("Current guesscount:"+guessCount);
+            //System.out.println("Current guesscount:" + guessCount);
             int CurrentRow = matrixofrows.length - guessCount - 1;
-            System.out.println("Current row:"+CurrentRow);
+            //System.out.println("Current row:" + CurrentRow);
             Guess g = takeCalculatedGuess();
             if (g == null) {
-                System.out.println("I give up, can't make further consistent guesses");
-                //reset the status
-                //solvedStatus = this.status;
+                System.out.println("Restarted, could not find it. Let me try again please?");
+                // reset the status
+                // solvedStatus = this.status;
                 guessCount = 0;
                 cont = true;
             } else {
-                System.out.println(g.toString());
-                System.out
-                        .println("Result? (1 = Exact hit, 0 = Hit, but wrong place)");
+                //System.out.println(g.toString());
+                //System.out.println("Result? (1 = Exact hit, 0 = Hit, but wrong place)");
                 matrixofrows[CurrentRow] = g.getCells();
                 // Ask milovan if he wants to change the status functions so
                 // we can check the correctpositions straight on a
                 // combinations of cells
                 status.setCurrentRow(CurrentRow);
 
-                System.out.println(matrixofrows[CurrentRow][0].getCurrentValue()+" ; "+
-                                   matrixofrows[CurrentRow][1].getCurrentValue()+" ; "+
-                                   matrixofrows[CurrentRow][2].getCurrentValue()+" ; "+
-                                   matrixofrows[CurrentRow][3].getCurrentValue()+" ; "
-                                   );
+                /*System.out.println(matrixofrows[CurrentRow][0]
+                        .getCurrentValue()
+                        + " ; "
+                        + matrixofrows[CurrentRow][1].getCurrentValue()
+                        + " ; "
+                        + matrixofrows[CurrentRow][2].getCurrentValue()
+                        + " ; "
+                        + matrixofrows[CurrentRow][3].getCurrentValue()
+                        + " ; ");
+                 */
 
                 // fully correct
                 int numCorrColorAndPosition = status.numCorrectPosition();
                 // half correct
                 int numCorrColor = status.numWrongPosition();
 
-                System.out.println("Correct colors :" + numCorrColor);
-                System.out.println("Correct colors and position :"
-                        + numCorrColorAndPosition);
+                //System.out.println("Correct colors :" + numCorrColor);
+                //System.out.println("Correct colors and position :"
+                //        + numCorrColorAndPosition);
 
-                /*InputStreamReader converter = new InputStreamReader(System.in);
-                BufferedReader in = new BufferedReader(converter);
-                String x = "";
-                try {
-                    x = in.readLine();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                // manual intervention could happen here to say how many are
+                // correct and how many are not..! (like HALFHALFFULL)
                 Hit[] hit = new Hit[4];
-                for (byte n = 0; n < x.length(); n++) {
-                    hit[n] = x.substring(n, n + 1).equals("1") ? Hit.FULL
-                            : Hit.HALF;
-                }*/
-                Hit[] hit = new Hit[4];
-                for(int i = 0; i < numCorrColorAndPosition; i++){
+                for (int i = 0; i < numCorrColorAndPosition; i++) {
                     hit[i] = Hit.FULL;
                 }
 
-                for(int i = numCorrColorAndPosition; i < numCorrColor+numCorrColorAndPosition; i++){
+                for (int i = numCorrColorAndPosition; i < numCorrColor
+                        + numCorrColorAndPosition; i++) {
                     hit[i] = Hit.HALF;
                 }
-                System.out.println(hit[0]+""+hit[1]+""+hit[2]+""+hit[3]);
 
+                //System.out.println(hit[0] + "" + hit[1] + "" + hit[2] + ""
+                //        + hit[3]);
 
                 Result r = new Result(g, hit);
 
@@ -150,10 +142,6 @@ public class MastermindAlgorithm implements Algorithm {
                         cont = false;
                     }
                 } // if CompleteHit
-
-                // MatrixMastermind newmatrix = new
-                // MatrixMastermind(matrixofrows);
-                // status.setMatrixMastermind(newmatrix);
             }
         }
     }
@@ -165,14 +153,14 @@ public class MastermindAlgorithm implements Algorithm {
 
         if (guessCount == 0) {
             ret = randomGuess();
-            System.out.println(ret.toString());
+            //System.out.println(ret.toString());
             return ret;
         }
 
-        for (byte x1 = 0; x1 < COLOR_COUNT; x1++) {
-            for (byte x2 = 0; x2 < COLOR_COUNT; x2++) {
-                for (byte x3 = 0; x3 < COLOR_COUNT; x3++) {
-                    for (byte x4 = 0; x4 < COLOR_COUNT; x4++) {
+        for (byte x1 = 0; x1 <= COLOR_COUNT; x1++) {
+            for (byte x2 = 0; x2 <= COLOR_COUNT; x2++) {
+                for (byte x3 = 0; x3 <= COLOR_COUNT; x3++) {
+                    for (byte x4 = 0; x4 <= COLOR_COUNT; x4++) {
 
                         if (allowDuplicateColors
                                 || (!allowDuplicateColors && x1 != x2
@@ -206,7 +194,9 @@ public class MastermindAlgorithm implements Algorithm {
     }
 
     /**
-     * Based on the algorithm of donald knuth
+     * Based on the algorithm of donald knuth. We are not using it because it
+     * does not always find a solution.. Algorithm needs more improvement to be
+     * able to get this working
      *
      * @return
      */

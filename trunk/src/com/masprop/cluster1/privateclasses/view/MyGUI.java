@@ -466,7 +466,7 @@ public class MyGUI extends javax.swing.JFrame {
     			
     			guiManager.getMastermind().setScore(guiManager.getGameManager().score(currRow, guiManager.getMastermind().getGameLevelType())) ;
     			int position = guiManager.getMastermind().getScores().getScore(guiManager.getMastermind().getScore()) + 1;
-    			//System.out.println("Tvoj skor je " + guiManager.getMastermind().getScore() + " i pozicija " + position + " !");
+    			
     			if(position < 1){
     				endGameDialog1.getJLabel2().setText("Your score is: " + getGuiManager().getMastermind().getScore() + " !");
     				endGameDialog1.setVisible(true);
@@ -481,7 +481,7 @@ public class MyGUI extends javax.swing.JFrame {
     				results[(6-currRow)*4 + i].setColor(2);
     				results[(6-currRow)*4 + i].repaint();
     			}
-    			//System.out.println("broj tacnih " + numRight);
+    			
     			for(int i=0; i<numWrong; i++){
     				results[(6-currRow)*4 + i + numRight].setColor(4);
     				results[(6-currRow)*4 + i + numRight].repaint();
@@ -489,7 +489,7 @@ public class MyGUI extends javax.swing.JFrame {
     			for(int i=0; i<4; i++)
     				guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow,i).setEditable(false);
     			
-    			//System.out.println("broj pogresnih " + numWrong);
+    			
     			endGameDialog.setVisible(true);
     		}else
     		{
@@ -497,12 +497,12 @@ public class MyGUI extends javax.swing.JFrame {
     				results[(6-currRow)*4 + i].setColor(2);
     				results[(6-currRow)*4 + i].repaint();
     			}
-    			//System.out.println("broj tacnih " + numRight);
+    			
     			for(int i=0; i<numWrong; i++){
     				results[(6-currRow)*4 + i + numRight].setColor(4);
     				results[(6-currRow)*4 + i + numRight].repaint();
     			}
-    			//System.out.println("broj pogresnih " + numWrong);
+    			
     			if(currRow<6){
     				guiManager.getMastermind().getMastermindStatus().setCurrentRow(currRow+1);
     				for(int i=0; i<4; i++){

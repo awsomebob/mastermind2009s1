@@ -13,7 +13,12 @@ import javax.swing.JTextArea;
 
 import com.masprop.cluster1.privateclasses.model.Score;
 
-
+/**
+ * Dialog for successful finished game and result is in top 10.
+ * 
+ * @author Milan Stanic
+ *
+ */
 
 public class EndGame2 extends JDialog {
 	
@@ -145,30 +150,57 @@ public class EndGame2 extends JDialog {
 		}
 		return jButton1;
 	}
-		
+	
+	/**
+	 * This method returns jLabel2
+	 * 
+	 * @return javax.swing.JLabel
+	 */
 	public JLabel getJLabel2() {
 		
 		return jLabel2;
 	}
 
+	/**
+	 * This method sets jLabel2
+	 * 
+	 * @param jLabel
+	 */
 	public void setJLabel2(JLabel jLabel2) {
 		this.jLabel2 = jLabel2;
 	}
 
+	/**
+	 * This method returns jLabel1
+	 * 
+	 * @return javax.swing.JLabel
+	 */
 	public JLabel getJLabel1() {
 		return jLabel1;
 	}
 
+	/**
+	 * This method sets jLabel1
+	 * 
+	 * @param jLabel
+	 */
 	public void setJLabel1(JLabel jLabel1) {
 		this.jLabel1 = jLabel1;
 	}
 
+	/**
+	 * Closing dialog
+	 * @param evt
+	 */
 	private void cancelEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     		
 		this.setVisible(false);	
     }
 
-
+	/**
+	 * Saving current result and opening dialog for new game
+	 * @param evt
+	 */
 	private void saveScoreEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		myGUI.getGuiManager().getMastermind().getScores().addScore(new Score(jTextArea.getText(), myGUI.getGuiManager().getMastermind().getScore()));
@@ -176,8 +208,6 @@ public class EndGame2 extends JDialog {
 		this.setVisible(false);
 		myGUI.getNewGameDialog().setVisible(true);
     }
-
-	
 	
 	
 }

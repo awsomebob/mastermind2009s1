@@ -11,9 +11,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindGameFileParser;
 
-
-
+/**
+ * Saving current game.
+ * 
+ * @see MyGUI
+ * @see MastermindGameFileParser
+ * 
+ * @author Milan Stanic
+ *
+ */
 
 public class SaveGame extends JDialog {
 	
@@ -122,13 +130,19 @@ public class SaveGame extends JDialog {
 		return jButton1;
 	}
 		
-
+	/**
+	 * Closing dialog
+	 * @param evt
+	 */
 	private void noEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     		
 		this.setVisible(false);	
     }
 
-
+	/**
+	 * Saving current game.
+	 * @param evt
+	 */
 	private void yesScoreEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
 		myGUI.getGuiManager().getMastermind().getGameParser().update(myGUI.getGuiManager().getMastermind());
 		this.setVisible(false);

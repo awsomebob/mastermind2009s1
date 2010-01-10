@@ -10,6 +10,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Dialog for unsuccessful finished game
+ * 
+ * @author Milan Stanic
+ *
+ */
 
 public class EndGame extends JDialog {
 	
@@ -64,7 +70,7 @@ public class EndGame extends JDialog {
 			
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(50, 10, 340, 21));
-			jLabel.setText("You have finished game unsuccesfull!");
+			jLabel.setText("You have finished game unsuccessful!");
 			
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
@@ -116,13 +122,18 @@ public class EndGame extends JDialog {
 		}
 		return jButton1;
 	}
-	
-private void closeGameEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
+
+	/**
+ 	* Closing application
+ 	*/
+	private void closeGameEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     		
 		System.exit(0);	
     }
 
-
+	/**
+	 * Opening dialog for new game
+	 */
 	private void startNewGameEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		myGUI.getNewGameDialog().setVisible(true);

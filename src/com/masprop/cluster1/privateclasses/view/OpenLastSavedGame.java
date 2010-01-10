@@ -12,9 +12,15 @@ import javax.swing.JPanel;
 
 import com.masprop.cluster1.privateclasses.model.diskmanager.MastermindGameFileParser;
 
-
-
-
+/**
+ * Dialog for opening last saved game.
+ * 
+ * @see MyGUI
+ * @see MastermindGameFileParser
+ * 
+ * @author Milan Stanic
+ *
+ */
 
 public class OpenLastSavedGame extends JDialog {
 	
@@ -123,13 +129,19 @@ public class OpenLastSavedGame extends JDialog {
 		return jButton1;
 	}
 		
-
+	/**
+	 * Closing dialog
+	 * @param evt
+	 */
 	private void noEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     		
 		this.setVisible(false);	
     }
 
-
+	/**
+	 * Opening last saved game.
+	 * @param evt
+	 */
 	private void yesScoreEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
 		MastermindGameFileParser gameParser = new MastermindGameFileParser(false);
 		myGUI.getGuiManager().setMastermind(gameParser.getMastermindFromFile());
@@ -164,9 +176,6 @@ public class OpenLastSavedGame extends JDialog {
 		this.setVisible(false);
 		
     }
-
-	
-	
 	
 }
 

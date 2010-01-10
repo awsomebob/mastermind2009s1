@@ -10,7 +10,7 @@ import com.masprop.cluster1.privateclasses.model.Mastermind;
 import com.masprop.cluster1.shared.model.GameLevelType;
 
 /**
- * This class handles whit GUI interface and domain layer and it is not finished yet
+ * This class handles with GUI interface and domain layer and it is not finished yet
  * It's reason because I didn't make tests for all functions in this class
  * 
  * @see Mastermind
@@ -73,6 +73,7 @@ public class GUIManager {
 
 	/**
 	 *  Gets mastermind game manager
+	 *  
 	 * @return mastermind game manager
 	 */
 	public GameManagerMastermind getGameManager() {
@@ -92,8 +93,10 @@ public class GUIManager {
 	}
 	
 	/**
+	 * This function is checking fields in current row and if some field is empty function will return false.
+	 * Also checking is game resolved.
 	 * 
-	 * @return
+	 * @return is all fields in current row filled
 	 */
 	public boolean check(){
 		if(mastermind != null){

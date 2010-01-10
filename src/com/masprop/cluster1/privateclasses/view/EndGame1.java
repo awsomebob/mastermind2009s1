@@ -10,6 +10,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Dialog for successful finished game, but result is not in top 10.
+ * 
+ * @author Milan Stanic
+ *
+ */
 
 public class EndGame1 extends JDialog {
 	
@@ -66,7 +72,7 @@ public class EndGame1 extends JDialog {
 			
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(50, 10, 340, 21));
-			jLabel.setText("You have finished game succesfull!");
+			jLabel.setText("You have finished game successful!");
 			
 			jLabel1 = new JLabel();
 			jLabel1.setBounds(new Rectangle(50, 40, 340, 21));
@@ -128,21 +134,36 @@ public class EndGame1 extends JDialog {
 		}
 		return jButton1;
 	}
-		
+	
+	/**
+	 * This method returns jLabel2
+	 * 
+	 * @return javax.swing.JLabel
+	 */
 	public JLabel getJLabel2() {
 		return jLabel2;
 	}
 
+	/**
+	 * This method sets jLabel2
+	 * 
+	 * @param jLabel2
+	 */
 	public void setJLabel2(JLabel jLabel2) {
 		this.jLabel2 = jLabel2;
 	}
 
+	/**
+ 	* Closing application
+ 	*/
 	private void closeGameEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     		
 		System.exit(0);	
     }
 
-
+	/**
+	 * Opening dialog for new game
+	 */
 	private void startNewGameEventActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	
 		myGUI.getNewGameDialog().setVisible(true);

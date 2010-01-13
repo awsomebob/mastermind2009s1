@@ -220,6 +220,9 @@ public class MastermindAlgorithm implements Algorithm {
                                 return g;
 
                             boolean canReturn = true;
+                            /* for all the guesses that are already made
+                             * check if the new guess is consistent with the old guesses
+                             */
                             for (int y = 0; y < guessCount; y++) {
                                 if (!result[y].isGuessConsistent(g))
                                     canReturn = false;

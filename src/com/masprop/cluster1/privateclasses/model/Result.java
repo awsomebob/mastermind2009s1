@@ -1,12 +1,13 @@
 package com.masprop.cluster1.privateclasses.model;
 
-import com.masprop.cluster1.shared.model.Cell;
-
 /**
- *
+ * Validates results and checks if a guess was correct. By checking we mean that
+ * it returns if a taken guess is not a good guess because it does not comply
+ * with the previous guesses. This states that any new guess should have atleast
+ * the same score as the previous guess based on the information we gathered so
+ * far.
  * @author Nick Veenhof
  */
-
 public class Result {
 
     // our result
@@ -25,9 +26,9 @@ public class Result {
         this.hit = hit;
     }
 
-
     public boolean completeHit() {
-        return (hit[0] == Hit.FULL && hit[1] == Hit.FULL && hit[2] == Hit.FULL && hit[3] == Hit.FULL);
+        return ((hit[0] == Hit.FULL) && (hit[1] == Hit.FULL)
+                && (hit[2] == Hit.FULL) && (hit[3] == Hit.FULL));
     }
 
     private void init() {
@@ -44,53 +45,37 @@ public class Result {
      * @param AllowDuplicateColors
      * @return
      */
-    public static Result evaluateGuess(Guess Correct,
-        Guess Guess, boolean AllowDuplicateColors) {
+    public static Result evaluateGuess(Guess Correct, Guess Guess) {
         Result ret = new Result();
         ret.guess = Guess;
         boolean[] evaluated = new boolean[4];
         int hitPos = 0;
 
-        if (AllowDuplicateColors) {
-            for (int n = 0; n < Correct.getCells().length; n++) {
-                //we need twice n!
-                int CorrectColor = Correct.getCells()[n].getCurrentValue();
-                int GuessColor = Guess.getCells()[n].getCurrentValue();
-                if (CorrectColor == GuessColor) {
-                    ret.hit[hitPos] = Hit.FULL;
-                    evaluated[n] = true;
-                    hitPos++;
-                }
+        for (int n = 0; n < Correct.getCells().length; n++) {
+            // we need twice n!
+            int CorrectColor = Correct.getCells()[n].getCurrentValue();
+            int GuessColor = Guess.getCells()[n].getCurrentValue();
+            if (CorrectColor == GuessColor) {
+                ret.hit[hitPos] = Hit.FULL;
+                evaluated[n] = true;
+                hitPos++;
             }
+        }
 
-            for (int n = 0; n < Correct.getCells().length; n++) {
-                if (!evaluated[n]) {
-                    for (int m = 0; m < Guess.getCells().length; m++) {
-                        if (!evaluated[n] && n != m) {
-                            int CorrectColor = Correct.getCells()[n].getCurrentValue();
-                            int GuessColor = Guess.getCells()[m].getCurrentValue();
-                            if (CorrectColor == GuessColor) {
-                                ret.hit[hitPos] = Hit.HALF;
-                                evaluated[n] = true;
-                                hitPos++;
-                                m = Guess.getCells().length + 1;
-                            }
+        for (int n = 0; n < Correct.getCells().length; n++) {
+            if (!evaluated[n]) {
+                for (int m = 0; m < Guess.getCells().length; m++) {
+                    if (!evaluated[n] && n != m) {
+                        int CorrectColor = Correct.getCells()[n]
+                                .getCurrentValue();
+                        int GuessColor = Guess.getCells()[m].getCurrentValue();
+                        if (CorrectColor == GuessColor) {
+                            ret.hit[hitPos] = Hit.HALF;
+                            evaluated[n] = true;
+                            hitPos++;
+                            m = Guess.getCells().length + 1;
                         }
                     }
-                }
-            }
-
-        }
-        else {
-            for (int n = 0; n < Correct.getCells().length; n++) {
-                for (int m = 0; m < Guess.getCells().length; m++) {
-                    int CorrectColor = Correct.getCells()[n].getCurrentValue();
-                    int GuessColor = Guess.getCells()[m].getCurrentValue();
-                    if (CorrectColor == GuessColor)  {
-                        ret.hit[hitPos] = (n == m) ? Hit.FULL : Hit.HALF;
-                        hitPos++;
-                    }
-
                 }
             }
         }
@@ -106,14 +91,9 @@ public class Result {
      *         not the same as previous evaluations If we allow this it could be
      *         that we end in infinite loops and we dont want that
      */
-    public boolean isGuessConsistent(Guess G, boolean AllowDuplicateColors) {
-        Result r = evaluateGuess(G, guess, AllowDuplicateColors);
-        //System.out.println(r.hit[0] + "" + r.hit[1] + "" + r.hit[2] + ""
-        //        + r.hit[3]);
-        //System.out.println(hit[0] + "" + hit[1] + "" + hit[2] + "" + hit[3]);
-        return ((r.hit[0] == hit[0]) &&
-                (r.hit[1] == hit[1]) &&
-                (r.hit[2] == hit[2]) &&
-                (r.hit[3] == hit[3]));
+    public boolean isGuessConsistent(Guess G) {
+        Result r = evaluateGuess(G, guess);
+        return ((r.hit[0] == hit[0]) && (r.hit[1] == hit[1])
+                && (r.hit[2] == hit[2]) && (r.hit[3] == hit[3]));
     }
 }

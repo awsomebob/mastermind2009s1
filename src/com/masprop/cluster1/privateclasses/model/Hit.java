@@ -1,7 +1,7 @@
 package com.masprop.cluster1.privateclasses.model;
 
 /**
- *
+ * Enumerator for the evaluation of the guesses
  * @author nick veenhof
  *
  */

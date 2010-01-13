@@ -59,7 +59,15 @@ public class ScoresTest {
         for(Score s : scores.getScores()){
             System.out.println("position "+ scores.getScores().indexOf(s) +": " + s.toString());
         }
+        //new test
+        Random r = new Random();
+        Score score = new Score("test",r.nextInt(100));
+        scores.addScore(score);
 
+        System.out.println("Top 10 scores for current level2");
+        for(Score s : scores.getScores()){
+            System.out.println("position "+ scores.getScores().indexOf(s) +": " + s.toString());
+        }
         /*
          * current position of score in top 10 or -1 if that score is not in top 10
          * this variable score you can change to test functionality of class Score
@@ -86,6 +94,7 @@ public class ScoresTest {
         } else {
             System.out.println("Current score " + newscore + " is not in top 10!");
         }
+
     }
 
     /**

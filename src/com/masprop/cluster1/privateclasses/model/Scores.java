@@ -17,7 +17,7 @@ public class Scores {
     /**
      * top 10 results for appropriate level
      */
-    private static int LIMIT = 9;
+    private static int LIMIT = 10;
 
     private ArrayList<Score> scores;
 
@@ -61,9 +61,14 @@ public class Scores {
      */
     public int getScore(int score) {
         int position = -1;
+        int count = 0;
         for (Score s : this.scores) {
             if (score > s.getScore()) {
                 position = scores.indexOf(s);
+                break;
+            }
+            count++;
+            if(count >= LIMIT){
                 break;
             }
         }
@@ -83,6 +88,7 @@ public class Scores {
      */
     public void setScore(Score score, int position) {
         scores.add(position, score);
+        this.cutToLimit(LIMIT);
         /*
          * for(int i=9; i>=position; i--){ scores[i] = scores[i-1]; }
          * scores[position-1] = score;

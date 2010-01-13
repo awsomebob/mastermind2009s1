@@ -5,6 +5,7 @@ import java.util.Random;
 import com.masprop.cluster1.shared.controller.Algorithm;
 import com.masprop.cluster1.shared.model.Cell;
 import com.masprop.cluster1.shared.model.Game;
+import com.masprop.cluster1.shared.model.GameLevelType;
 import com.masprop.cluster1.privateclasses.model.Result;
 
 /**
@@ -32,7 +33,8 @@ public class MastermindAlgorithm implements Algorithm {
      * is hardly a performance issue so we don't have to code different
      * difficulty levels
      */
-    public static final int COLOR_COUNT = 9;
+    public int color_count;
+
 
     /* Used to eliminate the empty color (value 0) from our guessing attempts */
     private boolean allowEmptyColor = false;
@@ -50,10 +52,19 @@ public class MastermindAlgorithm implements Algorithm {
      *            of the mastermind game to check the properties of the game
      *            that we want to solve
      */
-    public MastermindAlgorithm(MastermindStatus status) {
+    public MastermindAlgorithm(MastermindStatus status, GameLevelType levelType) {
         this.status = status;
         result = new Result[status.getMatrixMastermind().getHeight()];
-        guessCount = 0;
+        //0-3 easy, 0-4 medium, 0-5 difficult
+        if(levelType == GameLevelType.EASY){
+            color_count = 4;
+        }
+        if(levelType == GameLevelType.MEDIUM){
+            color_count = 5;
+        }
+        if(levelType == GameLevelType.DIFFICULT){
+            color_count = 6;
+        }
     }
 
     /**
@@ -208,10 +219,10 @@ public class MastermindAlgorithm implements Algorithm {
          * guess attempts that have been made. For more info see the
          * documentation manual.
          */
-        for (byte x1 = 0; x1 <= COLOR_COUNT; x1++) {
-            for (byte x2 = 0; x2 <= COLOR_COUNT; x2++) {
-                for (byte x3 = 0; x3 <= COLOR_COUNT; x3++) {
-                    for (byte x4 = 0; x4 <= COLOR_COUNT; x4++) {
+        for (byte x1 = 0; x1 <= color_count; x1++) {
+            for (byte x2 = 0; x2 <= color_count; x2++) {
+                for (byte x3 = 0; x3 <= color_count; x3++) {
+                    for (byte x4 = 0; x4 <= color_count; x4++) {
 
                         Guess g = new Guess(x1, x2, x3, x4);
 
@@ -272,10 +283,10 @@ public class MastermindAlgorithm implements Algorithm {
         boolean goodStart = false;
         while (!goodStart) {
             Random rnd = new Random();
-            r1 = rnd.nextInt(COLOR_COUNT);
-            r2 = rnd.nextInt(COLOR_COUNT);
-            r3 = rnd.nextInt(COLOR_COUNT);
-            r4 = rnd.nextInt(COLOR_COUNT);
+            r1 = rnd.nextInt(color_count);
+            r2 = rnd.nextInt(color_count);
+            r3 = rnd.nextInt(color_count);
+            r4 = rnd.nextInt(color_count);
 
             goodStart = true;
             if (r1 == r2 || r1 == r3 || r1 == r4 || r2 == r3 || r2 == r4

@@ -35,7 +35,7 @@ public class GameSolverMastermind implements GameSolver {
     public Mastermind solveMastermind(Mastermind mastermind) {
         // add our allcolors boolean and the other one
         MastermindStatus status = mastermind.getMastermindStatus();
-        MastermindAlgorithm algorithm = new MastermindAlgorithm(status);
+        MastermindAlgorithm algorithm = new MastermindAlgorithm(status, mastermind.getGameLevelType());
         algorithm.solveMastermind();
         mastermind.setMastermindStatus(status);
         return mastermind;

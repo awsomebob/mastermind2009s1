@@ -23,7 +23,7 @@ public class MasterMindAlgorithmTest {
          * because it's testing in MastermindSaveGame
          */
         //MAX COLOR = 7
-        int[] value = { 1, 1, 1, 1 };
+        int[] value = { 1, 2, 5, 4 };
 
         /* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 

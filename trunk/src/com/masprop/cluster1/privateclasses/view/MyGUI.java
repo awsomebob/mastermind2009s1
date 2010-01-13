@@ -473,6 +473,12 @@ public class MyGUI extends javax.swing.JFrame {
     	//This is only example
     	boolean result = guiManager.check();
     	int currRow = guiManager.currentRow();
+    	if(guiManager.getMastermind().getGameModeType() == GameModeType.COMPvsPLAYER){
+    		for(int i=0; i<4; i++){
+    		inputs[(6-currRow)*4 + i].setColor(guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow,i).getCurrentValue()+2);
+			inputs[(6-currRow)*4 + i].repaint();
+    		}
+    	}
     	int numRight = guiManager.numCorrectPosition();
 		int numWrong = guiManager.numWrongPosition();
     	if(result){
@@ -531,7 +537,8 @@ public class MyGUI extends javax.swing.JFrame {
     			if(currRow<6){
     				guiManager.getMastermind().getMastermindStatus().setCurrentRow(currRow+1);
     				for(int i=0; i<4; i++){
-    					guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow+1,i).setEditable(true);
+    					if(guiManager.getMastermind().getGameModeType() != GameModeType.COMPvsPLAYER)
+    						guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow+1,i).setEditable(true);
     					guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(currRow,i).setEditable(false);
     					inputs[(6-currRow-1)*4 + i].setColor(1);
     					inputs[(6-currRow-1)*4 + i].repaint();				

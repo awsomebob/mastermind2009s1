@@ -204,6 +204,8 @@ public class MyGUI extends javax.swing.JFrame {
         guiScore = new GUIScore(this);
         saveGame = new SaveGame(this);
         openGame = new OpenLastSavedGame(this);
+        aboutDialog = new AboutDialog(this);
+        manualDialog = new ManualDialog(this);
 
  
   //      fileChooser = new javax.swing.JFileChooser();
@@ -293,6 +295,11 @@ public class MyGUI extends javax.swing.JFrame {
 
         manualMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/masprop/cluster1/shared/view/graphics/menu_manual.png"))); // NOI18N
         manualMenuItem.setText("Manual");
+        manualMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manualMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(manualMenuItem);
 
         aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/masprop/cluster1/shared/view/graphics/menu_about.png"))); // NOI18N
@@ -418,10 +425,13 @@ public class MyGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-       // aboutDialog.setVisible(true);
+       aboutDialog.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-
+    private void manualMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        manualDialog.setVisible(true);
+     }//GEN-LAST:event_aboutMenuItemActionPerformed
+    
     private void loadGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadGameMenuItemActionPerformed
        openGame.setVisible(true);
     }//GEN-LAST:event_loadGameMenuItemActionPerformed
@@ -583,6 +593,10 @@ public class MyGUI extends javax.swing.JFrame {
     private SaveGame saveGame;
     
     private OpenLastSavedGame openGame;
+    
+    private AboutDialog aboutDialog;
+    
+    private ManualDialog manualDialog;
 
     // End of variables declaration//GEN-END:variables
 

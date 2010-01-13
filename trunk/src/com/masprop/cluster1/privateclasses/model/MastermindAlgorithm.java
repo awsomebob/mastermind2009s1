@@ -37,7 +37,7 @@ public class MastermindAlgorithm implements Algorithm {
 
 
     /* Used to eliminate the empty color (value 0) from our guessing attempts */
-    private boolean allowEmptyColor = false;
+    private boolean allowEmptyColor = true;
 
     /*
      * Used to save our status. We don't use the solution for taking a guess.
@@ -116,7 +116,6 @@ public class MastermindAlgorithm implements Algorithm {
         solvedStatus = this.status;
         MatrixMastermind matrix = solvedStatus.getMatrixMastermind();
         Cell[][] matrixofrows = matrix.getMatrix();
-
         // Take a new guess based on the previous results in our result
         boolean cont = true;
 
@@ -127,7 +126,6 @@ public class MastermindAlgorithm implements Algorithm {
             Guess g = takeCalculatedGuess();
             if (g == null) {
                 // we failed to find it so try again with a new random start
-
                 // reset the status rows
                 for (int j = 0; j < matrixofrows.length; j++) {
                     for (int k = 0; k < matrixofrows[j].length; k++) {

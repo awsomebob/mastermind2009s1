@@ -22,7 +22,7 @@ public class MasterMindAlgorithmTest {
          * We doesn't test here function for saving and open last save game,
          * because it's testing in MastermindSaveGame
          */
-        int[] value = { 2, 1, 1, 2 };
+        int[] value = { 4, 3, 3, 0 };
 
         /* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 
@@ -31,7 +31,7 @@ public class MasterMindAlgorithmTest {
         /**
          * Difficulty level of game which we want to generate
          */
-        GameLevelType gameLevelType = GameLevelType.DIFFICULT;
+        GameLevelType gameLevelType = GameLevelType.MEDIUM;
         GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
 
         /**

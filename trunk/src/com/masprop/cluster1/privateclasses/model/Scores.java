@@ -17,7 +17,7 @@ public class Scores {
     /**
      * top 10 results for appropriate level
      */
-    private static int LIMIT = 10;
+    private static int LIMIT = 9;
 
     private ArrayList<Score> scores;
 

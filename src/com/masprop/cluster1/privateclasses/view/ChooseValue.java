@@ -179,8 +179,6 @@ public class ChooseValue extends JDialog  {
 			playerValue[i] = value[i].getColor() - 2;
 		}
         
-        for(int i=0; i<4; i++)
-        	System.out.print(playerValue[i] +" ");
         myGUI.guiManager.createNewGame(myGUI.getNewGameDialog().getLevel(), myGUI.getNewGameDialog().getMode());
         myGUI.guiManager.getMastermind().getMastermindStatus().setValue(playerValue);
         
@@ -215,7 +213,8 @@ public class ChooseValue extends JDialog  {
 					myGUI.guiManager.getMastermind().getMastermindStatus().getMatrixMastermind().getCell(i,j).setEditable(false);
 			
 			myGUI.guiManager.setMastermind(myGUI.guiManager.getGameManager().solveGame(myGUI.guiManager.getMastermind()));
-			System.out.println("Dosao ovde!");
+			myGUI.guiManager.getMastermind().getMastermindStatus().setCurrentRow(0);
+			
 		}
 		
 		

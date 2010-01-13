@@ -114,15 +114,14 @@ public class GUIManager {
 			}
 			else{
 				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
+				System.out.println("Tekuci red "+currentRow);
 				boolean correct = true;
-				for(int i=0; i<4; i++)
-					if(isCorrectValue(currentRow, i) == false)
-						correct = false;
+				for(int i=0; i<4; i++)					
 				if(correct){
 					isResolved = mastermind.getMastermindStatus().isCorrectValue();
-					return true;
+					
 				}
-				return false;
+				return true;
 			}		
 		}
 		else

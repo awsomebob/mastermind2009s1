@@ -311,73 +311,98 @@ public class MyGUI extends javax.swing.JFrame {
 
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * Gets choose value dialog
+     * @return ChooseValueDialog
+     */
 	public ChooseValue getChooseValueDialog() {
 		return chooseValueDialog;
 	}
 
-
-
+	/**
+	 * sets choose value dialog
+	 * @param chooseValueDialog
+	 */
 	public void setChooseValueDialog(ChooseValue chooseValueDialog) {
 		this.chooseValueDialog = chooseValueDialog;
 	}
 
-
-
+	/**
+	 * Gets inputs
+	 * @return inputs
+	 */
 	public Circle[] getInputs() {
 		return inputs;
 	}
 
-
-
+	/**
+	 * Sets inputs
+	 * @param inputs
+	 */
 	public void setInputs(Circle[] inputs) {
 		this.inputs = inputs;
 	}
 
-
-
+	/**
+	 * Gets line
+	 * @return line
+	 */
 	public MyLine[] getLine() {
 		return line;
 	}
 
-
-
+	/**
+	 * Sets line
+	 * @param line
+	 */
 	public void setLine(MyLine[] line) {
 		this.line = line;
 	}
 
-
-
+	/**
+	 * Gets results
+	 * @return results
+	 */
 	public Circle[] getResults() {
 		return results;
 	}
 
-
-
+	/**
+	 * Sets results
+	 * @param results
+	 */
 	public void setResults(Circle[] results) {
 		this.results = results;
 	}
 
-
-
+	/**
+	 * Gets value
+	 * @return value
+	 */
 	public Circle[] getValue() {
 		return value;
 	}
 
-
-
+	/**
+	 * Sets value
+	 * @param value
+	 */
 	public void setValue(Circle[] value) {
 		this.value = value;
 	}
 
-
-
+	/**
+	 * Gets guiManager
+	 * @return guiManager
+	 */
 	public GUIManager getGuiManager() {
 		return guiManager;
 	}
 
-
-
+	/**
+	 * Sets guiManager
+	 * @param guiManager
+	 */
 	public void setGuiManager(GUIManager guiManager) {
 		this.guiManager = guiManager;
 	}
@@ -722,13 +747,18 @@ public class MyGUI extends javax.swing.JFrame {
     }
     
     
-    
+    /**
+     * Gets new game dialog
+     * @return new game dialog
+     */
     public NewGame getNewGameDialog() {
 		return newGameDialog;
 	}
 
-
-
+    /**
+     * Gets new game dialog
+     * @param newGameDialog
+     */
 	public void setNewGameDialog(NewGame newGameDialog) {
 		this.newGameDialog = newGameDialog;
 	}

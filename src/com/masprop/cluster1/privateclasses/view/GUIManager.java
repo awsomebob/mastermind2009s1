@@ -112,7 +112,18 @@ public class GUIManager {
 				}
 				return false;
 			}
-			return false;
+			else{
+				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
+				boolean correct = true;
+				for(int i=0; i<4; i++)
+					if(isCorrectValue(currentRow, i) == false)
+						correct = false;
+				if(correct){
+					isResolved = mastermind.getMastermindStatus().isCorrectValue();
+					return true;
+				}
+				return false;
+			}		
 		}
 		else
 			return false;

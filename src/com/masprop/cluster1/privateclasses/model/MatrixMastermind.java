@@ -14,7 +14,7 @@ import com.masprop.cluster1.shared.model.Matrix;
  *
  * @author Milovan Duric
  */
-public class MatrixMastermind extends Matrix {
+public class MatrixMastermind implements Matrix {
     private Cell[][] matrix;
 
     /**

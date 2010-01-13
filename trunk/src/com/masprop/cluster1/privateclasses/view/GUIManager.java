@@ -113,7 +113,6 @@ public class GUIManager {
 				return false;
 			}
 			else{
-				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
 				boolean correct = true;
 				for(int i=0; i<4; i++)					
 				if(correct){

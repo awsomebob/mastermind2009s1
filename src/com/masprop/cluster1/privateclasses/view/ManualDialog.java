@@ -9,6 +9,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * Dialog about manual
+ * 
+ * @author Milan Stanic
+ *
+ */
+
 public class ManualDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;

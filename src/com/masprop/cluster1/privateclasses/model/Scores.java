@@ -72,6 +72,9 @@ public class Scores {
                 break;
             }
         }
+        if(count == 0){
+            position = 1;
+        }
         /*
          * int temp = 1; for(temp=1; temp<=10; temp++){ if(score < scores[9]){
          * temp = -1; break; } if(score > scores[temp-1]) break; }

@@ -122,7 +122,7 @@ public class MastermindAlgorithm implements Algorithm {
 
         while (cont) {
             // System.out.println("Current guesscount:" + guessCount);
-            int CurrentRow = matrixofrows.length - guessCount - 1;
+            int CurrentRow = guessCount;
             // System.out.println("Current row:" + CurrentRow);
             Guess g = takeCalculatedGuess();
             if (g == null) {

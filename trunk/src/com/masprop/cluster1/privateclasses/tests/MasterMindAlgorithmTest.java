@@ -23,7 +23,7 @@ public class MasterMindAlgorithmTest {
          * because it's testing in MastermindSaveGame
          */
         //MAX COLOR = 7
-        int[] value = { 1, 2, 5, 4 };
+        int[] value = { 1, 4, 2, 1 };
 
         /* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 
@@ -44,11 +44,11 @@ public class MasterMindAlgorithmTest {
          * Get the mastermind status from mastermind
          */
         MastermindStatus status = mastermind.getMastermindStatus();
+
         /**
          * Set our color value. Integers are mapped to a certain color in the
          * GUI
          */
-
         status.setValue(value);
 
         /**
@@ -61,19 +61,23 @@ public class MasterMindAlgorithmTest {
          * Continue our test with solving the game
          */
         System.out.println("Solving the game");
+        // Print out the result we would like to guess
+        System.out.println("Code to find" + status.getValue()[0] + "" +
+        status.getValue()[1] + "" + status.getValue()[2] + "" +
+        status.getValue()[3]);
+
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
-        //1 step
-        MastermindAlgorithm algorithm = new MastermindAlgorithm(status, true, true);
+        MastermindAlgorithm algorithm = new MastermindAlgorithm(status);
         algorithm.solveMastermind();
+
+        //set our solved status back
         mastermind.setMastermindStatus(status);
 
+        //print for checking what he did
         System.out.println(mastermind.toString("|"));
-
-
-
-
     }
+
     /**
      * @param args
      */

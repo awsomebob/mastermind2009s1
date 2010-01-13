@@ -114,7 +114,6 @@ public class GUIManager {
 			}
 			else{
 				int currentRow = mastermind.getMastermindStatus().getCurrentRow();
-				System.out.println("Tekuci red "+currentRow);
 				boolean correct = true;
 				for(int i=0; i<4; i++)					
 				if(correct){

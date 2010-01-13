@@ -65,6 +65,7 @@ public class MastermindAlgorithm implements Algorithm {
         if(levelType == GameLevelType.DIFFICULT){
             color_count = 6;
         }
+        //color_count = 8;
     }
 
     /**
@@ -289,8 +290,9 @@ public class MastermindAlgorithm implements Algorithm {
             r4 = rnd.nextInt(color_count);
 
             goodStart = true;
-            if (r1 == r2 || r1 == r3 || r1 == r4 || r2 == r3 || r2 == r4
-                    || r3 == r4)
+            //if (r1 == r2 || r1 == r3 || r1 == r4 || r2 == r3 || r2 == r4
+            //        || r3 == r4)
+            if (r1 == r2 || r1 == r3 || r1 == r4 )
                 goodStart = false;
         }
         Guess ret = new Guess(r1, r2, r3, r4);

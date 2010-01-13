@@ -22,8 +22,7 @@ public class MasterMindAlgorithmTest {
          * We doesn't test here function for saving and open last save game,
          * because it's testing in MastermindSaveGame
          */
-        //MAX COLOR = 7
-        int[] value = { 5, 3, 2, 3 };
+        int[] value = { 4, 3, 2, 3 };
 
         /* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 
@@ -32,7 +31,7 @@ public class MasterMindAlgorithmTest {
         /**
          * Difficulty level of game which we want to generate
          */
-        GameLevelType gameLevelType = GameLevelType.DIFFICULT;
+        GameLevelType gameLevelType = GameLevelType.MEDIUM;
         GameModeType gameModeType = GameModeType.PLAYERvsCOMP;
 
         /**
@@ -68,7 +67,7 @@ public class MasterMindAlgorithmTest {
 
         //run our mastermind game trough the solver/guesser.
         //TODO: add parameters to ask for a new guess or to solve the whole game
-        MastermindAlgorithm algorithm = new MastermindAlgorithm(status);
+        MastermindAlgorithm algorithm = new MastermindAlgorithm(status, gameLevelType);
         algorithm.solveMastermind();
 
         //set our solved status back

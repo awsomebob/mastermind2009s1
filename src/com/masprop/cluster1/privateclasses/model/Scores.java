@@ -147,8 +147,7 @@ public class Scores {
      * @param max Maximum of scores allowed in our file
      */
     public void cutToLimit(int max) {
-        if (this.scores.size() >= max) {
-            //max +1 because we don't have the 0 in account when we define max scores..
+        if (this.scores.size() > max) {
             for (int i = max; i < this.scores.size(); i++) {
                 this.scores.remove(i);
             }

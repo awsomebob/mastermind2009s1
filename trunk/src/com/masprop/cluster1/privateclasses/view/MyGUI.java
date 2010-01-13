@@ -437,7 +437,7 @@ public class MyGUI extends javax.swing.JFrame {
     
     private void scoresMenuItemActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_newGameMenuItemActionPerformed
     	MastermindScoreFileParser parser = new MastermindScoreFileParser();
-    	Scores scores = parser.getScoreFromFile(GameLevelType.DIFFICULT);
+    	Scores scores = parser.getScoreFromFile(GameLevelType.EASY);
     	for(Score s : scores.getScores()){
     		guiScore.getNames()[scores.getScores().indexOf(s)].setText(s.getName());
     		guiScore.getScores()[scores.getScores().indexOf(s)].setText(String.valueOf(s.getScore()));

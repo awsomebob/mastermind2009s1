@@ -307,6 +307,10 @@ public class GUIScore extends JDialog {
 	private void easyEventActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_newGameMenuItemActionPerformed
 		MastermindScoreFileParser parser = new MastermindScoreFileParser();
 		Scores scoresLoad = parser.getScoreFromFile(GameLevelType.EASY);
+		for (int i = 0; i < names.length; i++) {
+			names[i].setText("");
+			scores[i].setText("");
+		}
 		if (scoresLoad.getScores().size() != 0) {
 			for (Score s : scoresLoad.getScores()) {
 				names[scoresLoad.getScores().indexOf(s)].setText(s.getName());
@@ -317,10 +321,6 @@ public class GUIScore extends JDialog {
 			// create new scores and set them
 			names[0].setText("Not available");
 			scores[0].setText("");
-			for (int i = 1; i < names.length; i++) {
-				names[i].setText("");
-				scores[i].setText("");
-			}
 		}
 
 	}
@@ -333,6 +333,10 @@ public class GUIScore extends JDialog {
 	private void mediumEventActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_newGameMenuItemActionPerformed
 		MastermindScoreFileParser parser = new MastermindScoreFileParser();
 		Scores scoresLoad = parser.getScoreFromFile(GameLevelType.MEDIUM);
+		for (int i = 0; i < names.length; i++) {
+			names[i].setText("");
+			scores[i].setText("");
+		}
 		if (scoresLoad.getScores().size() != 0) {
 			for (Score s : scoresLoad.getScores()) {
 				names[scoresLoad.getScores().indexOf(s)].setText(s.getName());
@@ -343,10 +347,6 @@ public class GUIScore extends JDialog {
 			// create new scores and set them
 			names[0].setText("Not available");
 			scores[0].setText("");
-			for (int i = 1; i < names.length; i++) {
-				names[i].setText("");
-				scores[i].setText("");
-			}
 		}
 
 	}
@@ -359,6 +359,10 @@ public class GUIScore extends JDialog {
 	private void difficultEventActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_newGameMenuItemActionPerformed
 		MastermindScoreFileParser parser = new MastermindScoreFileParser();
 		Scores scoresLoad = parser.getScoreFromFile(GameLevelType.DIFFICULT);
+		for (int i = 0; i < names.length; i++) {
+			names[i].setText("");
+			scores[i].setText("");
+		}
 		if (scoresLoad.getScores().size() != 0) {
 			for (Score s : scoresLoad.getScores()) {
 				names[scoresLoad.getScores().indexOf(s)].setText(s.getName());
@@ -369,10 +373,6 @@ public class GUIScore extends JDialog {
 			// create new scores and set them
 			names[0].setText("Not available");
 			scores[0].setText("");
-			for (int i = 1; i < names.length; i++) {
-				names[i].setText("");
-				scores[i].setText("");
-			}
 		}
 
 	}

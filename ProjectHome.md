@@ -1,0 +1,1 @@
+Mastermind project for the PROP course in Master MTI, UPC FIB in Barcelona
